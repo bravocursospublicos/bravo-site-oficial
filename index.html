@@ -93,7 +93,103 @@
   .wa-tab-side{position:fixed;right:0;top:50%;transform:translateY(-50%) rotate(180deg);z-index:55;background:#25d366;color:#06210f;font-weight:800;font-size:13px;letter-spacing:.05em;padding:12px 8px;border-radius:10px 0 0 10px;writing-mode:vertical-rl;text-decoration:none;box-shadow:-4px 4px 18px -4px rgba(37,211,102,.5);transition:padding .2s}
   .wa-tab-side:hover{padding-right:14px}
   @media(max-width:768px){.wa-tab-side{display:none}}
+
+  /* ÁREA RESTRITA BRAVO */
+  .auth-link{border:1px solid rgba(34,224,122,.65);color:var(--green);border-radius:12px;padding:9px 15px;font-weight:800;background:rgba(34,224,122,.08);cursor:pointer}
+  .auth-link:hover{background:var(--green-soft)}
+  .auth-overlay{position:fixed;inset:0;z-index:100;background:rgba(2,6,23,.88);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:18px;overflow-y:auto}
+  .auth-overlay.open{display:flex}
+  .auth-panel{width:min(100%,560px);background:#0f1d3d;border:1px solid var(--border);border-radius:22px;padding:26px;box-shadow:0 30px 90px rgba(0,0,0,.55);position:relative}
+  .auth-panel.wide{width:min(100%,900px)}
+  .auth-field{width:100%;background:#071329;border:1px solid rgba(148,163,201,.28);border-radius:11px;padding:12px 14px;color:#eef2ff;outline:none}
+  .auth-field:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(34,224,122,.12)}
+  .auth-label{display:block;color:#c3cdea;font-weight:700;font-size:13px;margin:12px 0 6px}
+  .auth-close{position:absolute;right:16px;top:12px;color:#93a3c9;font-size:26px;background:none;border:0;cursor:pointer}
+  .auth-message{font-size:13px;margin-top:12px;min-height:20px;color:#fbbf24}
+  .auth-table{width:100%;border-collapse:collapse;font-size:14px}
+  .auth-table th,.auth-table td{padding:11px 9px;border-bottom:1px solid var(--border);text-align:left}
+  .auth-table th{color:var(--green);font-size:12px;text-transform:uppercase}
+  .auth-tag{display:inline-block;padding:3px 9px;border-radius:999px;background:var(--green-soft);color:var(--green);font-size:11px;font-weight:800}
+  .auth-secondary{background:#1b2c50;color:#eef2ff;border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer}
+  @media(max-width:640px){.auth-panel{padding:20px}.auth-table{font-size:12px}.auth-table th,.auth-table td{padding:8px 5px}}
+
+  .student-tabs{display:flex;flex-wrap:wrap;gap:8px}
+  .student-tab{border:1px solid var(--border);background:#071329;color:#c3cdea;border-radius:11px;padding:10px 15px;font-weight:800;cursor:pointer}
+  .student-tab.active{background:var(--green);border-color:var(--green);color:#06210f}
+  .learning-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:14px}
+  .learning-card{background:#0f1d3d;border:1px solid var(--border);border-radius:16px;padding:18px;min-width:0}
+  .learning-card h4{font-weight:800;font-size:18px;line-height:1.3}
+  .learning-card .learning-description{color:var(--muted);font-size:14px;white-space:pre-wrap;overflow-wrap:anywhere;margin-top:9px}
+  .learning-open{display:inline-flex;margin-top:14px;background:var(--green);color:#06210f;font-weight:800;border-radius:9px;padding:9px 13px;text-decoration:none}
+  .learning-admin-row{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#071329;border:1px solid var(--border);border-radius:12px;padding:12px}
+  .drive-help{background:rgba(34,224,122,.08);border:1px solid rgba(34,224,122,.22);padding:13px;border-radius:12px;color:#c3cdea}
+  .admin-small-btn{background:#1b2c50;color:#eef2ff;border:1px solid var(--border);border-radius:8px;padding:7px 10px;font-size:12px;font-weight:700;cursor:pointer}
+  .admin-small-btn.danger{color:#fecaca;border-color:rgba(248,113,113,.3)}
+
+/* CORREÇÃO DE ROLAGEM DO PAINEL BRAVO */
+#authOverlay {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    padding: 24px 12px !important;
+    box-sizing: border-box !important;
+}
+
+/* Impede que o painel seja cortado */
+#dashboardPanel {
+    width: 100%;
+    max-height: none !important;
+    height: auto !important;
+    overflow: visible !important;
+    margin-top: 0 !important;
+    margin-bottom: 24px !important;
+}
+
+/* Garante que a área administrativa cresça conforme o conteúdo */
+#adminDashboard {
+    width: 100%;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+}
+
+/* Evita cortes nos cartões e tabelas */
+#adminDashboard .card {
+    max-height: none !important;
+    overflow: visible;
+}
+
+/* Ajuste para celulares */
+@media (max-width: 768px) {
+    #authOverlay {
+        padding: 12px 8px !important;
+    }
+
+    #dashboardPanel {
+        padding-bottom: 30px;
+    }
+
+    #adminDashboard {
+        min-width: 0;
+    }
+
+    #adminDashboard .overflow-x-auto {
+        overflow-x: auto;
+        max-width: 100%;
+    }
+}
+
+
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 <!-- ============================================================
@@ -127,7 +223,7 @@
       <a class="nav-link" href="#professores">Professores</a>
       <a class="nav-link" href="#faq">Dúvidas</a>
     </nav>
-    <a href="#cursos" class="btn-primary !py-2.5 !px-5 !text-sm cta-btn">Garantir minha vaga</a>
+    <div class="flex items-center gap-2"><button type="button" class="auth-link" id="openLogin">Área do aluno</button><a href="#cursos" class="btn-primary !py-2.5 !px-5 !text-sm cta-btn">Garantir minha vaga</a></div>
   </div>
 </header>
 
@@ -445,7 +541,7 @@
     if(!WHATSAPP_NUMBER || WHATSAPP_NUMBER.replace(/\D/g,"") === "" || WHATSAPP_NUMBER === WA_PLACEHOLDER){
       alert("Olá! O número de WhatsApp ainda não foi configurado.\n\nPara ativar a aba de dúvidas, edite o arquivo HTML e substitua o valor de WHATSAPP_NUMBER (logo no início do código) pelo seu número com DDI + DDD, só dígitos. Ex: 5515999999999");
     } else {
-      var msg = encodeURIComponent("Olá! Tenho dúvidas sobre o curso preparatório para GCM Capão Bonito / QP de Soldados da PM.");
+      var msg = encodeURIComponent("Olá! Tenho dúvidas sobre o curso preparatório para GCM Capão Bonito.");
       window.open("https://wa.me/" + WHATSAPP_NUMBER.replace(/\D/g,"") + "?text=" + msg, "_blank");
     }
   }
@@ -455,5 +551,332 @@
   if(waTab) waTab.addEventListener('click', abrirWhatsapp);
 })();
 </script>
+
+<!-- ÁREA RESTRITA: LOGIN, PAINEL DO ALUNO E ADMINISTRAÇÃO -->
+<div class="auth-overlay" id="authOverlay" aria-modal="true" role="dialog" aria-labelledby="authTitle">
+  <section class="auth-panel" id="loginPanel">
+    <button class="auth-close" type="button" id="closeAuth" aria-label="Fechar">×</button>
+    <span class="pill bg-soft-green text-green mb-3">BRAVO • Área restrita</span>
+    <h2 class="font-display text-3xl mb-1" id="authTitle">Acesse sua conta</h2>
+    <p class="text-muted text-sm mb-5">Entre com o e-mail e a senha fornecidos pela equipe BRAVO.</p>
+    <form id="loginForm">
+      <label class="auth-label" for="loginEmail">E-mail</label>
+      <input class="auth-field" id="loginEmail" type="email" autocomplete="username" required>
+      <label class="auth-label" for="loginPassword">Senha</label>
+      <input class="auth-field" id="loginPassword" type="password" autocomplete="current-password" required>
+      <button class="btn-primary w-full justify-center mt-5" type="submit" id="loginSubmit">Entrar</button>
+    </form>
+    <p class="auth-message" id="loginMessage" role="status"></p>
+    <p class="text-xs text-muted mt-3">Problemas de acesso? Entre em contato com a administração.</p>
+  </section>
+
+  <section class="auth-panel wide" id="dashboardPanel" hidden>
+    <div class="flex flex-wrap justify-between items-center gap-3 mb-6">
+      <div><span class="pill bg-soft-green text-green mb-2">BRAVO • Área restrita</span><h2 class="font-display text-3xl" id="dashboardTitle">Painel</h2><p class="text-muted text-sm" id="welcomeText"></p></div>
+      <button class="auth-secondary" id="logoutButton" type="button">Sair da conta</button>
+    </div>
+    <div id="studentDashboard" hidden>
+      <div class="card p-5 mb-5">
+        <span class="auth-tag">ÁREA DO ALUNO</span>
+        <h3 class="font-display text-2xl mt-2">Sua preparação começa aqui</h3>
+        <p class="text-muted text-sm mt-1">Acesse as aulas, apostilas e anotações liberadas pela equipe BRAVO.</p>
+        <div class="student-tabs mt-5" role="tablist" aria-label="Materiais de estudo">
+          <button class="student-tab active" type="button" data-content-tab="video">▶ Videoaulas</button>
+          <button class="student-tab" type="button" data-content-tab="booklet">▤ Apostilas</button>
+          <button class="student-tab" type="button" data-content-tab="note">✎ Anotações</button>
+        </div>
+      </div>
+      <div id="studentContentStatus" class="auth-message" role="status">Carregando seus materiais...</div>
+      <div id="studentContentList" class="learning-grid"></div>
+    </div>
+    <div id="adminDashboard" hidden>
+      <div class="grid md:grid-cols-3 gap-3 mb-5">
+        <div class="card p-4"><p class="text-muted text-xs uppercase">Perfil</p><p class="text-green font-bold text-xl">Administrador</p></div>
+        <div class="card p-4"><p class="text-muted text-xs uppercase">Permissão</p><p class="font-bold text-xl">Acesso administrativo</p></div>
+        <div class="card p-4"><p class="text-muted text-xs uppercase">Gestão</p><p class="font-bold text-xl">Contas de alunos</p></div>
+      </div>
+      <div class="card p-5 mb-5">
+        <h3 class="font-display text-xl mb-2">Criar acesso de aluno</h3>
+        <form id="createStudentForm" class="grid md:grid-cols-2 gap-x-4">
+          <div><label class="auth-label" for="studentName">Nome completo</label><input class="auth-field" id="studentName" required maxlength="120"></div>
+          <div><label class="auth-label" for="studentEmail">E-mail do aluno</label><input class="auth-field" id="studentEmail" type="email" required></div>
+          <div><label class="auth-label" for="studentPassword">Senha inicial</label><input class="auth-field" id="studentPassword" type="password" minlength="8" required autocomplete="new-password"></div>
+          <div><label class="auth-label" for="studentCourse">Curso</label><select class="auth-field" id="studentCourse"><option>GCM Capão Bonito</option><option>QP de Soldados — Polícia Militar</option><option>Ambos os cursos</option></select></div>
+          <div class="md:col-span-2"><button class="btn-primary mt-4" id="createStudentButton" type="submit">Criar usuário</button><p class="auth-message" id="createStudentMessage" role="status"></p></div>
+        </form>
+      </div>
+      <div class="card p-5 mb-5" id="adminContentManager">
+        <div class="flex flex-wrap justify-between items-center gap-3 mb-3">
+          <div><h3 class="font-display text-xl">Biblioteca de conteúdos</h3><p class="text-muted text-sm">Publique videoaulas, apostilas e anotações para os alunos.</p></div>
+          <a class="auth-secondary" href="https://drive.google.com/drive/my-drive" target="_blank" rel="noopener">Abrir Google Drive ↗</a>
+        </div>
+        <div class="drive-help text-sm mb-4">
+          <strong class="text-green">Como funciona a integração:</strong> os arquivos ficam hospedados no Google Drive. Copie o link de compartilhamento do arquivo e cole no campo abaixo. No Drive, configure o acesso como “Qualquer pessoa com o link — Leitor”. O site guarda os metadados e controla quais alunos podem visualizar cada material.
+        </div>
+        <form id="addContentForm" class="grid md:grid-cols-2 gap-x-4">
+          <div><label class="auth-label" for="contentTitle">Título</label><input class="auth-field" id="contentTitle" maxlength="160" required placeholder="Ex.: Aula 01 — Direito Constitucional"></div>
+          <div><label class="auth-label" for="contentType">Tipo de conteúdo</label><select class="auth-field" id="contentType"><option value="video">Videoaula</option><option value="booklet">Apostila</option><option value="note">Anotação</option></select></div>
+          <div><label class="auth-label" for="contentCourse">Disponibilizar para</label><select class="auth-field" id="contentCourse"><option value="Ambos os cursos">Ambos os cursos</option><option value="GCM Capão Bonito">GCM Capão Bonito</option><option value="QP de Soldados — Polícia Militar">QP de Soldados — Polícia Militar</option></select></div>
+          <div><label class="auth-label" for="contentDriveUrl">Link do Google Drive / vídeo</label><input class="auth-field" id="contentDriveUrl" type="url" placeholder="https://drive.google.com/..."></div>
+          <div class="md:col-span-2"><label class="auth-label" for="contentDescription">Descrição / anotação</label><textarea class="auth-field" id="contentDescription" rows="4" maxlength="12000" placeholder="Escreva uma descrição ou, para anotações, o conteúdo que o aluno deverá ler."></textarea></div>
+          <div class="md:col-span-2 flex flex-wrap items-center gap-3 mt-3">
+            <label class="text-sm text-muted flex items-center gap-2"><input id="contentPublish" type="checkbox" checked> Publicar imediatamente para os alunos</label>
+            <button class="btn-primary" id="addContentButton" type="submit">Adicionar conteúdo</button>
+          </div>
+          <p class="auth-message md:col-span-2" id="addContentMessage" role="status"></p>
+        </form>
+        <div class="border-t border-soft mt-5 pt-4">
+          <div class="flex justify-between items-center gap-3 mb-3"><h4 class="font-bold">Conteúdos cadastrados</h4><button type="button" class="auth-secondary" id="refreshContents">Atualizar</button></div>
+          <div id="adminContentList" class="space-y-2"><p class="text-muted text-sm">Carregando conteúdos...</p></div>
+        </div>
+      </div>
+      <div class="card p-5">
+        <div class="flex justify-between items-center gap-3 mb-3"><h3 class="font-display text-xl">Usuários cadastrados</h3><button type="button" class="auth-secondary" id="refreshUsers">Atualizar lista</button></div>
+        <div class="overflow-x-auto"><table class="auth-table"><thead><tr><th>Aluno</th><th>E-mail</th><th>Perfil</th><th>Cadastro</th></tr></thead><tbody id="usersTable"><tr><td colspan="4" class="text-muted">Carregando usuários...</td></tr></tbody></table></div>
+        <p class="auth-message" id="usersMessage" role="status"></p>
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+(function(){
+  // CONFIGURAÇÃO OBRIGATÓRIA: informe a URL e a chave pública (anon/publishable) do projeto Supabase.
+  // Nunca coloque a chave service_role neste HTML.
+  const SUPABASE_URL = "https://kgliyuffqwvdeauxnube.supabase.co";
+  const SUPABASE_ANON_KEY = "sb_publishable_wsDxq6qpa4NVqcfLNpiydw_MydLUOzB";
+  const CREATE_USER_FUNCTION = SUPABASE_URL + "/functions/v1/admin-users";
+const configured = Boolean(
+  window.supabase &&
+  SUPABASE_URL.startsWith("https://") &&
+  SUPABASE_ANON_KEY.length > 0
+);
+  const client = configured
+  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+  : null;
+
+  const overlay=document.getElementById("authOverlay");
+  const loginPanel=document.getElementById("loginPanel");
+  const dashboardPanel=document.getElementById("dashboardPanel");
+  const loginMessage=document.getElementById("loginMessage");
+  const adminDashboard=document.getElementById("adminDashboard");
+  const studentDashboard=document.getElementById("studentDashboard");
+  const usersTable=document.getElementById("usersTable");
+  let currentProfile=null;
+
+  function showMessage(id,msg,isError=false){
+    const el=document.getElementById(id); if(!el)return;
+    el.textContent=msg; el.style.color=isError?"#fca5a5":"#fbbf24";
+  }
+  function openArea() {
+    overlay.classList.add("open");
+    document.body.style.overflow = "hidden";
+
+    // Posiciona a área no início da página
+    overlay.scrollTop = 0;
+
+    requestAnimationFrame(() => {
+        overlay.scrollTop = 0;
+    });
+	}
+  function closeArea(){overlay.classList.remove("open");document.body.style.overflow="";}
+  function showLogin(){
+    loginPanel.hidden=false;dashboardPanel.hidden=true;
+    loginMessage.textContent="";
+  }
+  async function showDashboard(user){
+    const {data,error}=await client.from("profiles").select("id,full_name,role,course,created_at").eq("id",user.id).single();
+    if(error || !data){await client.auth.signOut();showLogin();showMessage("loginMessage","Não foi possível validar seu perfil. Contate a administração.",true);return;}
+    currentProfile=data;
+    loginPanel.hidden=true;dashboardPanel.hidden=false;
+    document.getElementById("welcomeText").textContent="Olá, "+(data.full_name||user.email);
+    const isAdmin=data.role==="admin";
+    adminDashboard.hidden=!isAdmin;studentDashboard.hidden=isAdmin;
+    document.getElementById("dashboardTitle").textContent=isAdmin?"Painel administrativo":"Área do aluno";
+    if(isAdmin){loadUsers();loadAdminContents();}
+    else {activeStudentTab="video";document.querySelectorAll("[data-content-tab]").forEach(b=>b.classList.toggle("active",b.dataset.contentTab==="video"));loadStudentContents();}
+  }
+  async function loadUsers(){
+    usersTable.innerHTML='<tr><td colspan="4" class="text-muted">Carregando...</td></tr>';
+    const {data,error}=await client.from("profiles").select("full_name,email,role,course,created_at").order("created_at",{ascending:false});
+    if(error){usersTable.innerHTML="";showMessage("usersMessage","Erro ao carregar usuários: "+error.message,true);return;}
+    usersTable.innerHTML="";
+    (data||[]).forEach(u=>{
+      const tr=document.createElement("tr");
+      [u.full_name||"—",u.email||"—",u.role==="admin"?"Administrador":"Aluno",u.created_at?new Date(u.created_at).toLocaleDateString("pt-BR"):"—"].forEach(v=>{
+        const td=document.createElement("td");td.textContent=v;tr.appendChild(td);
+      });
+      usersTable.appendChild(tr);
+    });
+    if(!data || !data.length)usersTable.innerHTML='<tr><td colspan="4" class="text-muted">Nenhum usuário encontrado.</td></tr>';
+    showMessage("usersMessage",(data||[]).length+" usuário(s) listado(s).");
+  }
+
+  document.getElementById("openLogin").addEventListener("click",()=>{
+    openArea();showLogin();
+    if(!configured)showMessage("loginMessage","A área está pronta, mas precisa ser conectada ao Supabase pelo responsável técnico.",true);
+  });
+  document.getElementById("closeAuth").addEventListener("click",closeArea);
+  overlay.addEventListener("click",e=>{if(e.target===overlay)closeArea();});
+  document.addEventListener("keydown",e=>{if(e.key==="Escape")closeArea();});
+  document.getElementById("loginForm").addEventListener("submit",async e=>{
+    e.preventDefault();
+    if(!configured){showMessage("loginMessage","Configure primeiro SUPABASE_URL e SUPABASE_ANON_KEY no código.",true);return;}
+    const button=document.getElementById("loginSubmit");button.disabled=true;button.textContent="Verificando...";
+    const {data,error}=await client.auth.signInWithPassword({
+      email:document.getElementById("loginEmail").value.trim(),
+      password:document.getElementById("loginPassword").value
+    });
+    button.disabled=false;button.textContent="Entrar";
+    if(error){showMessage("loginMessage","E-mail ou senha inválidos.",true);return;}
+    await showDashboard(data.user);
+  });
+  document.getElementById("logoutButton").addEventListener("click",async()=>{await client.auth.signOut();currentProfile=null;showLogin();});
+  document.getElementById("refreshUsers").addEventListener("click",loadUsers);
+  document.getElementById("createStudentForm").addEventListener("submit",async e=>{
+    e.preventDefault();
+    if(!currentProfile || currentProfile.role!=="admin"){showMessage("createStudentMessage","Ação não autorizada.",true);return;}
+    const btn=document.getElementById("createStudentButton");btn.disabled=true;btn.textContent="Criando...";
+    try{
+      const {data:{session}}=await client.auth.getSession();
+      const response=await fetch(CREATE_USER_FUNCTION,{
+        method:"POST",
+        headers:{ "Content-Type":"application/json", "Authorization":"Bearer "+session.access_token, "apikey":SUPABASE_ANON_KEY },
+        body:JSON.stringify({
+          full_name:document.getElementById("studentName").value.trim(),
+          email:document.getElementById("studentEmail").value.trim(),
+          password:document.getElementById("studentPassword").value,
+          course:document.getElementById("studentCourse").value
+        })
+      });
+      const result=await response.json();
+      if(!response.ok)throw new Error(result.error||"Não foi possível criar o usuário.");
+      document.getElementById("createStudentForm").reset();
+      showMessage("createStudentMessage","Usuário criado com sucesso. Oriente o aluno a entrar com o e-mail e a senha inicial.");
+      await loadUsers();
+    }catch(err){showMessage("createStudentMessage",err.message,true);}
+    finally{btn.disabled=false;btn.textContent="Criar usuário";}
+  });
+
+
+  // ===== BIBLIOTECA DE CONTEÚDOS BRAVO =====
+  let activeStudentTab = "video";
+  const contentLabels = {video:"Videoaula", booklet:"Apostila", note:"Anotação"};
+  function safeDriveUrl(raw){
+    const value=(raw||"").trim();
+    if(!value) return "";
+    try{
+      const u=new URL(value);
+      if(u.protocol!=="https:") return "";
+      if(!["drive.google.com","docs.google.com","www.youtube.com","youtu.be","youtube.com"].includes(u.hostname)) return "";
+      return u.href;
+    }catch(_){return "";}
+  }
+  function getDriveOpenUrl(raw){
+    const value=safeDriveUrl(raw);
+    if(!value) return "";
+    const match=value.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+    return match ? "https://drive.google.com/file/d/"+match[1]+"/view" : value;
+  }
+  function renderStudentContents(items){
+    const list=document.getElementById("studentContentList");
+    list.innerHTML="";
+    const filtered=(items||[]).filter(x=>x.content_type===activeStudentTab);
+    if(!filtered.length){
+      list.innerHTML='<div class="card p-5 text-muted">Ainda não há conteúdos publicados nesta categoria.</div>';
+      return;
+    }
+    filtered.forEach(item=>{
+      const card=document.createElement("article");card.className="learning-card";
+      const tag=document.createElement("span");tag.className="auth-tag";tag.textContent=contentLabels[item.content_type]||"Material";
+      const title=document.createElement("h4");title.className="mt-3";title.textContent=item.title;
+      const desc=document.createElement("p");desc.className="learning-description";desc.textContent=item.description||"Material disponibilizado pela equipe BRAVO.";
+      card.append(tag,title,desc);
+      if(item.drive_url){
+        const link=document.createElement("a");link.className="learning-open";link.href=getDriveOpenUrl(item.drive_url)||item.drive_url;
+        link.target="_blank";link.rel="noopener";link.textContent=item.content_type==="video"?"Assistir / abrir conteúdo":"Abrir material";
+        card.appendChild(link);
+      }
+      list.appendChild(card);
+    });
+  }
+  async function loadStudentContents(){
+    const status=document.getElementById("studentContentStatus");
+    status.textContent="Carregando materiais...";
+    const {data,error}=await client.from("course_contents").select("id,title,description,content_type,drive_url,course,created_at").eq("is_published",true).order("created_at",{ascending:false});
+    if(error){status.textContent="Não foi possível carregar os materiais: "+error.message;return;}
+    const course=currentProfile?.course||"";
+    const visible=(data||[]).filter(x=>!x.course||x.course==="Ambos os cursos"||x.course===course);
+    status.textContent=visible.length+" conteúdo(s) disponível(is).";
+    renderStudentContents(visible);
+    document.querySelectorAll("[data-content-tab]").forEach(btn=>btn.onclick=()=>{
+      activeStudentTab=btn.dataset.contentTab;
+      document.querySelectorAll("[data-content-tab]").forEach(b=>b.classList.toggle("active",b===btn));
+      renderStudentContents(visible);
+    });
+    const active=document.querySelector('[data-content-tab="'+activeStudentTab+'"]');
+    if(active)active.classList.add("active");
+  }
+  async function loadAdminContents(){
+    const target=document.getElementById("adminContentList");
+    target.innerHTML='<p class="text-muted text-sm">Carregando...</p>';
+    const {data,error}=await client.from("course_contents").select("id,title,content_type,course,is_published,created_at").order("created_at",{ascending:false});
+    if(error){target.textContent="Erro ao carregar conteúdos: "+error.message;return;}
+    target.innerHTML="";
+    if(!data?.length){target.textContent="Nenhum conteúdo cadastrado.";return;}
+    data.forEach(item=>{
+      const row=document.createElement("div");row.className="learning-admin-row";
+      const info=document.createElement("div");info.className="min-w-0";
+      const title=document.createElement("div");title.className="font-bold";title.textContent=item.title;
+      const meta=document.createElement("div");meta.className="text-xs text-muted";meta.textContent=(contentLabels[item.content_type]||item.content_type)+" • "+item.course+" • "+(item.is_published?"Publicado":"Rascunho");
+      info.append(title,meta);
+      const actions=document.createElement("div");actions.className="flex flex-wrap gap-2 shrink-0";
+      const toggle=document.createElement("button");toggle.className="admin-small-btn";toggle.type="button";toggle.textContent=item.is_published?"Despublicar":"Publicar";
+      toggle.onclick=async()=>{
+        const {error}=await client.from("course_contents").update({is_published:!item.is_published}).eq("id",item.id);
+        if(error)alert("Não foi possível alterar a publicação: "+error.message);else loadAdminContents();
+      };
+      const del=document.createElement("button");del.className="admin-small-btn danger";del.type="button";del.textContent="Excluir";
+      del.onclick=async()=>{
+        if(!confirm("Excluir o conteúdo '"+item.title+"'? O arquivo original no Google Drive não será apagado."))return;
+        const {error}=await client.from("course_contents").delete().eq("id",item.id);
+        if(error)alert("Não foi possível excluir: "+error.message);else loadAdminContents();
+      };
+      actions.append(toggle,del);row.append(info,actions);target.append(row);
+    });
+  }
+  document.querySelectorAll("[data-content-tab]").forEach(btn=>btn.addEventListener("click",()=>{
+    activeStudentTab=btn.dataset.contentTab;
+    document.querySelectorAll("[data-content-tab]").forEach(b=>b.classList.toggle("active",b===btn));
+  }));
+  document.getElementById("addContentForm").addEventListener("submit",async e=>{
+    e.preventDefault();
+    if(!currentProfile||currentProfile.role!=="admin"){showMessage("addContentMessage","Ação não autorizada.",true);return;}
+    const type=document.getElementById("contentType").value;
+    const rawUrl=document.getElementById("contentDriveUrl").value;
+    const url=safeDriveUrl(rawUrl);
+    const description=document.getElementById("contentDescription").value.trim();
+    if(type!=="note"&&!url){showMessage("addContentMessage","Informe um link HTTPS válido do Google Drive ou YouTube.",true);return;}
+    if(rawUrl.trim()&&!url){showMessage("addContentMessage","Use um link HTTPS do Google Drive, Google Docs, YouTube ou youtu.be.",true);return;}
+    if(type==="note"&&!description){showMessage("addContentMessage","Para anotações, escreva o conteúdo no campo de descrição/anotação.",true);return;}
+    const btn=document.getElementById("addContentButton");btn.disabled=true;btn.textContent="Salvando...";
+    const payload={title:document.getElementById("contentTitle").value.trim(),description,content_type:type,drive_url:url||null,course:document.getElementById("contentCourse").value,is_published:document.getElementById("contentPublish").checked,created_by:currentProfile.id};
+    const {error}=await client.from("course_contents").insert(payload);
+    btn.disabled=false;btn.textContent="Adicionar conteúdo";
+    if(error){showMessage("addContentMessage","Erro ao salvar: "+error.message,true);return;}
+    document.getElementById("addContentForm").reset();document.getElementById("contentPublish").checked=true;
+    showMessage("addContentMessage","Conteúdo cadastrado com sucesso.");
+    loadAdminContents();
+  });
+  document.getElementById("refreshContents").addEventListener("click",loadAdminContents);
+
+  if(configured){
+    client.auth.getSession().then(({data})=>{if(data.session){openArea();showDashboard(data.session.user);}});
+    client.auth.onAuthStateChange((event,session)=>{
+      if(event==="SIGNED_OUT"){currentProfile=null;showLogin();}
+    });
+  }
+})();
+</script>
+
 </body>
 </html>
