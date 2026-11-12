@@ -800,7 +800,7 @@ const configured = Boolean(
         document.getElementById("contractStudentEmail").textContent=user.email||"";
         document.getElementById("contractIssueDate").textContent=new Date().toLocaleDateString("pt-BR");
         const fileInput=document.getElementById("signedContractFile"); if(fileInput)fileInput.value="";
-        if(signature && signature.status==="pending") showMessage("contractMessage","Recebemos seu contrato. Ele está aguardando validação oficial pela administração. O acesso será liberado após a aprovação.");
+        if(signature && signature.status==="pending") showMessage("contractMessage","Recebemos seu contrato. Ele está aguardando validação oficial pela administração. O acesso será liberado após a aprovação. A cópia será enviada ao seu e-mail e a bravocursos.publicos@gmail.com.");
         else if(signature && signature.status==="rejected") showMessage("contractMessage","O contrato enviado não foi aprovado. Motivo: "+(signature.rejection_reason||"assinatura não validada")+". Envie um novo PDF assinado.",true);
         else document.getElementById("contractMessage").textContent="";
         return;
@@ -859,10 +859,13 @@ const configured = Boolean(
       if(window.grecaptcha && recaptchaWidgetId!==null)window.grecaptcha.reset(recaptchaWidgetId);
     }finally{button.disabled=false;button.textContent="Entrar";}
   });
+  function escapeContractText(value){
+    return String(value||"").replace(/[&<>"']/g,character=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[character]));
+  }
   function contractPrintableHtml(){
     const terms=document.getElementById("contractTerms").innerHTML;
-    const name=(currentProfile&&currentProfile.full_name)||"Aluno";
-    const email=(pendingStudentUser&&pendingStudentUser.email)||"";
+    const name=escapeContractText((currentProfile&&currentProfile.full_name)||"Aluno");
+    const email=escapeContractText((pendingStudentUser&&pendingStudentUser.email)||"");
     return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Contrato BRAVO - ${name}</title><style>body{font-family:Arial,sans-serif;color:#111;line-height:1.5;margin:36px}h3{font-size:18px}h4{margin:18px 0 6px}p{font-size:12px}strong{font-weight:700}.muted{color:#333}.signature{margin-top:60px;border-top:1px solid #333;padding-top:8px;width:320px;font-size:12px}@media print{button{display:none}}</style></head><body><h2>BRAVO PREPARATÓRIO POLICIAL</h2>${terms}<p><strong>Identificação do aluno:</strong> ${name}<br><strong>E-mail:</strong> ${email}<br><strong>Versão:</strong> ${CONTRACT_VERSION}</p><div class="signature">Assinatura eletrônica do aluno — realizada no portal gov.br</div><p>Após assinar, baixe o PDF original no portal gov.br e envie-o pela área autenticada da plataforma.</p><script>window.onload=()=>window.print()<\/script></body></html>`;
   }
   document.getElementById("downloadUnsignedContract").addEventListener("click",()=>{
