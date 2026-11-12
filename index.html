@@ -190,6 +190,8 @@
 
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>window.onRecaptchaApiLoad=function(){window.dispatchEvent(new Event("recaptcha-ready"));};</script>
+<script src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaApiLoad&render=explicit" async defer></script>
 </head>
 <body>
 <!-- ============================================================
@@ -564,10 +566,62 @@
       <input class="auth-field" id="loginEmail" type="email" autocomplete="username" required>
       <label class="auth-label" for="loginPassword">Senha</label>
       <input class="auth-field" id="loginPassword" type="password" autocomplete="current-password" required>
+      <div class="mt-4">
+        <div id="loginRecaptcha"></div>
+        <p class="text-xs text-muted mt-2">Confirme que você não é um robô para continuar.</p>
+      </div>
       <button class="btn-primary w-full justify-center mt-5" type="submit" id="loginSubmit">Entrar</button>
     </form>
     <p class="auth-message" id="loginMessage" role="status"></p>
     <p class="text-xs text-muted mt-3">Problemas de acesso? Entre em contato com a administração.</p>
+  </section>
+
+  <section class="auth-panel wide" id="contractPanel" hidden>
+    <span class="pill bg-soft-green text-green mb-3">BRAVO • Assinatura obrigatória</span>
+    <h2 class="font-display text-3xl mb-2">Contrato de adesão e condições de uso</h2>
+    <p class="text-muted text-sm mb-4">Para liberar seu acesso, baixe o contrato, assine pelo portal oficial gov.br e envie aqui o PDF original assinado digitalmente.</p>
+    <div class="card p-5 mb-4" id="contractTerms" style="max-height:45vh;overflow-y:auto">
+      <h3 class="font-bold text-lg mb-2">TERMO DE ADESÃO AOS SERVIÇOS EDUCACIONAIS — BRAVO PREPARATÓRIO POLICIAL</h3>
+      <p class="text-sm text-muted mb-3">Versão do documento: BRAVO-2026-01</p>
+      <p class="text-sm text-muted">Aluno: <strong id="contractStudentName"></strong><br>E-mail: <strong id="contractStudentEmail"></strong></p>
+      <h4 class="font-bold mt-3">1. Objeto</h4>
+      <p class="text-sm text-muted">Este termo estabelece as condições gerais de acesso e utilização dos conteúdos educacionais disponibilizados pela BRAVO Preparatório Policial, incluindo videoaulas, apostilas, anotações e materiais complementares relacionados ao curso contratado pelo aluno.</p>
+      <h4 class="font-bold mt-3">2. Acesso individual</h4>
+      <p class="text-sm text-muted">O acesso é pessoal e individual. O aluno deve manter suas credenciais em sigilo e não poderá compartilhar, ceder, comercializar ou permitir que terceiros utilizem sua conta ou os materiais restritos.</p>
+      <h4 class="font-bold mt-3">3. Uso dos materiais</h4>
+      <p class="text-sm text-muted">Os conteúdos disponibilizados destinam-se exclusivamente ao estudo individual do aluno. É vedada a reprodução, distribuição, publicação, comercialização ou compartilhamento não autorizado dos materiais, respeitados os limites legais aplicáveis.</p>
+      <h4 class="font-bold mt-3">4. Responsabilidades do aluno</h4>
+      <p class="text-sm text-muted">O aluno compromete-se a fornecer informações verdadeiras, utilizar a plataforma de forma adequada, respeitar os direitos autorais e comunicar à administração qualquer suspeita de uso indevido de sua conta.</p>
+      <h4 class="font-bold mt-3">5. Disponibilidade e suporte</h4>
+      <p class="text-sm text-muted">A BRAVO buscará manter a plataforma e os conteúdos disponíveis, podendo realizar manutenções, atualizações e ajustes técnicos. Dúvidas ou problemas de acesso deverão ser comunicados à administração pelos canais oficiais.</p>
+      <h4 class="font-bold mt-3">6. Condições comerciais</h4>
+      <p class="text-sm text-muted">Valores, forma de pagamento, prazo de acesso, política de cancelamento, reembolso e demais condições comerciais devem corresponder à oferta e ao instrumento de contratação efetivamente apresentados ao aluno. Este termo geral não substitui essas condições específicas.</p>
+      <h4 class="font-bold mt-3">7. Privacidade e dados</h4>
+      <p class="text-sm text-muted">Os dados de cadastro e os registros de utilização serão tratados para administrar o acesso à plataforma, prestar suporte e cumprir obrigações legais, observada a legislação aplicável de proteção de dados pessoais.</p>
+      <h4 class="font-bold mt-3">8. Assinatura eletrônica</h4>
+      <p class="text-sm text-muted">O aluno deverá assinar este documento por meio do Portal de Assinatura Eletrônica gov.br, utilizando conta gov.br nível prata ou ouro, e devolver o arquivo PDF assinado digitalmente. A liberação do acesso depende da conferência da assinatura e da integridade do documento pela administração.</p>
+      <p class="text-sm text-muted mt-4">Data de emissão: <span id="contractIssueDate"></span></p>
+    </div>
+    <div class="card p-4 mb-4">
+      <h3 class="font-bold mb-2">Etapa 1 — Gere o contrato em PDF</h3>
+      <p class="text-sm text-muted mb-3">Use a opção de impressão e escolha “Salvar como PDF”. Confira se seus dados estão corretos.</p>
+      <button class="btn-primary" type="button" id="downloadUnsignedContract">Baixar contrato para assinatura (PDF)</button>
+    </div>
+    <div class="card p-4 mb-4">
+      <h3 class="font-bold mb-2">Etapa 2 — Assine no gov.br</h3>
+      <p class="text-sm text-muted mb-3">Acesse o portal oficial, entre com sua conta gov.br prata ou ouro, envie o PDF e baixe o documento assinado. Não use “Imprimir” para salvar o PDF assinado, pois isso pode remover a assinatura digital.</p>
+      <a class="auth-secondary inline-block" href="https://assinador.iti.br/" target="_blank" rel="noopener">Abrir Portal de Assinatura gov.br ↗</a>
+      <p class="text-xs text-muted mt-2">Após assinar, volte a esta página e envie o arquivo original baixado do portal.</p>
+    </div>
+    <div class="card p-4 mb-4">
+      <h3 class="font-bold mb-2">Etapa 3 — Envie o PDF assinado</h3>
+      <label class="auth-label" for="signedContractFile">Arquivo PDF assinado digitalmente</label>
+      <input class="auth-field" id="signedContractFile" type="file" accept="application/pdf,.pdf">
+      <button class="btn-primary mt-3" type="button" id="uploadSignedContract">Enviar contrato para validação</button>
+      <p class="text-sm text-muted mt-2">O acesso permanecerá bloqueado enquanto a administração não validar a assinatura no serviço oficial VALIDAR do ITI.</p>
+    </div>
+    <p class="auth-message" id="contractMessage" role="status"></p>
+    <button class="auth-secondary mt-3" type="button" id="contractLogoutButton">Sair da conta</button>
   </section>
 
   <section class="auth-panel wide" id="dashboardPanel" hidden>
@@ -604,6 +658,11 @@
           <div><label class="auth-label" for="studentCourse">Curso</label><select class="auth-field" id="studentCourse"><option>GCM Capão Bonito</option><option>QP de Soldados — Polícia Militar</option><option>Ambos os cursos</option></select></div>
           <div class="md:col-span-2"><button class="btn-primary mt-4" id="createStudentButton" type="submit">Criar usuário</button><p class="auth-message" id="createStudentMessage" role="status"></p></div>
         </form>
+      </div>
+      <div class="card p-5 mb-5" id="adminContractQueue">
+        <div class="flex flex-wrap justify-between items-center gap-3 mb-3"><div><h3 class="font-display text-xl">Contratos aguardando validação</h3><p class="text-muted text-sm">Baixe o PDF, valide-o em validar.iti.gov.br e só então confirme a aprovação.</p></div><button type="button" class="auth-secondary" id="refreshContractQueue">Atualizar</button></div>
+        <div id="adminContractList" class="space-y-3"><p class="text-muted text-sm">Carregando solicitações...</p></div>
+        <p class="auth-message" id="adminContractMessage" role="status"></p>
       </div>
       <div class="card p-5 mb-5" id="adminContentManager">
         <div class="flex flex-wrap justify-between items-center gap-3 mb-3">
@@ -645,6 +704,13 @@
   const SUPABASE_URL = "https://kgliyuffqwvdeauxnube.supabase.co";
   const SUPABASE_ANON_KEY = "sb_publishable_wsDxq6qpa4NVqcfLNpiydw_MydLUOzB";
   const CREATE_USER_FUNCTION = SUPABASE_URL + "/functions/v1/admin-users";
+  // Configure com a chave pública (Site Key) criada no Google reCAPTCHA v2 Checkbox.
+  const RECAPTCHA_SITE_KEY = "6LfQzBwuAAAAAM4uLHkgHkhZDyS49ks2XbCql9il";
+  // Esta Edge Function deve validar o token no Google usando a SECRET KEY guardada no servidor.
+  const RECAPTCHA_VERIFY_FUNCTION = SUPABASE_URL + "/functions/v1/verify-recaptcha";
+  const CONTRACT_VERSION = "BRAVO-2026-01";
+  const CONTRACT_BUCKET = "student-contracts";
+  const SEND_CONTRACT_EMAIL_FUNCTION = SUPABASE_URL + "/functions/v1/send-signed-contract";
 const configured = Boolean(
   window.supabase &&
   SUPABASE_URL.startsWith("https://") &&
@@ -657,7 +723,11 @@ const configured = Boolean(
   const overlay=document.getElementById("authOverlay");
   const loginPanel=document.getElementById("loginPanel");
   const dashboardPanel=document.getElementById("dashboardPanel");
+  const contractPanel=document.getElementById("contractPanel");
   const loginMessage=document.getElementById("loginMessage");
+  let recaptchaWidgetId=null;
+  let recaptchaToken="";
+  let pendingStudentUser=null;
   const adminDashboard=document.getElementById("adminDashboard");
   const studentDashboard=document.getElementById("studentDashboard");
   const usersTable=document.getElementById("usersTable");
@@ -680,19 +750,69 @@ const configured = Boolean(
 	}
   function closeArea(){overlay.classList.remove("open");document.body.style.overflow="";}
   function showLogin(){
-    loginPanel.hidden=false;dashboardPanel.hidden=true;
+    loginPanel.hidden=false;dashboardPanel.hidden=true;contractPanel.hidden=true;
     loginMessage.textContent="";
+    ensureRecaptcha();
+  }
+  function ensureRecaptcha(){
+    const container=document.getElementById("loginRecaptcha");
+    if(!container || recaptchaWidgetId!==null || !window.grecaptcha || !window.grecaptcha.render)return;
+    if(!RECAPTCHA_SITE_KEY || RECAPTCHA_SITE_KEY.startsWith("COLE_AQUI")){
+      showMessage("loginMessage","Configure a Site Key do Google reCAPTCHA v2 no HTML.",true);
+      return;
+    }
+    try{
+      recaptchaWidgetId=window.grecaptcha.render(container,{
+        sitekey:RECAPTCHA_SITE_KEY,
+        callback:(token)=>{recaptchaToken=token;},
+        "expired-callback":()=>{recaptchaToken="";},
+        "error-callback":()=>{recaptchaToken="";showMessage("loginMessage","Não foi possível validar o reCAPTCHA. Tente novamente.",true);}
+      });
+    }catch(err){console.error("Erro ao carregar reCAPTCHA:",err);}
+  }
+  window.addEventListener("recaptcha-ready",ensureRecaptcha);
+  async function verifyRecaptcha(token){
+    if(!token)throw new Error("Marque a verificação reCAPTCHA antes de entrar.");
+    const response=await fetch(RECAPTCHA_VERIFY_FUNCTION,{
+      method:"POST",headers:{"Content-Type":"application/json","apikey":SUPABASE_ANON_KEY},
+      body:JSON.stringify({token})
+    });
+    const result=await response.json().catch(()=>({}));
+    if(!response.ok || result.success!==true)throw new Error(result.error||"Falha na validação do reCAPTCHA. Tente novamente.");
   }
   async function showDashboard(user){
     const {data,error}=await client.from("profiles").select("id,full_name,role,course,created_at").eq("id",user.id).single();
     if(error || !data){await client.auth.signOut();showLogin();showMessage("loginMessage","Não foi possível validar seu perfil. Contate a administração.",true);return;}
     currentProfile=data;
+    if(data.role==="student"){
+      const {data:signature,error:signatureError}=await client.from("student_contract_signatures")
+        .select("id,status,rejection_reason").eq("user_id",user.id).eq("contract_version",CONTRACT_VERSION)
+        .order("submitted_at",{ascending:false}).limit(1).maybeSingle();
+      if(signatureError){
+        loginPanel.hidden=true;dashboardPanel.hidden=true;contractPanel.hidden=false;
+        showMessage("contractMessage","Não foi possível consultar a situação do contrato. A administração deve configurar a tabela e o armazenamento no Supabase.",true);
+        return;
+      }
+      if(!signature || signature.status!=="approved"){
+        pendingStudentUser=user;
+        loginPanel.hidden=true;dashboardPanel.hidden=true;contractPanel.hidden=false;
+        document.getElementById("contractStudentName").textContent=data.full_name||"Aluno";
+        document.getElementById("contractStudentEmail").textContent=user.email||"";
+        document.getElementById("contractIssueDate").textContent=new Date().toLocaleDateString("pt-BR");
+        const fileInput=document.getElementById("signedContractFile"); if(fileInput)fileInput.value="";
+        if(signature && signature.status==="pending") showMessage("contractMessage","Recebemos seu contrato. Ele está aguardando validação oficial pela administração. O acesso será liberado após a aprovação.");
+        else if(signature && signature.status==="rejected") showMessage("contractMessage","O contrato enviado não foi aprovado. Motivo: "+(signature.rejection_reason||"assinatura não validada")+". Envie um novo PDF assinado.",true);
+        else document.getElementById("contractMessage").textContent="";
+        return;
+      }
+    }
+    pendingStudentUser=null;contractPanel.hidden=true;
     loginPanel.hidden=true;dashboardPanel.hidden=false;
     document.getElementById("welcomeText").textContent="Olá, "+(data.full_name||user.email);
     const isAdmin=data.role==="admin";
     adminDashboard.hidden=!isAdmin;studentDashboard.hidden=isAdmin;
     document.getElementById("dashboardTitle").textContent=isAdmin?"Painel administrativo":"Área do aluno";
-    if(isAdmin){loadUsers();loadAdminContents();}
+    if(isAdmin){loadUsers();loadAdminContents();loadContractQueue();}
     else {activeStudentTab="video";document.querySelectorAll("[data-content-tab]").forEach(b=>b.classList.toggle("active",b.dataset.contentTab==="video"));loadStudentContents();}
   }
   async function loadUsers(){
@@ -712,7 +832,7 @@ const configured = Boolean(
   }
 
   document.getElementById("openLogin").addEventListener("click",()=>{
-    openArea();showLogin();
+    openArea();showLogin();ensureRecaptcha();
     if(!configured)showMessage("loginMessage","A área está pronta, mas precisa ser conectada ao Supabase pelo responsável técnico.",true);
   });
   document.getElementById("closeAuth").addEventListener("click",closeArea);
@@ -721,14 +841,93 @@ const configured = Boolean(
   document.getElementById("loginForm").addEventListener("submit",async e=>{
     e.preventDefault();
     if(!configured){showMessage("loginMessage","Configure primeiro SUPABASE_URL e SUPABASE_ANON_KEY no código.",true);return;}
-    const button=document.getElementById("loginSubmit");button.disabled=true;button.textContent="Verificando...";
-    const {data,error}=await client.auth.signInWithPassword({
-      email:document.getElementById("loginEmail").value.trim(),
-      password:document.getElementById("loginPassword").value
-    });
-    button.disabled=false;button.textContent="Entrar";
-    if(error){showMessage("loginMessage","E-mail ou senha inválidos.",true);return;}
-    await showDashboard(data.user);
+    const button=document.getElementById("loginSubmit");
+    button.disabled=true;button.textContent="Verificando...";
+    try{
+      await verifyRecaptcha(recaptchaToken);
+      const {data,error}=await client.auth.signInWithPassword({
+        email:document.getElementById("loginEmail").value.trim(),
+        password:document.getElementById("loginPassword").value
+      });
+      if(error)throw new Error("E-mail ou senha inválidos.");
+      recaptchaToken="";
+      if(window.grecaptcha && recaptchaWidgetId!==null)window.grecaptcha.reset(recaptchaWidgetId);
+      await showDashboard(data.user);
+    }catch(err){
+      showMessage("loginMessage",err.message||"Não foi possível entrar. Tente novamente.",true);
+      recaptchaToken="";
+      if(window.grecaptcha && recaptchaWidgetId!==null)window.grecaptcha.reset(recaptchaWidgetId);
+    }finally{button.disabled=false;button.textContent="Entrar";}
+  });
+  function contractPrintableHtml(){
+    const terms=document.getElementById("contractTerms").innerHTML;
+    const name=(currentProfile&&currentProfile.full_name)||"Aluno";
+    const email=(pendingStudentUser&&pendingStudentUser.email)||"";
+    return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Contrato BRAVO - ${name}</title><style>body{font-family:Arial,sans-serif;color:#111;line-height:1.5;margin:36px}h3{font-size:18px}h4{margin:18px 0 6px}p{font-size:12px}strong{font-weight:700}.muted{color:#333}.signature{margin-top:60px;border-top:1px solid #333;padding-top:8px;width:320px;font-size:12px}@media print{button{display:none}}</style></head><body><h2>BRAVO PREPARATÓRIO POLICIAL</h2>${terms}<p><strong>Identificação do aluno:</strong> ${name}<br><strong>E-mail:</strong> ${email}<br><strong>Versão:</strong> ${CONTRACT_VERSION}</p><div class="signature">Assinatura eletrônica do aluno — realizada no portal gov.br</div><p>Após assinar, baixe o PDF original no portal gov.br e envie-o pela área autenticada da plataforma.</p><script>window.onload=()=>window.print()<\/script></body></html>`;
+  }
+  document.getElementById("downloadUnsignedContract").addEventListener("click",()=>{
+    const popup=window.open("","_blank");
+    if(!popup){showMessage("contractMessage","Permita pop-ups para gerar o contrato em PDF.",true);return;}
+    popup.document.open();popup.document.write(contractPrintableHtml());popup.document.close();
+  });
+  document.getElementById("uploadSignedContract").addEventListener("click",async()=>{
+    if(!pendingStudentUser){showMessage("contractMessage","Sessão do aluno não identificada. Entre novamente.",true);return;}
+    const file=document.getElementById("signedContractFile").files[0];
+    if(!file){showMessage("contractMessage","Selecione o PDF assinado no gov.br.",true);return;}
+    if(file.type!=="application/pdf" || !file.name.toLowerCase().endsWith(".pdf")){showMessage("contractMessage","Envie somente um arquivo PDF.",true);return;}
+    if(file.size>20*1024*1024){showMessage("contractMessage","O arquivo deve ter no máximo 20 MB.",true);return;}
+    const btn=document.getElementById("uploadSignedContract");btn.disabled=true;btn.textContent="Enviando...";
+    try{
+      const path=pendingStudentUser.id+"/"+crypto.randomUUID()+".pdf";
+      const {error:uploadError}=await client.storage.from(CONTRACT_BUCKET).upload(path,file,{contentType:"application/pdf",upsert:false});
+      if(uploadError)throw uploadError;
+      const {error:insertError}=await client.from("student_contract_signatures").insert({user_id:pendingStudentUser.id,contract_version:CONTRACT_VERSION,storage_path:path,status:"pending",student_email:pendingStudentUser.email,student_name:currentProfile.full_name||pendingStudentUser.email});
+      if(insertError){await client.storage.from(CONTRACT_BUCKET).remove([path]);throw insertError;}
+      document.getElementById("signedContractFile").value="";
+      showMessage("contractMessage","PDF recebido com sucesso. Seu contrato está aguardando validação da administração. Você receberá uma cópia por e-mail após a aprovação.");
+    }catch(err){showMessage("contractMessage","Não foi possível enviar o contrato: "+(err.message||"erro inesperado"),true);}
+    finally{btn.disabled=false;btn.textContent="Enviar contrato para validação";}
+  });
+  async function loadContractQueue(){
+    const target=document.getElementById("adminContractList");if(!target)return;
+    target.innerHTML='<p class="text-muted text-sm">Carregando...</p>';
+    const {data,error}=await client.from("student_contract_signatures").select("id,user_id,contract_version,storage_path,status,submitted_at,student_email,student_name,rejection_reason").eq("status","pending").order("submitted_at",{ascending:true});
+    if(error){target.textContent="Erro ao carregar contratos: "+error.message;return;}
+    target.innerHTML="";
+    if(!data||!data.length){target.innerHTML='<p class="text-muted text-sm">Nenhum contrato aguardando validação.</p>';return;}
+    for(const item of data){
+      const row=document.createElement("div");row.className="learning-admin-row";
+      const info=document.createElement("div");info.style.flex="1";
+      const title=document.createElement("strong");title.textContent=item.student_name||item.student_email||"Aluno";
+      const meta=document.createElement("p");meta.className="text-xs text-muted";meta.textContent=(item.student_email||"")+" • Enviado em "+new Date(item.submitted_at).toLocaleString("pt-BR");
+      info.append(title,meta);
+      const actions=document.createElement("div");actions.className="flex flex-wrap gap-2";
+      const download=document.createElement("button");download.type="button";download.className="admin-small-btn";download.textContent="Abrir PDF";
+      download.addEventListener("click",async()=>{const {data:link,error:linkError}=await client.storage.from(CONTRACT_BUCKET).createSignedUrl(item.storage_path,120);if(linkError){showMessage("adminContractMessage",linkError.message,true);return;}window.open(link.signedUrl,"_blank","noopener");});
+      const validate=document.createElement("button");validate.type="button";validate.className="admin-small-btn";validate.textContent="Validar no ITI";validate.addEventListener("click",()=>window.open("https://validar.iti.gov.br/","_blank","noopener"));
+      const approve=document.createElement("button");approve.type="button";approve.className="admin-small-btn";approve.textContent="Confirmar validação e liberar";
+      approve.addEventListener("click",async()=>{
+        const confirmation=prompt("Informe o protocolo ou observação do resultado do VALIDAR (ex.: assinatura válida, titular e integridade conferidos):");
+        if(!confirmation||!confirmation.trim()){showMessage("adminContractMessage","Informe o resultado da conferência oficial para continuar.",true);return;}
+        if(!confirm("Confirma que você abriu o PDF no VALIDAR do ITI e conferiu que a assinatura está válida, pertence ao aluno e que o documento está íntegro?"))return;
+        approve.disabled=true;approve.textContent="Processando...";
+        try{
+          const {error:updateError}=await client.from("student_contract_signatures").update({status:"approved",reviewed_at:new Date().toISOString(),reviewed_by:currentProfile.id,validation_reference:confirmation.trim()}).eq("id",item.id).eq("status","pending");
+          if(updateError)throw updateError;
+          const {data:sessionData}=await client.auth.getSession();
+          const mailResponse=await fetch(SEND_CONTRACT_EMAIL_FUNCTION,{method:"POST",headers:{"Content-Type":"application/json","apikey":SUPABASE_ANON_KEY,"Authorization":"Bearer "+sessionData.session.access_token},body:JSON.stringify({request_id:item.id})});
+          const mailResult=await mailResponse.json().catch(()=>({}));
+          if(!mailResponse.ok||mailResult.success!==true){await client.from("student_contract_signatures").update({status:"pending",reviewed_at:null,reviewed_by:null,validation_reference:null}).eq("id",item.id);throw new Error(mailResult.error||"Falha ao enviar as cópias por e-mail; contrato mantido pendente.");}
+          showMessage("adminContractMessage","Contrato validado, acesso liberado e cópias enviadas por e-mail.");loadContractQueue();
+        }catch(err){showMessage("adminContractMessage","Não foi possível concluir a aprovação: "+err.message,true);approve.disabled=false;approve.textContent="Confirmar validação e liberar";}
+      });
+      const reject=document.createElement("button");reject.type="button";reject.className="admin-small-btn danger";reject.textContent="Rejeitar";reject.addEventListener("click",async()=>{const reason=prompt("Informe o motivo da rejeição:");if(!reason)return;const {error:rejectError}=await client.from("student_contract_signatures").update({status:"rejected",rejection_reason:reason,reviewed_at:new Date().toISOString(),reviewed_by:currentProfile.id}).eq("id",item.id).eq("status","pending");if(rejectError)showMessage("adminContractMessage",rejectError.message,true);else{showMessage("adminContractMessage","Contrato rejeitado. O aluno poderá enviar outro PDF.");loadContractQueue();}});
+      actions.append(download,validate,approve,reject);row.append(info,actions);target.append(row);
+    }
+  }
+  document.getElementById("refreshContractQueue").addEventListener("click",loadContractQueue);
+  document.getElementById("contractLogoutButton").addEventListener("click",async()=>{
+    await client.auth.signOut();currentProfile=null;pendingStudentUser=null;showLogin();
   });
   document.getElementById("logoutButton").addEventListener("click",async()=>{await client.auth.signOut();currentProfile=null;showLogin();});
   document.getElementById("refreshUsers").addEventListener("click",loadUsers);
@@ -872,7 +1071,7 @@ const configured = Boolean(
   if(configured){
     client.auth.getSession().then(({data})=>{if(data.session){openArea();showDashboard(data.session.user);}});
     client.auth.onAuthStateChange((event,session)=>{
-      if(event==="SIGNED_OUT"){currentProfile=null;showLogin();}
+      if(event==="SIGNED_OUT"){currentProfile=null;pendingStudentUser=null;showLogin();}
     });
   }
 })();
