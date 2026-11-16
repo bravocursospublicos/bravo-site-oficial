@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BRAVO Preparatório Policial | GCM Capão Bonito e PM - QP Soldados</title>
+<meta name="description" content="Curso preparatório para Guarda Civil Municipal de Capão Bonito e curso para QP de soldados da Polícia Militar. Salários de até R$ 8.000,00. Prepare-se com quem vive a segurança pública.">
+<link id="siteFavicon" rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%2322e07a%27/%3E%3Ctext x=%2732%27 y=%2745%27 font-size=%2744%27 font-family=%27Arial%27 font-weight=%27bold%27 text-anchor=%27middle%27 fill=%27%2306210f%27%3EB%3C/text%3E%3C/svg%3E">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#070d1f; --bg2:#0b1633; --card:#0f1d3d; --card2:#12264a;
+    --text:#eef2ff; --muted:#93a3c9;
+    --green:#22e07a; --green-dark:#16a34a; --green-soft:rgba(34,224,122,.14);
+    --gold:#fbbf24; --gold-soft:rgba(251,191,36,.14);
+    --border:rgba(148,163,201,.16);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Baloo 2',system-ui,sans-serif;background:var(--bg);color:var(--text);margin:0;line-height:1.55}
+  .font-display{font-weight:800;letter-spacing:-.02em}
+  .font-stencil{font-family:'Bebas Neue',sans-serif;letter-spacing:.04em}
+  .text-green{color:var(--green)}
+  .text-gold{color:var(--gold)}
+  .text-muted{color:var(--muted)}
+  .bg-green{background:var(--green)}
+  .bg-gold{background:var(--gold)}
+  .bg-soft-green{background:var(--green-soft)}
+  .bg-soft-gold{background:var(--gold-soft)}
+  .border-soft{border-color:var(--border)}
+  .btn-primary{background:var(--green);color:#06210f;font-weight:800;border-radius:14px;padding:16px 32px;display:inline-flex;align-items:center;justify-content:center;gap:10px;transition:transform .15s ease, box-shadow .2s ease, background .2s;box-shadow:0 10px 28px -8px rgba(34,224,122,.55);text-decoration:none;border:none;cursor:pointer;font-size:17px}
+  .btn-primary:hover{background:#4af59a;transform:translateY(-2px);box-shadow:0 16px 36px -10px rgba(34,224,122,.65)}
+  .btn-outline{background:transparent;color:var(--green);font-weight:700;border-radius:14px;padding:14px 28px;display:inline-flex;align-items:center;gap:8px;border:2px solid var(--green);text-decoration:none;transition:all .2s;font-size:16px}
+  .btn-outline:hover{background:var(--green-soft)}
+  .btn-gold{background:var(--gold);color:#3a2503;font-weight:800;border-radius:14px;padding:16px 32px;display:inline-flex;align-items:center;justify-content:center;gap:10px;transition:transform .15s ease, box-shadow .2s ease;box-shadow:0 10px 28px -8px rgba(251,191,36,.55);text-decoration:none;border:none;cursor:pointer;font-size:17px}
+  .btn-gold:hover{transform:translateY(-2px);box-shadow:0 16px 36px -10px rgba(251,191,36,.65)}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:20px}
+  .hero-bg{background:
+    radial-gradient(900px 500px at 85% -10%, rgba(34,224,122,.18), transparent 60%),
+    radial-gradient(700px 500px at 5% 0%, rgba(59,130,246,.22), transparent 55%),
+    linear-gradient(180deg,#0a1430 0%, var(--bg) 100%)}
+  .pill{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:999px;font-size:13px;font-weight:700}
+  .course-feature{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;color:#c3cdea;margin:8px 0}
+  .course-feature .chk{flex:none;width:20px;height:20px;border-radius:50%;background:var(--green-soft);color:var(--green);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;margin-top:2px}
+  .course-feature.gold .chk{background:var(--gold-soft);color:var(--gold)}
+  .feature-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex:none}
+  .faq-item{border:1px solid var(--border);border-radius:14px;background:var(--card);overflow:hidden;transition:box-shadow .2s}
+  .faq-item[open]{box-shadow:0 12px 30px -12px rgba(0,0,0,.5)}
+  .faq-item summary{cursor:pointer;padding:18px 22px;font-weight:700;font-size:16px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .faq-item summary::-webkit-details-marker{display:none}
+  .faq-item summary::after{content:'+';font-size:22px;font-weight:700;color:var(--green);transition:transform .2s;flex:none}
+  .faq-item[open] summary::after{transform:rotate(45deg)}
+  .faq-item .faq-body{padding:0 22px 20px;color:var(--muted);font-size:15px}
+  .teacher-avatar{width:72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:26px;color:#fff;flex:none}
+  .float-anim{animation:floaty 5s ease-in-out infinite}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+  .pulse-dot{width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block;animation:pulse 1.6s infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+  .cta-glow{position:relative;overflow:hidden}
+  .cta-glow::before{content:'';position:absolute;inset:-2px;background:linear-gradient(120deg,var(--green),var(--gold),var(--green));border-radius:18px;z-index:-1;filter:blur(14px);opacity:.45}
+  .marquee-track{display:flex;gap:48px;animation:marquee 28s linear infinite;width:max-content}
+  @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .nav-link{color:#c3cdea;font-weight:600;text-decoration:none;padding:8px 12px;border-radius:10px;transition:background .2s;font-size:15px}
+  .nav-link:hover{background:rgba(148,163,201,.1)}
+  details>summary{list-style:none}
+  details>summary::-webkit-details-marker{display:none}
+  .salary-badge{
+    background:linear-gradient(135deg,#fbbf24 0%,#f59e0b 100%);
+    color:#3a2503;font-weight:800;border-radius:16px;
+    box-shadow:0 12px 32px -8px rgba(251,191,36,.6);
+    position:relative;overflow:hidden;
+  }
+  .salary-badge::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);animation:shine 3s infinite}
+  @keyframes shine{to{left:100%}}
+  .art-frame{
+    border-radius:18px;overflow:hidden;
+    box-shadow:0 30px 70px -20px rgba(0,0,0,.7), 0 0 0 1px rgba(34,224,122,.25);
+  }
+  .art-frame img{display:block;width:100%;height:auto}
+  .badge-curso{position:absolute;top:-14px;left:50%;transform:translateX(-50%);font-weight:800;font-size:12px;padding:6px 16px;border-radius:999px;letter-spacing:.04em;white-space:nowrap}
+  .stat-num{font-size:34px;font-weight:800;line-height:1}
+
+  /* WHATSAPP FLOAT TAB */
+  .whatsapp-float{position:fixed;bottom:22px;right:22px;z-index:60;width:62px;height:62px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 28px -6px rgba(37,211,102,.6);cursor:pointer;text-decoration:none;transition:transform .2s;animation:wapulse 2.2s infinite}
+  .whatsapp-float:hover{transform:scale(1.08)}
+  .whatsapp-float svg{width:32px;height:32px;fill:#fff}
+  .whatsapp-float .wa-label{position:absolute;right:74px;top:50%;transform:translateY(-50%);background:#1e2930;color:#fff;font-weight:700;font-size:13px;padding:9px 14px;border-radius:10px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;box-shadow:0 6px 18px -6px rgba(0,0,0,.45);border:1px solid rgba(37,211,102,.4)}
+  .whatsapp-float:hover .wa-label{opacity:1}
+  .whatsapp-float .wa-label::after{content:'';position:absolute;right:-5px;top:50%;transform:translateY(-50%) rotate(45deg);width:10px;height:10px;background:#1e2930;border-right:1px solid rgba(37,211,102,.4);border-top:1px solid rgba(37,211,102,.4)}
+  @keyframes wapulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.55)}70%{box-shadow:0 0 0 16px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+  .wa-tab-side{position:fixed;right:0;top:50%;transform:translateY(-50%) rotate(180deg);z-index:55;background:#25d366;color:#06210f;font-weight:800;font-size:13px;letter-spacing:.05em;padding:12px 8px;border-radius:10px 0 0 10px;writing-mode:vertical-rl;text-decoration:none;box-shadow:-4px 4px 18px -4px rgba(37,211,102,.5);transition:padding .2s}
+  .wa-tab-side:hover{padding-right:14px}
+  @media(max-width:768px){.wa-tab-side{display:none}}
+
+  /* ÁREA RESTRITA BRAVO */
+  .auth-link{border:1px solid rgba(34,224,122,.65);color:var(--green);border-radius:12px;padding:9px 15px;font-weight:800;background:rgba(34,224,122,.08);cursor:pointer}
+  .auth-link:hover{background:var(--green-soft)}
+  .auth-overlay{position:fixed;inset:0;z-index:100;background:rgba(2,6,23,.88);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:18px;overflow-y:auto}
+  .auth-overlay.open{display:flex}
+  .auth-panel{width:min(100%,560px);background:#0f1d3d;border:1px solid var(--border);border-radius:22px;padding:26px;box-shadow:0 30px 90px rgba(0,0,0,.55);position:relative}
+  .auth-panel.wide{width:min(100%,900px)}
+  .auth-field{width:100%;background:#071329;border:1px solid rgba(148,163,201,.28);border-radius:11px;padding:12px 14px;color:#eef2ff;outline:none}
+  .auth-field:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(34,224,122,.12)}
+  .auth-label{display:block;color:#c3cdea;font-weight:700;font-size:13px;margin:12px 0 6px}
+  .auth-close{position:absolute;right:16px;top:12px;color:#93a3c9;font-size:26px;background:none;border:0;cursor:pointer}
+  .auth-message{font-size:13px;margin-top:12px;min-height:20px;color:#fbbf24}
+  .auth-table{width:100%;border-collapse:collapse;font-size:14px}
+  .auth-table th,.auth-table td{padding:11px 9px;border-bottom:1px solid var(--border);text-align:left}
+  .auth-table th{color:var(--green);font-size:12px;text-transform:uppercase}
+  .auth-tag{display:inline-block;padding:3px 9px;border-radius:999px;background:var(--green-soft);color:var(--green);font-size:11px;font-weight:800}
+  .auth-secondary{background:#1b2c50;color:#eef2ff;border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer}
+  @media(max-width:640px){.auth-panel{padding:20px}.auth-table{font-size:12px}.auth-table th,.auth-table td{padding:8px 5px}}
+
+  .student-tabs{display:flex;flex-wrap:wrap;gap:8px}
+  .student-tab{border:1px solid var(--border);background:#071329;color:#c3cdea;border-radius:11px;padding:10px 15px;font-weight:800;cursor:pointer}
+  .student-tab.active{background:var(--green);border-color:var(--green);color:#06210f}
+  .learning-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:14px}
+  .learning-card{background:#0f1d3d;border:1px solid var(--border);border-radius:16px;padding:18px;min-width:0}
+  .learning-card h4{font-weight:800;font-size:18px;line-height:1.3}
+  .learning-card .learning-description{color:var(--muted);font-size:14px;white-space:pre-wrap;overflow-wrap:anywhere;margin-top:9px}
+  .learning-open{display:inline-flex;margin-top:14px;background:var(--green);color:#06210f;font-weight:800;border-radius:9px;padding:9px 13px;text-decoration:none}
+  .learning-admin-row{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#071329;border:1px solid var(--border);border-radius:12px;padding:12px}
+  .drive-help{background:rgba(34,224,122,.08);border:1px solid rgba(34,224,122,.22);padding:13px;border-radius:12px;color:#c3cdea}
+  .admin-small-btn{background:#1b2c50;color:#eef2ff;border:1px solid var(--border);border-radius:8px;padding:7px 10px;font-size:12px;font-weight:700;cursor:pointer}
+  .admin-small-btn.danger{color:#fecaca;border-color:rgba(248,113,113,.3)}
+
+/* CORREÇÃO DE ROLAGEM DO PAINEL BRAVO */
+#authOverlay {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    padding: 24px 12px !important;
+    box-sizing: border-box !important;
+}
+
+/* Impede que o painel seja cortado */
+#dashboardPanel {
+    width: 100%;
+    max-height: none !important;
+    height: auto !important;
+    overflow: visible !important;
+    margin-top: 0 !important;
+    margin-bottom: 24px !important;
+}
+
+/* Garante que a área administrativa cresça conforme o conteúdo */
+#adminDashboard {
+    width: 100%;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+}
+
+/* Evita cortes nos cartões e tabelas */
+#adminDashboard .card {
+    max-height: none !important;
+    overflow: visible;
+}
+
+/* Ajuste para celulares */
+@media (max-width: 768px) {
+    #authOverlay {
+        padding: 12px 8px !important;
+    }
+
+    #dashboardPanel {
+        padding-bottom: 30px;
+    }
+
+    #adminDashboard {
+        min-width: 0;
+    }
+
+    #adminDashboard .overflow-x-auto {
+        overflow-x: auto;
+        max-width: 100%;
+    }
+}
+
+
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- ÁREA RESTRITA: LOGIN, PAINEL DO ALUNO E ADMINISTRAÇÃO -->
+<div class="auth-overlay open" id="authOverlay" aria-modal="true" role="dialog" aria-labelledby="authTitle">
+  <section class="auth-panel" id="loginPanel">
+    <button class="auth-close" type="button" id="closeAuth" aria-label="Fechar">×</button>
+    <span class="pill bg-soft-green text-green mb-3">BRAVO • Área restrita</span>
+    <h2 class="font-display text-3xl mb-1" id="authTitle">Acesse sua conta</h2>
+    <p class="text-muted text-sm mb-5">Entre com o e-mail e a senha fornecidos pela equipe BRAVO.</p>
+    <form id="loginForm">
+      <label class="auth-label" for="loginEmail">E-mail</label>
+      <input class="auth-field" id="loginEmail" type="email" autocomplete="username" required>
+      <label class="auth-label" for="loginPassword">Senha</label>
+      <input class="auth-field" id="loginPassword" type="password" autocomplete="current-password" required>
+      <div class="mt-4" id="loginRecaptchaWrap" hidden>
+        <div id="loginRecaptcha"></div>
+        <p class="text-xs text-muted mt-2">Confirme que você não é um robô para continuar.</p>
+      </div>
+      <button class="btn-primary w-full justify-center mt-5" type="submit" id="loginSubmit">Entrar</button>
+    </form>
+    <p class="auth-message" id="loginMessage" role="status"></p>
+    <p class="text-xs text-muted mt-3">Problemas de acesso? Entre em contato com a administração.</p>
+  </section>
+
+  <section class="auth-panel wide" id="contractPanel" hidden>
+    <span class="pill bg-soft-green text-green mb-3">BRAVO • Assinatura obrigatória</span>
+    <h2 class="font-display text-3xl mb-2">Contrato de adesão e condições de uso</h2>
+    <p class="text-muted text-sm mb-4">Para liberar seu acesso, baixe o contrato, assine pelo portal oficial gov.br e envie aqui o PDF original assinado digitalmente.</p>
+    <div class="card p-5 mb-4" id="contractTerms" style="max-height:45vh;overflow-y:auto">
+      <h3 class="font-bold text-lg mb-2">TERMO DE ADESÃO AOS SERVIÇOS EDUCACIONAIS — BRAVO PREPARATÓRIO POLICIAL</h3>
+      <p class="text-sm text-muted mb-3">Versão do documento: BRAVO-2026-01</p>
+      <p class="text-sm text-muted">Aluno: <strong id="contractStudentName"></strong><br>E-mail: <strong id="contractStudentEmail"></strong></p>
+      <h4 class="font-bold mt-3">1. Objeto</h4>
+      <p class="text-sm text-muted">Este termo estabelece as condições gerais de acesso e utilização dos conteúdos educacionais disponibilizados pela BRAVO Preparatório Policial, incluindo videoaulas, apostilas, anotações e materiais complementares relacionados ao curso contratado pelo aluno.</p>
+      <h4 class="font-bold mt-3">2. Acesso individual</h4>
+      <p class="text-sm text-muted">O acesso é pessoal e individual. O aluno deve manter suas credenciais em sigilo e não poderá compartilhar, ceder, comercializar ou permitir que terceiros utilizem sua conta ou os materiais restritos.</p>
+      <h4 class="font-bold mt-3">3. Uso dos materiais</h4>
+      <p class="text-sm text-muted">Os conteúdos disponibilizados destinam-se exclusivamente ao estudo individual do aluno. É vedada a reprodução, distribuição, publicação, comercialização ou compartilhamento não autorizado dos materiais, respeitados os limites legais aplicáveis.</p>
+      <h4 class="font-bold mt-3">4. Responsabilidades do aluno</h4>
+      <p class="text-sm text-muted">O aluno compromete-se a fornecer informações verdadeiras, utilizar a plataforma de forma adequada, respeitar os direitos autorais e comunicar à administração qualquer suspeita de uso indevido de sua conta.</p>
+      <h4 class="font-bold mt-3">5. Disponibilidade e suporte</h4>
+      <p class="text-sm text-muted">A BRAVO buscará manter a plataforma e os conteúdos disponíveis, podendo realizar manutenções, atualizações e ajustes técnicos. Dúvidas ou problemas de acesso deverão ser comunicados à administração pelos canais oficiais.</p>
+      <h4 class="font-bold mt-3">6. Condições comerciais</h4>
+      <p class="text-sm text-muted">Valores, forma de pagamento, prazo de acesso, política de cancelamento, reembolso e demais condições comerciais devem corresponder à oferta e ao instrumento de contratação efetivamente apresentados ao aluno. Este termo geral não substitui essas condições específicas.</p>
+      <h4 class="font-bold mt-3">7. Privacidade e dados</h4>
+      <p class="text-sm text-muted">Os dados de cadastro e os registros de utilização serão tratados para administrar o acesso à plataforma, prestar suporte e cumprir obrigações legais, observada a legislação aplicável de proteção de dados pessoais.</p>
+      <h4 class="font-bold mt-3">8. Assinatura eletrônica</h4>
+      <p class="text-sm text-muted">O aluno deverá assinar este documento por meio do Portal de Assinatura Eletrônica gov.br, utilizando conta gov.br nível prata ou ouro, e devolver o arquivo PDF assinado digitalmente. A liberação do acesso depende da conferência da assinatura e da integridade do documento pela administração.</p>
+      <p class="text-sm text-muted mt-4">Data de emissão: <span id="contractIssueDate"></span></p>
+    </div>
+    <div class="card p-4 mb-4" id="uploadedContractTemplateCard" hidden>
+      <h3 class="font-bold mb-2">Modelo oficial do contrato</h3>
+      <p class="text-sm text-muted mb-3">O sistema acrescentará ao modelo oficial uma folha de identificação com os dados da sua pré-inscrição. Confira tudo antes de assinar.</p>
+      <button class="btn-primary" type="button" id="downloadUploadedContractTemplate">Baixar contrato individualizado em PDF</button>
+    </div>
+    <div class="card p-4 mb-4" id="fallbackContractGenerator">
+      <h3 class="font-bold mb-2">Etapa 1 — Gere o contrato padrão</h3>
+      <p class="text-sm text-muted mb-3">Use a opção de impressão e escolha “Salvar como PDF”. Confira se seus dados estão corretos.</p>
+      <button class="btn-primary" type="button" id="downloadUnsignedContract">Baixar contrato para assinatura (PDF)</button>
+    </div>
+    <div class="card p-4 mb-4">
+      <h3 class="font-bold mb-2">Etapa 2 — Assine no gov.br</h3>
+      <p class="text-sm text-muted mb-3">Acesse o portal oficial, entre com sua conta gov.br prata ou ouro, envie o PDF e baixe o documento assinado. Não use “Imprimir” para salvar o PDF assinado, pois isso pode remover a assinatura digital.</p>
+      <a class="auth-secondary inline-block" href="https://assinador.iti.br/" target="_blank" rel="noopener">Abrir Portal de Assinatura gov.br ↗</a>
+      <p class="text-xs text-muted mt-2">Após assinar, volte a esta página e envie o arquivo original baixado do portal.</p>
+    </div>
+    <div class="card p-4 mb-4">
+      <h3 class="font-bold mb-2">Etapa 3 — Envie o PDF assinado</h3>
+      <label class="auth-label" for="signedContractFile">Arquivo PDF assinado digitalmente</label>
+      <input class="auth-field" id="signedContractFile" type="file" accept="application/pdf,.pdf">
+      <button class="btn-primary mt-3" type="button" id="uploadSignedContract">Enviar contrato para validação</button>
+      <p class="text-sm text-muted mt-2">O acesso permanecerá bloqueado enquanto a administração não validar a assinatura no serviço oficial VALIDAR do ITI.</p>
+    </div>
+    <p class="auth-message" id="contractMessage" role="status"></p>
+    <button class="auth-secondary mt-3" type="button" id="contractLogoutButton">Sair da conta</button>
+  </section>
+
+  <section class="auth-panel wide" id="dashboardPanel" hidden>
+    <div class="flex flex-wrap justify-between items-center gap-3 mb-6">
+      <div><span class="pill bg-soft-green text-green mb-2">BRAVO • Área restrita</span><h2 class="font-display text-3xl" id="dashboardTitle">Painel</h2><p class="text-muted text-sm" id="welcomeText"></p></div>
+      <button class="auth-secondary" id="logoutButton" type="button">Sair da conta</button>
+    </div>
+    <div id="studentDashboard" hidden>
+      <div class="card p-5 mb-5">
+        <span class="auth-tag">ÁREA DO ALUNO</span>
+        <h3 class="font-display text-2xl mt-2">Sua preparação começa aqui</h3>
+        <p class="text-muted text-sm mt-1">Acesse as aulas, apostilas e anotações liberadas pela equipe BRAVO.</p>
+        <div class="student-tabs mt-5" role="tablist" aria-label="Materiais de estudo">
+          <button class="student-tab active" type="button" data-content-tab="video">▶ Videoaulas</button>
+          <button class="student-tab" type="button" data-content-tab="booklet">▤ Apostilas</button>
+          <button class="student-tab" type="button" data-content-tab="note">✎ Anotações</button>
+          <a class="student-tab" href="simulados.html" aria-label="Acessar simulados">▣ Simulados</a>
+        </div>
+      </div>
+      <div id="studentContentStatus" class="auth-message" role="status">Carregando seus materiais...</div>
+      <div id="studentContentList" class="learning-grid"></div>
+    </div>
+    <div id="adminDashboard" hidden>
+      <div class="grid md:grid-cols-3 gap-3 mb-5" data-admin-section="overview">
+        <div class="card p-4"><p class="text-muted text-xs uppercase">Perfil</p><p class="text-green font-bold text-xl">Administrador</p></div>
+        <div class="card p-4"><p class="text-muted text-xs uppercase">Permissão</p><p class="font-bold text-xl">Acesso administrativo</p></div>
+        <div class="card p-4"><p class="text-muted text-xs uppercase">Gestão</p><p class="font-bold text-xl">Contas de alunos</p></div>
+      </div>
+      <div class="student-tabs mb-5" id="adminTabs" role="tablist" aria-label="Seções administrativas">
+        <button class="student-tab active" type="button" data-admin-tab="overview">Inscrições</button>
+        <button class="student-tab" type="button" data-admin-tab="students">Alunos</button>
+        <button class="student-tab" type="button" data-admin-tab="contracts">Contratos</button>
+        <button class="student-tab" type="button" data-admin-tab="contents">Conteúdos</button>
+        <button class="student-tab" type="button" data-admin-tab="appearance">Aparência do site</button>
+        <button class="student-tab" type="button" data-admin-tab="documents">Documentos e contratos</button>
+        <button class="student-tab" type="button" data-admin-tab="contractor">Dados da contratada</button>
+        <a class="student-tab" href="simulados.html" aria-label="Acessar simulados">▣ Simulados</a>
+      </div>
+      <div class="card p-5 mb-5" id="adminApplicationsQueue" data-admin-section="overview">
+        <div class="flex flex-wrap justify-between items-center gap-3 mb-3"><div><h3 class="font-display text-xl">Inscrições recebidas</h3><p class="text-muted text-sm">Analise os dados e crie o acesso somente quando decidir aprovar o interessado.</p></div><div class="flex flex-wrap gap-2"><button type="button" class="auth-secondary" id="refreshApplications">Atualizar inscrições</button><button type="button" class="admin-small-btn danger" id="deleteApplications">Excluir solicitações</button></div></div>
+        <div id="adminApplicationsList" class="space-y-3"><p class="text-muted text-sm">Carregando inscrições...</p></div>
+        <p class="auth-message" id="adminApplicationsMessage" role="status"></p>
+      </div>
+      <div class="card p-5 mb-5" id="adminCreateStudent" data-admin-section="students">
+        <h3 class="font-display text-xl mb-2">Criar acesso de aluno</h3>
+        <form id="createStudentForm" class="grid md:grid-cols-2 gap-x-4">
+          <div><label class="auth-label" for="studentName">Nome completo</label><input class="auth-field" id="studentName" required maxlength="120"></div>
+          <div><label class="auth-label" for="studentEmail">E-mail do aluno</label><input class="auth-field" id="studentEmail" type="email" required></div>
+          <div><label class="auth-label" for="studentPassword">Senha inicial</label><input class="auth-field" id="studentPassword" type="password" minlength="8" required autocomplete="new-password"></div>
+          <div><label class="auth-label" for="studentCourse">Curso</label><select class="auth-field" id="studentCourse"><option>GCM Capão Bonito</option><option>QP de Soldados — Polícia Militar</option><option>Ambos os cursos</option></select></div>
+          <div class="md:col-span-2"><button class="btn-primary mt-4" id="createStudentButton" type="submit">Criar usuário</button><p class="auth-message" id="createStudentMessage" role="status"></p></div>
+        </form>
+      </div>
+      <div class="card p-5 mb-5" id="adminContractQueue" data-admin-section="contracts">
+        <div class="flex flex-wrap justify-between items-center gap-3 mb-3"><div><h3 class="font-display text-xl">Contratos aguardando validação</h3><p class="text-muted text-sm">Baixe o PDF, valide-o em validar.iti.gov.br e só então confirme a aprovação.</p></div><button type="button" class="auth-secondary" id="refreshContractQueue">Atualizar</button></div>
+        <div id="adminContractList" class="space-y-3"><p class="text-muted text-sm">Carregando solicitações...</p></div>
+        <p class="auth-message" id="adminContractMessage" role="status"></p>
+      </div>
+      <div class="card p-5 mb-5" id="adminContentManager" data-admin-section="contents">
+        <div class="flex flex-wrap justify-between items-center gap-3 mb-3">
+          <div><h3 class="font-display text-xl">Biblioteca de conteúdos</h3><p class="text-muted text-sm">Publique videoaulas, apostilas e anotações para os alunos.</p></div>
+          <a class="auth-secondary" href="https://drive.google.com/drive/my-drive" target="_blank" rel="noopener">Abrir Google Drive ↗</a>
+        </div>
+        <div class="drive-help text-sm mb-4">
+          <strong class="text-green">Como funciona a integração:</strong> os arquivos ficam hospedados no Google Drive. Copie o link de compartilhamento do arquivo e cole no campo abaixo. No Drive, configure o acesso como “Qualquer pessoa com o link — Leitor”. O site guarda os metadados e controla quais alunos podem visualizar cada material.
+        </div>
+        <form id="addContentForm" class="grid md:grid-cols-2 gap-x-4">
+          <div><label class="auth-label" for="contentTitle">Título</label><input class="auth-field" id="contentTitle" maxlength="160" required placeholder="Ex.: Aula 01 — Direito Constitucional"></div>
+          <div><label class="auth-label" for="contentType">Tipo de conteúdo</label><select class="auth-field" id="contentType"><option value="video">Videoaula</option><option value="booklet">Apostila</option><option value="note">Anotação</option></select></div>
+          <div><label class="auth-label" for="contentCourse">Disponibilizar para</label><select class="auth-field" id="contentCourse"><option value="Ambos os cursos">Ambos os cursos</option><option value="GCM Capão Bonito">GCM Capão Bonito</option><option value="QP de Soldados — Polícia Militar">QP de Soldados — Polícia Militar</option></select></div>
+          <div><label class="auth-label" for="contentDriveUrl">Link do Google Drive / vídeo</label><input class="auth-field" id="contentDriveUrl" type="url" placeholder="https://drive.google.com/..."></div>
+          <div class="md:col-span-2"><label class="auth-label" for="contentDescription">Descrição / anotação</label><textarea class="auth-field" id="contentDescription" rows="4" maxlength="12000" placeholder="Escreva uma descrição ou, para anotações, o conteúdo que o aluno deverá ler."></textarea></div>
+          <div class="md:col-span-2 flex flex-wrap items-center gap-3 mt-3">
+            <label class="text-sm text-muted flex items-center gap-2"><input id="contentPublish" type="checkbox" checked> Publicar imediatamente para os alunos</label>
+            <button class="btn-primary" id="addContentButton" type="submit">Adicionar conteúdo</button>
+          </div>
+          <p class="auth-message md:col-span-2" id="addContentMessage" role="status"></p>
+        </form>
+        <div class="border-t border-soft mt-5 pt-4">
+          <div class="flex justify-between items-center gap-3 mb-3"><h4 class="font-bold">Conteúdos cadastrados</h4><button type="button" class="auth-secondary" id="refreshContents">Atualizar</button></div>
+          <div id="adminContentList" class="space-y-2"><p class="text-muted text-sm">Carregando conteúdos...</p></div>
+        </div>
+      </div>
+      <div class="card p-5" id="adminUsersManager" data-admin-section="students">
+        <div class="flex justify-between items-center gap-3 mb-3"><h3 class="font-display text-xl">Usuários cadastrados</h3><button type="button" class="auth-secondary" id="refreshUsers">Atualizar lista</button></div>
+        <div class="overflow-x-auto"><table class="auth-table"><thead><tr><th>Aluno</th><th>E-mail</th><th>Perfil</th><th>Matrícula</th><th>Cadastro</th></tr></thead><tbody id="usersTable"><tr><td colspan="5" class="text-muted">Carregando usuários...</td></tr></tbody></table></div>
+        <p class="auth-message" id="usersMessage" role="status"></p>
+      </div>
+      <div class="card p-5 mb-5" id="adminLegalDocuments" data-admin-section="documents">
+        <h3 class="font-display text-xl mb-2">Modelo de contrato em PDF</h3>
+        <p class="text-sm text-muted mb-4">Envie a versão oficial do contrato. O aluno poderá baixá-la, assinar no portal gov.br e devolver o PDF original para conferência.</p>
+        <form id="contractTemplateForm" class="grid md:grid-cols-2 gap-4">
+          <div><label class="auth-label" for="contractTemplateVersion">Versão do contrato</label><input class="auth-field" id="contractTemplateVersion" value="BRAVO-2026-02" maxlength="40" required></div>
+          <div><label class="auth-label" for="contractTemplateFile">Modelo do contrato (PDF)</label><input class="auth-field" id="contractTemplateFile" type="file" accept="application/pdf,.pdf" required></div>
+          <div class="md:col-span-2"><button class="btn-primary" id="uploadContractTemplate" type="submit">Enviar / substituir modelo do contrato</button><p class="auth-message" id="contractTemplateMessage" role="status"></p><p class="text-xs text-muted mt-2">A substituição cria uma nova versão lógica. Guarde uma cópia dos contratos anteriores para fins de arquivo e prova.</p></div>
+        </form>
+        <div class="border-t border-soft mt-5 pt-4"><h4 class="font-bold mb-2">Pré-ficha de inscrição em PDF (opcional)</h4><p class="text-xs text-muted mb-2">Disponibilize o documento original para consulta ou download, sem substituir o formulário digital.</p><input class="auth-field" id="enrollmentTemplateFile" type="file" accept="application/pdf,.pdf"><button class="admin-small-btn mt-2" type="button" id="uploadEnrollmentTemplate">Enviar pré-ficha PDF</button><p class="auth-message" id="enrollmentTemplateMessage" role="status"></p></div>
+      </div>
+      <div class="card p-5 mb-5" id="adminContractorSettings" data-admin-section="contractor" hidden>
+        <h3 class="font-display text-xl mb-2">Dados da contratada e condições comerciais</h3>
+        <p class="text-sm text-muted mb-4">As informações salvas aqui serão usadas na identificação e nas condições dos contratos futuros.</p>
+        <form id="contractorSettingsForm" class="grid md:grid-cols-2 gap-x-4">
+          <div><label class="auth-label" for="csLegalName">Razão social</label><input class="auth-field" id="csLegalName" required></div>
+          <div><label class="auth-label" for="csTradeName">Nome fantasia</label><input class="auth-field" id="csTradeName"></div>
+          <div><label class="auth-label" for="csDocument">CNPJ/CPF</label><input class="auth-field" id="csDocument" required></div>
+          <div><label class="auth-label" for="csRepresentative">Representante legal</label><input class="auth-field" id="csRepresentative"></div>
+          <div><label class="auth-label" for="csRepresentativeCpf">CPF do representante</label><input class="auth-field" id="csRepresentativeCpf"></div>
+          <div><label class="auth-label" for="csEmail">E-mail</label><input class="auth-field" id="csEmail" type="email"></div>
+          <div><label class="auth-label" for="csPhone">Telefone</label><input class="auth-field" id="csPhone"></div>
+          <div><label class="auth-label" for="csWhatsapp">WhatsApp</label><input class="auth-field" id="csWhatsapp"></div>
+          <div class="md:col-span-2"><label class="auth-label" for="csAddress">Endereço completo da contratada</label><input class="auth-field" id="csAddress"></div>
+          <div><label class="auth-label" for="csCancellation">Canal de cancelamento</label><input class="auth-field" id="csCancellation"></div>
+          <div><label class="auth-label" for="csPrivacy">Canal de privacidade / LGPD</label><input class="auth-field" id="csPrivacy"></div>
+          <div class="md:col-span-2"><label class="auth-label" for="csPrivacyUrl">Link do aviso de privacidade</label><input class="auth-field" id="csPrivacyUrl" type="url"></div>
+          <div><label class="auth-label" for="csModality">Modalidade</label><input class="auth-field" id="csModality" placeholder="Presencial, online ou híbrido"></div>
+          <div><label class="auth-label" for="csCohort">Turma / curso</label><input class="auth-field" id="csCohort"></div>
+          <div><label class="auth-label" for="csStart">Data de início</label><input class="auth-field" id="csStart" type="date"></div>
+          <div><label class="auth-label" for="csEnd">Data de término</label><input class="auth-field" id="csEnd" type="date"></div>
+          <div><label class="auth-label" for="csWorkload">Carga horária</label><input class="auth-field" id="csWorkload"></div>
+          <div><label class="auth-label" for="csSchedule">Cronograma / horários</label><input class="auth-field" id="csSchedule"></div>
+          <div class="md:col-span-2"><label class="auth-label" for="csPlatform">Local ou plataforma</label><input class="auth-field" id="csPlatform"></div>
+          <div><label class="auth-label" for="csTotal">Valor total (R$)</label><input class="auth-field" id="csTotal" type="number" min="0" step="0.01"></div>
+          <div><label class="auth-label" for="csInstallments">Quantidade de parcelas</label><input class="auth-field" id="csInstallments" type="number" min="1" step="1"></div>
+          <div><label class="auth-label" for="csInstallmentAmount">Valor de cada parcela (R$)</label><input class="auth-field" id="csInstallmentAmount" type="number" min="0" step="0.01"></div>
+          <div><label class="auth-label" for="csFirstDue">Vencimento da primeira parcela</label><input class="auth-field" id="csFirstDue" type="date"></div>
+          <div><label class="auth-label" for="csOtherDue">Demais vencimentos</label><input class="auth-field" id="csOtherDue" placeholder="Ex.: todo dia 10 de cada mês"></div>
+          <div><label class="auth-label" for="csPaymentMethods">Formas de pagamento</label><input class="auth-field" id="csPaymentMethods" placeholder="PIX, boleto, cartão..."></div>
+          <div><label class="auth-label" for="csPaymentReference">Referência / instruções de pagamento</label><input class="auth-field" id="csPaymentReference"></div>
+          <div class="md:col-span-2 flex flex-wrap gap-3 mt-3"><button class="btn-primary" id="saveContractorSettings" type="submit">Salvar dados e condições</button><button class="auth-secondary" id="reloadContractorSettings" type="button">Recarregar</button></div>
+          <p class="auth-message md:col-span-2" id="contractorSettingsMessage" role="status"></p>
+        </form>
+      </div>
+      <div class="card p-5 mb-5" id="adminAppearance" data-admin-section="appearance" hidden>
+        <h3 class="font-display text-xl">Aparência e textos da página inicial</h3>
+        <p class="text-muted text-sm mt-1 mb-4">Edite cada parte do destaque principal separadamente. As alterações serão publicadas para todos os visitantes.</p>
+        <form id="siteAppearanceForm" class="grid md:grid-cols-2 gap-x-4">
+          <div class="md:col-span-2"><label class="auth-label" for="settingHeroBadge">Frase de destaque (selo acima do título)</label><input class="auth-field" id="settingHeroBadge" maxlength="180" value="Concurso autorizado — Prepare-se com quem vive a segurança pública"></div>
+          <div><label class="auth-label" for="settingHeroPrefix">Título — parte inicial</label><input class="auth-field" id="settingHeroPrefix" maxlength="120" value="Curso Preparatório para"></div>
+          <div><label class="auth-label" for="settingHeroHighlight">Título — trecho em destaque colorido</label><input class="auth-field" id="settingHeroHighlight" maxlength="120" value="Guarda Civil Municipal"></div>
+          <div class="md:col-span-2"><label class="auth-label" for="settingHeroSuffix">Título — complemento após o destaque</label><input class="auth-field" id="settingHeroSuffix" maxlength="160" value=" de Capão Bonito"></div>
+          <div class="md:col-span-2"><label class="auth-label" for="settingHeroCourse">Linha do segundo curso</label><input class="auth-field" id="settingHeroCourse" maxlength="180" value="+ Curso para QP de Soldados da Polícia Militar"></div>
+          <div class="md:col-span-2"><label class="auth-label" for="settingHeroDescription">Texto de apresentação</label><textarea class="auth-field" id="settingHeroDescription" rows="3" maxlength="500">Disciplina, estratégia, foco e resultados. Mais que um curso, uma missão com você. Sua aprovação começa aqui.</textarea></div>
+          <div class="md:col-span-2 border-t border-soft pt-4 mt-2">
+            <h4 class="font-bold mb-2">Imagem principal do site (flyer)</h4>
+            <p class="text-xs text-muted mb-2">Envie uma nova imagem para substituir a arte exibida ao lado do texto principal da página inicial.</p>
+            <input class="auth-field" id="settingHeroImageFile" type="file" accept="image/png,image/jpeg,image/webp">
+            <img id="settingHeroImagePreview" alt="Prévia da imagem principal" class="mt-3 rounded-xl max-w-xs" style="display:none;max-height:260px;object-fit:contain">
+          </div>
+          <div class="md:col-span-2 border-t border-soft pt-4 mt-2">
+            <h4 class="font-bold mb-2">Ícone do site (favicon)</h4>
+            <p class="text-xs text-muted mb-2">Envie uma imagem quadrada PNG, ICO ou SVG para o ícone exibido na aba do navegador.</p>
+            <input class="auth-field" id="settingFaviconFile" type="file" accept="image/png,image/jpeg,image/webp,image/x-icon,image/vnd.microsoft.icon,image/svg+xml">
+            <img id="settingFaviconPreview" alt="Prévia do ícone do site" class="mt-3 rounded-lg" style="display:none;width:64px;height:64px;object-fit:contain">
+            <input id="settingFaviconUrl" type="hidden" value="">
+          </div>
+          <div class="md:col-span-2 flex flex-wrap items-center gap-3 mt-3"><button class="btn-primary" id="saveAppearanceButton" type="submit">Salvar alterações do site</button><button class="auth-secondary" type="button" id="reloadAppearanceButton">Recarregar dados salvos</button></div>
+          <p class="auth-message md:col-span-2" id="appearanceMessage" role="status"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+
+
+(function(){
+  // CONFIGURAÇÃO OBRIGATÓRIA: informe a URL e a chave pública (anon/publishable) do projeto Supabase.
+  // Nunca coloque a chave service_role neste HTML.
+  const SUPABASE_URL = "https://kgliyuffqwvdeauxnube.supabase.co";
+  const SUPABASE_ANON_KEY = "sb_publishable_wsDxq6qpa4NVqcfLNpiydw_MydLUOzB";
+  const CREATE_USER_FUNCTION = SUPABASE_URL + "/functions/v1/admin-users";
+  // RECAPTCHA DESATIVADO POR PADRÃO. Para ativar futuramente:
+  // 1) altere ENABLE_RECAPTCHA para true; 2) informe a Site Key pública abaixo;
+  // 3) configure RECAPTCHA_SECRET_KEY nos Secrets do Supabase e publique verify-recaptcha.
+  // Nunca coloque a Secret Key neste HTML.
+  const ENABLE_RECAPTCHA = false;
+  const RECAPTCHA_SITE_KEY = "COLE_AQUI_SUA_RECAPTCHA_SITE_KEY";
+  const RECAPTCHA_VERIFY_FUNCTION = SUPABASE_URL + "/functions/v1/verify-recaptcha";
+  const CONTRACT_VERSION = "BRAVO-2026-01";
+  const CONTRACT_BUCKET = "student-contracts";
+  const LEGAL_DOCS_BUCKET = "bravo-legal-documents";
+  let ACTIVE_CONTRACT_VERSION = CONTRACT_VERSION;
+  let ACTIVE_CONTRACTOR_SETTINGS = null;
+  let ACTIVE_CONTRACT_TEMPLATE_PATH = null;
+  let ACTIVE_STUDENT_APPLICATION = null;
+const configured = Boolean(
+  window.supabase &&
+  SUPABASE_URL.startsWith("https://") &&
+  SUPABASE_ANON_KEY.length > 0
+);
+  const client = configured
+  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+  : null;
+
+  const overlay=document.getElementById("authOverlay");
+  const loginPanel=document.getElementById("loginPanel");
+  const dashboardPanel=document.getElementById("dashboardPanel");
+  const contractPanel=document.getElementById("contractPanel");
+  const loginMessage=document.getElementById("loginMessage");
+  let recaptchaWidgetId=null;
+  let recaptchaToken="";
+  let applicationRecaptchaWidgetId=null;
+  let applicationRecaptchaToken="";
+  let pendingStudentUser=null;
+  const adminDashboard=document.getElementById("adminDashboard");
+  const studentDashboard=document.getElementById("studentDashboard");
+  const usersTable=document.getElementById("usersTable");
+  let currentProfile=null;
+
+  function showMessage(id,msg,isError=false){
+    const el=document.getElementById(id); if(!el)return;
+    el.textContent=msg; el.style.color=isError?"#fca5a5":"#fbbf24";
+  }
+  async function sha256Hex(value){
+    const bytes=typeof value==="string"?new TextEncoder().encode(value):await value.arrayBuffer();
+    const digest=await crypto.subtle.digest("SHA-256",bytes);
+    return Array.from(new Uint8Array(digest)).map(b=>b.toString(16).padStart(2,"0")).join("");
+  }
+  function setupSignatureCanvas(){
+    const canvas=document.getElementById("applicationSignatureCanvas");if(!canvas)return;
+    const ctx=canvas.getContext("2d");ctx.strokeStyle="#101827";ctx.lineWidth=4;ctx.lineCap="round";ctx.lineJoin="round";
+    let drawing=false,hasInk=false;
+    function point(e){const r=canvas.getBoundingClientRect();return {x:(e.clientX-r.left)*canvas.width/r.width,y:(e.clientY-r.top)*canvas.height/r.height};}
+    canvas.addEventListener("pointerdown",e=>{drawing=true;hasInk=true;canvas.setPointerCapture(e.pointerId);const p=point(e);ctx.beginPath();ctx.moveTo(p.x,p.y);});
+    canvas.addEventListener("pointermove",e=>{if(!drawing)return;const p=point(e);ctx.lineTo(p.x,p.y);ctx.stroke();});
+    const stop=()=>{drawing=false;};canvas.addEventListener("pointerup",stop);canvas.addEventListener("pointercancel",stop);canvas.addEventListener("pointerleave",stop);
+    document.getElementById("clearApplicationSignature")?.addEventListener("click",()=>{ctx.clearRect(0,0,canvas.width,canvas.height);hasInk=false;});
+    return {canvas,hasInk:()=>hasInk};
+  }
+  const applicationSignaturePad=setupSignatureCanvas();
+  function openArea() {
+    overlay.classList.add("open");
+    document.body.style.overflow = "hidden";
+
+    // Posiciona a área no início da página
+    overlay.scrollTop = 0;
+
+    requestAnimationFrame(() => {
+        overlay.scrollTop = 0;
+    });
+	}
+  function closeArea(){window.location.href="index.html";}
+  function showLogin(){
+    loginPanel.hidden=false;dashboardPanel.hidden=true;contractPanel.hidden=true;
+    loginMessage.textContent="";
+    ensureRecaptcha();
+  }
+  function ensureRecaptcha(){
+    if(!ENABLE_RECAPTCHA)return;
+    const loginContainer=document.getElementById("loginRecaptcha");
+    const applicationContainer=document.getElementById("applicationRecaptcha");
+    const loginWrap=document.getElementById("loginRecaptchaWrap");
+    const applicationWrap=document.getElementById("applicationRecaptchaWrap");
+    if(loginWrap)loginWrap.hidden=false;
+    if(applicationWrap)applicationWrap.hidden=false;
+    if(!RECAPTCHA_SITE_KEY || RECAPTCHA_SITE_KEY.startsWith("COLE_AQUI")){
+      showMessage("loginMessage","Para ativar o reCAPTCHA, configure primeiro a Site Key pública no HTML.",true);
+      return;
+    }
+    if(!window.grecaptcha || !window.grecaptcha.render)return;
+    try{
+      if(loginContainer && recaptchaWidgetId===null){
+        recaptchaWidgetId=window.grecaptcha.render(loginContainer,{sitekey:RECAPTCHA_SITE_KEY,callback:(token)=>{recaptchaToken=token;},"expired-callback":()=>{recaptchaToken="";},"error-callback":()=>{recaptchaToken="";showMessage("loginMessage","Não foi possível validar o reCAPTCHA. Tente novamente.",true);}});
+      }
+      if(applicationContainer && applicationRecaptchaWidgetId===null){
+        applicationRecaptchaWidgetId=window.grecaptcha.render(applicationContainer,{sitekey:RECAPTCHA_SITE_KEY,callback:(token)=>{applicationRecaptchaToken=token;},"expired-callback":()=>{applicationRecaptchaToken="";},"error-callback":()=>{applicationRecaptchaToken="";showMessage("applicationMessage","Não foi possível validar o reCAPTCHA. Tente novamente.",true);}});
+      }
+    }catch(err){console.error("Erro ao carregar reCAPTCHA:",err);}
+  }
+  if(ENABLE_RECAPTCHA){
+    window.onRecaptchaApiLoad=function(){window.dispatchEvent(new Event("recaptcha-ready"));};
+    const captchaScript=document.createElement("script");
+    captchaScript.src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaApiLoad&render=explicit";
+    captchaScript.async=true;captchaScript.defer=true;document.head.appendChild(captchaScript);
+  }
+  window.addEventListener("recaptcha-ready",ensureRecaptcha);
+  async function verifyRecaptcha(token){
+    if(!ENABLE_RECAPTCHA)return;
+    if(!token)throw new Error("Marque a verificação reCAPTCHA antes de continuar.");
+    const response=await fetch(RECAPTCHA_VERIFY_FUNCTION,{
+      method:"POST",headers:{"Content-Type":"application/json","apikey":SUPABASE_ANON_KEY},
+      body:JSON.stringify({token})
+    });
+    const result=await response.json().catch(()=>({}));
+    if(!response.ok || result.success!==true)throw new Error(result.error||"Falha na validação do reCAPTCHA. Tente novamente.");
+  }
+  async function showDashboard(user){
+    const {data,error}=await client.from("profiles").select("id,full_name,role,course,registration_number,created_at").eq("id",user.id).single();
+    if(error || !data){await client.auth.signOut();showLogin();showMessage("loginMessage","Não foi possível validar seu perfil. Contate a administração.",true);return;}
+    currentProfile=data;
+    if(data.role==="student"){
+      pendingStudentUser=user;
+      await loadActiveContractTemplate();
+      // Alunos cujo contrato foi encaminhado e recebido via WhatsApp são isentos da assinatura pelo portal.
+      if(ACTIVE_STUDENT_APPLICATION?.contract_signature_exempt !== true){
+      const {data:signature,error:signatureError}=await client.from("student_contract_signatures")
+        .select("id,status,rejection_reason").eq("user_id",user.id).eq("contract_version",ACTIVE_CONTRACT_VERSION)
+        .order("submitted_at",{ascending:false}).limit(1).maybeSingle();
+      if(signatureError){
+        loginPanel.hidden=true;dashboardPanel.hidden=true;contractPanel.hidden=false;
+        showMessage("contractMessage","Não foi possível consultar a situação do contrato. A administração deve configurar a tabela e o armazenamento no Supabase.",true);
+        return;
+      }
+      if(!signature || signature.status!=="approved"){
+        pendingStudentUser=user;
+        loginPanel.hidden=true;dashboardPanel.hidden=true;contractPanel.hidden=false;
+        document.getElementById("contractStudentName").textContent=data.full_name||"Aluno";
+        document.getElementById("contractStudentEmail").textContent=user.email||"";
+        document.getElementById("contractIssueDate").textContent=new Date().toLocaleDateString("pt-BR");
+        const fileInput=document.getElementById("signedContractFile"); if(fileInput)fileInput.value="";
+        if(signature && signature.status==="pending") showMessage("contractMessage","Recebemos seu contrato. Ele está aguardando validação oficial pela administração. O acesso será liberado após a aprovação. A administração poderá baixar o PDF e encaminhar a cópia manualmente.");
+        else if(signature && signature.status==="rejected") showMessage("contractMessage","O contrato enviado não foi aprovado. Motivo: "+(signature.rejection_reason||"assinatura não validada")+". Envie um novo PDF assinado.",true);
+        else document.getElementById("contractMessage").textContent="";
+        return;
+      }
+      } // fim da validação de assinatura no portal
+    }
+    pendingStudentUser=null;contractPanel.hidden=true;
+    loginPanel.hidden=true;dashboardPanel.hidden=false;
+    document.getElementById("welcomeText").textContent="Olá, "+(data.full_name||user.email);
+    const isAdmin=data.role==="admin";
+    adminDashboard.hidden=!isAdmin;studentDashboard.hidden=isAdmin;
+    document.getElementById("dashboardTitle").textContent=isAdmin?"Painel administrativo":"Área do aluno";
+    if(isAdmin){activateAdminTab("overview");loadUsers();loadAdminContents();loadContractQueue();loadApplications();loadAppearance();loadContractorSettings();}
+    else {activeStudentTab="video";document.querySelectorAll("[data-content-tab]").forEach(b=>b.classList.toggle("active",b.dataset.contentTab==="video"));loadStudentContents();}
+  }
+  async function loadUsers(){
+    usersTable.innerHTML='<tr><td colspan="5" class="text-muted">Carregando...</td></tr>';
+    const {data,error}=await client.from("profiles").select("full_name,email,role,course,registration_number,created_at").order("created_at",{ascending:false});
+    if(error){usersTable.innerHTML="";showMessage("usersMessage","Erro ao carregar usuários: "+error.message,true);return;}
+    usersTable.innerHTML="";
+    (data||[]).forEach(u=>{
+      const tr=document.createElement("tr");
+      [u.full_name||"—",u.email||"—",u.role==="admin"?"Administrador":"Aluno",u.registration_number||"Aguardando emissão",u.created_at?new Date(u.created_at).toLocaleDateString("pt-BR"):"—"].forEach(v=>{
+        const td=document.createElement("td");td.textContent=v;tr.appendChild(td);
+      });
+      usersTable.appendChild(tr);
+    });
+    if(!data || !data.length)usersTable.innerHTML='<tr><td colspan="5" class="text-muted">Nenhum usuário encontrado.</td></tr>';
+    showMessage("usersMessage",(data||[]).length+" usuário(s) listado(s).");
+  }
+
+  document.getElementById("closeAuth").addEventListener("click",closeArea);
+  overlay.addEventListener("click",e=>{if(e.target===overlay)closeArea();});
+  document.addEventListener("keydown",e=>{if(e.key==="Escape")closeArea();});
+  document.getElementById("loginForm").addEventListener("submit",async e=>{
+    e.preventDefault();
+    if(!configured){showMessage("loginMessage","Configure primeiro SUPABASE_URL e SUPABASE_ANON_KEY no código.",true);return;}
+    const button=document.getElementById("loginSubmit");
+    button.disabled=true;button.textContent="Verificando...";
+    try{
+      await verifyRecaptcha(recaptchaToken);
+      const {data,error}=await client.auth.signInWithPassword({
+        email:document.getElementById("loginEmail").value.trim(),
+        password:document.getElementById("loginPassword").value
+      });
+      if(error)throw new Error("E-mail ou senha inválidos.");
+      recaptchaToken="";
+      if(window.grecaptcha && recaptchaWidgetId!==null)window.grecaptcha.reset(recaptchaWidgetId);
+      await showDashboard(data.user);
+    }catch(err){
+      showMessage("loginMessage",err.message||"Não foi possível entrar. Tente novamente.",true);
+      recaptchaToken="";
+      if(window.grecaptcha && recaptchaWidgetId!==null)window.grecaptcha.reset(recaptchaWidgetId);
+    }finally{button.disabled=false;button.textContent="Entrar";}
+  });
+  function escapeContractText(value){
+    return String(value||"").replace(/[&<>"']/g,character=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[character]));
+  }
+  async function loadActiveContractTemplate(){
+    ACTIVE_CONTRACT_VERSION=CONTRACT_VERSION;ACTIVE_CONTRACT_TEMPLATE_PATH=null;ACTIVE_STUDENT_APPLICATION=null;ACTIVE_CONTRACTOR_SETTINGS=null;
+    const card=document.getElementById("uploadedContractTemplateCard");const fallback=document.getElementById("fallbackContractGenerator");
+    if(!configured)return;
+    const {data,error}=await client.from("legal_document_templates").select("storage_path,version").eq("document_type","contract").maybeSingle();
+    if(!error&&data){ACTIVE_CONTRACT_VERSION=data.version||CONTRACT_VERSION;ACTIVE_CONTRACT_TEMPLATE_PATH=data.storage_path;}
+    const {data:settings}=await client.from("contractor_settings").select("*").eq("id",1).maybeSingle();
+    ACTIVE_CONTRACTOR_SETTINGS=settings||{};
+    if(pendingStudentUser){
+      const fields="id,created_at,full_name,phone,email,course,city,birth_date,cpf,rg,street,street_number,complement,zip_code,marital_status,neighborhood,education,best_contact_time,referral_source,prior_public_exam,prior_exam_details,study_availability,message,signature_name,signature_data,signature_hash,signed_at,consent_text,contract_signature_exempt,contract_signature_method,contract_sent_via_whatsapp_at";
+      let applicationResult=await client.from("course_applications").select(fields).eq("student_user_id",pendingStudentUser.id).eq("status","approved").order("created_at",{ascending:false}).limit(1).maybeSingle();
+      if(applicationResult.error || !applicationResult.data){applicationResult=await client.from("course_applications").select(fields).eq("email",pendingStudentUser.email).eq("status","approved").order("created_at",{ascending:false}).limit(1).maybeSingle();}
+      if(!applicationResult.error)ACTIVE_STUDENT_APPLICATION=applicationResult.data||null;
+    }
+    if(card)card.hidden=!ACTIVE_CONTRACT_TEMPLATE_PATH;if(fallback)fallback.hidden=Boolean(ACTIVE_CONTRACT_TEMPLATE_PATH);
+  }
+  async function ensurePdfLib(){
+    if(window.PDFLib)return window.PDFLib;
+    await new Promise((resolve,reject)=>{const script=document.createElement("script");script.src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js";script.onload=resolve;script.onerror=()=>reject(new Error("Não foi possível carregar o componente de geração de PDF. Verifique sua conexão."));document.head.appendChild(script);});
+    if(!window.PDFLib)throw new Error("Componente PDF indisponível.");return window.PDFLib;
+  }
+  function contractApplicationRows(app){
+    const yesNo=value=>value===true?"Sim":value===false?"Não":value||"Não informado";
+    return [["Nome completo",app.full_name],["CPF",app.cpf],["Data de nascimento",app.birth_date],["Estado civil",app.marital_status],["RG",app.rg],["Endereço",[app.street,app.street_number,app.complement,app.neighborhood,app.city,app.zip_code].filter(Boolean).join(", ")],["Telefone / WhatsApp",app.phone],["E-mail",app.email],["Curso contratado",app.course],["Já prestou concurso",yesNo(app.prior_public_exam)],["Concurso anterior",app.prior_exam_details],["Disponibilidade de estudos",app.study_availability],["Versão do contrato",ACTIVE_CONTRACT_VERSION],["Data de emissão",new Date().toLocaleDateString("pt-BR")]];
+  }
+  function contractDate(value){if(!value)return "Não informado";const d=new Date(value+(/^\d{4}-\d{2}-\d{2}$/.test(String(value))?"T12:00:00":""));return Number.isNaN(d.getTime())?String(value):d.toLocaleDateString("pt-BR");}
+  function contractMoney(value,fallback){const n=Number(value);return Number.isFinite(n)&&n>0?n.toLocaleString("pt-BR",{style:"currency",currency:"BRL"}):fallback;}
+  function buildContractValues(app,settings){
+    const s=settings||{};const course=String(app.course||"Curso preparatório");
+    const due=[s.first_due_date,...String(s.other_due_dates||"").split(/[;,\n]+/).map(x=>x.trim()).filter(Boolean)];
+    const address=[s.address].filter(Boolean).join(" ")||"Dados da contratada não cadastrados";
+    const studentAddress=app.street||"Não informado";
+    const modality=s.course_modality||"Não informado";const start=contractDate(s.course_start_date);
+    const total=contractMoney(s.total_price,"R$ 1.400,00");const count=Number(s.installment_count)||4;const installment=contractMoney(s.installment_amount,"R$ 350,00");
+    return {
+      "CONTRATO_ID":"BRV-"+String(app.id||"").replace(/-/g,"").slice(0,8).toUpperCase(),"DATA_CONTRATO":new Date().toLocaleDateString("pt-BR"),
+      "CONTRATADA_RAZAO_SOCIAL":s.legal_name||s.trade_name||"BRAVO PREPARATÓRIO POLICIAL","CONTRATADA_DOCUMENTO":s.document_number||"Não informado","CONTRATADA_ENDERECO":address,"CONTRATADA_EMAIL":s.email||"Não informado",
+      "ALUNO_NOME":app.full_name||"Não informado","ALUNO_CPF":app.cpf||"Não informado","ALUNO_RG":app.rg||"Não informado","ALUNO_DATA_NASCIMENTO":contractDate(app.birth_date),"ALUNO_ESTADO_CIVIL":app.marital_status||"Não informado",
+      "ALUNO_ENDERECO":studentAddress,"ALUNO_NUMERO":app.street_number||"S/N","ALUNO_BAIRRO":app.neighborhood||"Não informado","ALUNO_CIDADE_UF":app.city||"Não informado","ALUNO_CEP":app.zip_code||"Não informado","ALUNO_TELEFONE":app.phone||"Não informado","ALUNO_EMAIL":app.email||pendingStudentUser?.email||"Não informado",
+      "MODALIDADE_CURSO":modality,"TURMA_CURSO":s.course_cohort||course,"DATA_INICIO":start,"DATA_TERMINO":contractDate(s.course_end_date),"CARGA_HORARIA_CRONOGRAMA":[s.course_workload,s.course_schedule].filter(Boolean).join(" / ")||"Conforme cronograma informado pela contratada","LOCAL_OU_PLATAFORMA":s.course_platform||"Plataforma BRAVO",
+      "VENCIMENTO_1":contractDate(due[0]),"VENCIMENTO_2":contractDate(due[1]),"VENCIMENTO_3":contractDate(due[2]),"VENCIMENTO_4":contractDate(due[3]),"VENCIMENTO_PRIMEIRA_PARCELA":contractDate(s.first_due_date),
+      "FORMA_PAGAMENTO":s.payment_methods||"PIX, boleto bancário ou cartão de crédito","REFERENCIA_PAGAMENTO":s.payment_reference||"A informar",
+      "CANAL_CANCELAMENTO":s.cancellation_channel||s.whatsapp||s.email||"WhatsApp BRAVO (15) 99237-9316","CANAL_PRIVACIDADE":s.privacy_channel||s.email||"WhatsApp BRAVO (15) 99237-9316","LINK_AVISO_PRIVACIDADE":s.privacy_url||"Não informado",
+      "TESTEMUNHA_1_NOME":"Não indicada","TESTEMUNHA_1_CPF":"Não informado","TESTEMUNHA_2_NOME":"Não indicada","TESTEMUNHA_2_CPF":"Não informado",
+      "__TOTAL":total,"__COUNT":String(count),"__INSTALLMENT":installment,"__COURSE":course
+    };
+  }
+  function drawPdfReplacement(page,font,bold,box,value,limitRight){
+    const {x1,y1,x2,y2,text}=box;const {height}=page.getSize();const x=Math.max(36,x1-1);const right=Math.min(limitRight||page.getWidth()-42,page.getWidth()-36);const w=Math.max(18,right-x);const h=Math.max(10,y2-y1+4);const y=height-y2-1;
+    page.drawRectangle({x,y,width:w,height:h,color:window.PDFLib.rgb(1,1,1)});
+    let content=String(value??"Não informado").replace(/[\r\n]+/g," ").trim()||"Não informado";let size=8.1;
+    while(size>5.2&&font.widthOfTextAtSize(content,size)>w-3)size-=0.25;
+    if(font.widthOfTextAtSize(content,size)>w-3){while(content.length>4&&font.widthOfTextAtSize(content+"…",size)>w-3)content=content.slice(0,-1);content+="…";}
+    page.drawText(content,{x,y:y+2.2,size,font,maxWidth:w-2});
+  }
+  document.getElementById("downloadUploadedContractTemplate")?.addEventListener("click",async()=>{
+    const button=document.getElementById("downloadUploadedContractTemplate");
+    try{
+      if(!client)throw new Error("Conexão com o Supabase não configurada.");
+      const {data:sessionData,error:sessionError}=await client.auth.getSession();
+      if(sessionError||!sessionData?.session?.access_token)throw new Error("Sua sessão expirou. Entre novamente.");
+      button.disabled=true;button.textContent="Gerando e salvando no Supabase...";
+      const {data,error}=await client.functions.invoke("generate-student-contract",{body:{}});
+      if(error){let detail=error.message||"Falha ao executar a Edge Function.";try{const context=error.context;if(context&&typeof context.json==="function"){const payload=await context.json();if(payload?.error)detail=payload.error;}}catch(_){}throw new Error(detail);}
+      if(!data?.success||!data?.signed_url)throw new Error(data?.error||"O Supabase não retornou o link do contrato.");
+      let signedUrl;
+      try{signedUrl=new URL(data.signed_url);}catch(_){throw new Error("O Supabase retornou um link de download inválido.");}
+      if(signedUrl.protocol!=="https:")throw new Error("O link temporário do contrato não é HTTPS.");
+      if(data.validated!==true)throw new Error("O Supabase não confirmou a validação do PDF armazenado. O download foi bloqueado.");
+      // A URL assinada já recebe Content-Disposition: attachment pelo parâmetro download.
+      // Não usar o atributo HTML download em URL cross-origin: alguns navegadores o ignoram.
+      const link=document.createElement("a");link.href=signedUrl.href;link.rel="noopener noreferrer";link.style.display="none";document.body.appendChild(link);link.click();link.remove();
+      showMessage("contractMessage","Contrato validado e armazenado no Supabase. Download iniciado. Link temporário: 5 minutos. Caminho: "+data.storage_path);
+    }catch(err){showMessage("contractMessage","Não foi possível gerar o contrato: "+(err.message||err),true);}
+    finally{button.disabled=false;button.textContent="Baixar contrato individualizado em PDF";}
+  });
+  function contractPrintableHtml(){
+    const terms=document.getElementById("contractTerms").innerHTML;
+    const name=escapeContractText((currentProfile&&currentProfile.full_name)||"Aluno");
+    const email=escapeContractText((pendingStudentUser&&pendingStudentUser.email)||"");
+    return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Contrato BRAVO - ${name}</title><style>body{font-family:Arial,sans-serif;color:#111;line-height:1.5;margin:36px}h3{font-size:18px}h4{margin:18px 0 6px}p{font-size:12px}strong{font-weight:700}.muted{color:#333}.signature{margin-top:60px;border-top:1px solid #333;padding-top:8px;width:320px;font-size:12px}@media print{button{display:none}}</style></head><body><h2>BRAVO PREPARATÓRIO POLICIAL</h2>${terms}<p><strong>Identificação do aluno:</strong> ${name}<br><strong>E-mail:</strong> ${email}<br><strong>Versão:</strong> ${ACTIVE_CONTRACT_VERSION}</p><div class="signature">Assinatura eletrônica do aluno — realizada no portal gov.br</div><p>Após assinar, baixe o PDF original no portal gov.br e envie-o pela área autenticada da plataforma.</p><script>window.onload=()=>window.print()<\/script></body></html>`;
+  }
+  document.getElementById("downloadUnsignedContract").addEventListener("click",()=>{
+    const popup=window.open("","_blank");
+    if(!popup){showMessage("contractMessage","Permita pop-ups para gerar o contrato em PDF.",true);return;}
+    popup.document.open();popup.document.write(contractPrintableHtml());popup.document.close();
+  });
+  document.getElementById("uploadSignedContract").addEventListener("click",async()=>{
+    if(!pendingStudentUser){showMessage("contractMessage","Sessão do aluno não identificada. Entre novamente.",true);return;}
+    const file=document.getElementById("signedContractFile").files[0];
+    if(!file){showMessage("contractMessage","Selecione o PDF assinado no gov.br.",true);return;}
+    if(file.type!=="application/pdf" || !file.name.toLowerCase().endsWith(".pdf")){showMessage("contractMessage","Envie somente um arquivo PDF.",true);return;}
+    if(file.size>20*1024*1024){showMessage("contractMessage","O arquivo deve ter no máximo 20 MB.",true);return;}
+    const btn=document.getElementById("uploadSignedContract");btn.disabled=true;btn.textContent="Enviando...";
+    try{
+      const path=pendingStudentUser.id+"/"+crypto.randomUUID()+".pdf";
+      const signedPdfHash=await sha256Hex(file);
+      const {error:uploadError}=await client.storage.from(CONTRACT_BUCKET).upload(path,file,{contentType:"application/pdf",upsert:false});
+      if(uploadError)throw uploadError;
+      const {error:insertError}=await client.from("student_contract_signatures").insert({user_id:pendingStudentUser.id,contract_version:ACTIVE_CONTRACT_VERSION,storage_path:path,status:"pending",student_email:pendingStudentUser.email,student_name:currentProfile.full_name||pendingStudentUser.email,signature_sha256:signedPdfHash});
+      if(insertError){await client.storage.from(CONTRACT_BUCKET).remove([path]);throw insertError;}
+      document.getElementById("signedContractFile").value="";
+      showMessage("contractMessage","PDF recebido com sucesso. Seu contrato está aguardando validação da administração. Após a aprovação, a administração poderá baixar o arquivo e encaminhar a cópia manualmente.");
+    }catch(err){showMessage("contractMessage","Não foi possível enviar o contrato: "+(err.message||"erro inesperado"),true);}
+    finally{btn.disabled=false;btn.textContent="Enviar contrato para validação";}
+  });
+  async function loadContractQueue(){
+    const target=document.getElementById("adminContractList");if(!target)return;
+    target.innerHTML='<p class="text-muted text-sm">Carregando...</p>';
+    const {data,error}=await client.from("student_contract_signatures").select("id,user_id,contract_version,storage_path,status,submitted_at,student_email,student_name,rejection_reason,signature_sha256,reviewed_by,reviewed_at").in("status",["pending","approved","rejected"]).order("submitted_at",{ascending:false});
+    if(error){target.textContent="Erro ao carregar contratos: "+error.message;return;}
+    target.innerHTML="";
+    if(!data||!data.length){target.innerHTML='<p class="text-muted text-sm">Nenhum contrato enviado.</p>';return;}
+    const reviewerIds=[...new Set(data.filter(x=>x.reviewed_by).map(x=>x.reviewed_by))];
+    let reviewerNames={};
+    if(reviewerIds.length){
+      const {data:reviewers}=await client.from("profiles").select("id,full_name").in("id",reviewerIds);
+      (reviewers||[]).forEach(x=>reviewerNames[x.id]=x.full_name||"Administrador");
+    }
+    const createDownloadButton=(item)=>{
+      const download=document.createElement("button");download.type="button";download.className="admin-small-btn";download.textContent="Baixar contrato PDF";
+      download.addEventListener("click",async()=>{download.disabled=true;download.textContent="Baixando...";try{const {data:file,error:fileError}=await client.storage.from(CONTRACT_BUCKET).download(item.storage_path);if(fileError)throw fileError;if(!file||file.size<100)throw new Error("O arquivo armazenado está vazio ou incompleto.");const bytes=await file.slice(0,5).arrayBuffer();if(new TextDecoder().decode(bytes)!=="%PDF-")throw new Error("O arquivo salvo não é um PDF válido.");const url=URL.createObjectURL(new Blob([file],{type:"application/pdf"}));const anchor=document.createElement("a");anchor.href=url;anchor.download="contrato-assinado-"+(item.student_name||"aluno").normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-zA-Z0-9_-]+/g,"-")+".pdf";document.body.append(anchor);anchor.click();anchor.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);}catch(err){showMessage("adminContractMessage","Falha ao baixar o contrato: "+err.message,true);}finally{download.disabled=false;download.textContent="Baixar contrato PDF";}});
+      return download;
+    };
+    for(const item of data){
+      const row=document.createElement("div");row.className="learning-admin-row";
+      const info=document.createElement("div");info.style.flex="1";
+      const title=document.createElement("strong");title.textContent=item.student_name||item.student_email||"Aluno";
+      const meta=document.createElement("p");meta.className="text-xs text-muted";meta.textContent=(item.student_email||"")+" • Enviado em "+new Date(item.submitted_at).toLocaleString("pt-BR");
+      info.append(title,meta);
+      if(item.signature_sha256){const hashLine=document.createElement("p");hashLine.className="text-xs text-muted mt-1";hashLine.textContent="SHA-256 do PDF recebido: "+item.signature_sha256;info.append(hashLine);}
+      const actions=document.createElement("div");actions.className="flex flex-wrap gap-2";
+      if(item.status==="approved"){
+        const reviewer=reviewerNames[item.reviewed_by]||"Administrador";
+        const approvedLine=document.createElement("p");approvedLine.className="text-xs mt-1";approvedLine.textContent="Contrato aprovado e acesso liberado por "+reviewer+(item.reviewed_at?" em "+new Date(item.reviewed_at).toLocaleString("pt-BR"):"");info.append(approvedLine);
+        const approvedTag=document.createElement("span");approvedTag.className="auth-tag";approvedTag.textContent="Aprovado";actions.append(approvedTag,createDownloadButton(item));
+        row.append(info,actions);target.append(row);continue;
+      }
+      if(item.status==="rejected"){
+        const rejectedLabel=document.createElement("span");rejectedLabel.className="auth-tag";rejectedLabel.textContent="Rejeitado";actions.append(rejectedLabel);
+        const deleteRejected=document.createElement("button");deleteRejected.type="button";deleteRejected.className="admin-small-btn danger";deleteRejected.textContent="Excluir registro";
+        deleteRejected.addEventListener("click",async()=>{if(!confirm("Excluir permanentemente o registro do contrato rejeitado de "+(item.student_name||item.student_email)+"?"))return;const {error:deleteError}=await client.from("student_contract_signatures").delete().eq("id",item.id).eq("status","rejected");if(deleteError){showMessage("adminContractMessage","Não foi possível excluir: "+deleteError.message,true);return;}if(item.storage_path){const {error:storageError}=await client.storage.from(CONTRACT_BUCKET).remove([item.storage_path]);if(storageError)showMessage("adminContractMessage","Registro excluído, mas o PDF permaneceu no armazenamento: "+storageError.message,true);else showMessage("adminContractMessage","Registro rejeitado e PDF excluídos.");}else showMessage("adminContractMessage","Registro rejeitado excluído.");loadContractQueue();});
+        actions.append(deleteRejected);row.append(info,actions);target.append(row);continue;
+      }
+      const download=createDownloadButton(item);
+      const validate=document.createElement("button");validate.type="button";validate.className="admin-small-btn";validate.textContent="Validar no ITI";validate.addEventListener("click",()=>window.open("https://validar.iti.gov.br/","_blank","noopener"));
+      const approve=document.createElement("button");approve.type="button";approve.className="admin-small-btn";approve.textContent="Confirmar validação e liberar";
+      approve.addEventListener("click",async()=>{
+        const confirmation=prompt("Informe o protocolo ou observação do resultado do VALIDAR (ex.: assinatura válida, titular e integridade conferidos):");
+        if(!confirmation||!confirmation.trim()){showMessage("adminContractMessage","Informe o resultado da conferência oficial para continuar.",true);return;}
+        if(!confirm("Confirma que você abriu o PDF no VALIDAR do ITI e conferiu que a assinatura está válida, pertence ao aluno e que o documento está íntegro?"))return;
+        approve.disabled=true;approve.textContent="Processando...";
+        try{
+          const {error:updateError}=await client.from("student_contract_signatures").update({status:"approved",reviewed_at:new Date().toISOString(),reviewed_by:currentProfile.id,validation_reference:confirmation.trim()}).eq("id",item.id).eq("status","pending");
+          if(updateError)throw updateError;
+          showMessage("adminContractMessage","Contrato validado e acesso liberado. Nenhum e-mail automático será enviado; baixe o PDF nesta aba e encaminhe a cópia manualmente.");loadContractQueue();
+        }catch(err){showMessage("adminContractMessage","Não foi possível concluir a aprovação: "+err.message,true);approve.disabled=false;approve.textContent="Confirmar validação e liberar";}
+      });
+      const reject=document.createElement("button");reject.type="button";reject.className="admin-small-btn danger";reject.textContent="Rejeitar";reject.addEventListener("click",async()=>{const reason=prompt("Informe o motivo da rejeição:");if(!reason)return;const {error:rejectError}=await client.from("student_contract_signatures").update({status:"rejected",rejection_reason:reason,reviewed_at:new Date().toISOString(),reviewed_by:currentProfile.id}).eq("id",item.id).eq("status","pending");if(rejectError)showMessage("adminContractMessage",rejectError.message,true);else{showMessage("adminContractMessage","Contrato rejeitado. O aluno poderá enviar outro PDF.");loadContractQueue();}});
+      actions.append(download,validate,approve,reject);row.append(info,actions);target.append(row);
+    }
+  }
+  async function loadApplications(){
+    const target=document.getElementById("adminApplicationsList");if(!target)return;
+    target.innerHTML='<p class="text-muted text-sm">Carregando inscrições...</p>';
+    const {data,error}=await client.from("course_applications").select("id,full_name,phone,email,course,city,message,status,created_at,rejection_reason,birth_date,cpf,rg,street,street_number,complement,zip_code,marital_status,neighborhood,education,best_contact_time,referral_source,prior_public_exam,prior_exam_details,study_availability,signature_name,signature_data,signature_hash,signed_at,consent_text,contract_signature_exempt,contract_signature_method,contract_sent_via_whatsapp_at").order("created_at",{ascending:false}).limit(100);
+    if(error){target.textContent="Erro ao carregar inscrições: "+error.message;return;}
+    target.innerHTML="";
+    if(!data||!data.length){target.innerHTML='<p class="text-muted text-sm">Nenhuma inscrição recebida até o momento.</p>';return;}
+    for(const item of data){
+      const row=document.createElement("div");row.className="learning-admin-row";row.style.alignItems="flex-start";
+      const info=document.createElement("div");info.style.flex="1";
+      const title=document.createElement("strong");title.textContent=item.full_name;
+      const meta=document.createElement("p");meta.className="text-xs text-muted";meta.textContent=item.email+" • "+item.phone+" • "+item.course+" • "+(item.city||"Cidade não informada")+" • "+new Date(item.created_at).toLocaleString("pt-BR");
+      const status=document.createElement("p");status.className="text-xs mt-1";status.textContent="Situação: "+({pending:"Aguardando análise",approved:"Aprovada — acesso criado",rejected:"Rejeitada"}[item.status]||item.status);
+      if(item.contract_signature_exempt===true){status.textContent+=" • Isento de assinatura pelo portal — contrato via WhatsApp";}
+      info.append(title,meta,status);
+      const details=document.createElement("p");details.className="text-xs text-muted mt-2";details.textContent="Nascimento: "+(item.birth_date||"—")+" • CPF: "+(item.cpf||"—")+" • RG: "+(item.rg||"—")+" • Estado civil: "+(item.marital_status||"—")+" • Endereço: "+[item.street,item.street_number,item.complement,item.zip_code,item.neighborhood,item.city].filter(Boolean).join(", ")+" • Escolaridade: "+(item.education||"—");info.append(details);
+      const extra=document.createElement("p");extra.className="text-xs text-muted mt-1";extra.textContent="Contato: "+(item.best_contact_time||"—")+" • Origem: "+(item.referral_source||"—")+" • Já prestou concurso: "+(item.prior_public_exam===true?"Sim":item.prior_public_exam===false?"Não":"—")+" • Disponibilidade: "+(item.study_availability||"—");info.append(extra);
+      if(item.signature_hash){const hash=document.createElement("p");hash.className="text-xs text-muted mt-1 break-all";hash.textContent="Assinatura eletrônica • SHA-256: "+item.signature_hash+" • Data: "+(item.signed_at?new Date(item.signed_at).toLocaleString("pt-BR"):"—");info.append(hash);}
+      if(item.message){const note=document.createElement("p");note.className="text-sm text-muted mt-1";note.textContent="Observações: "+item.message;info.append(note);}
+      if(item.rejection_reason){const reason=document.createElement("p");reason.className="text-xs text-muted mt-1";reason.textContent="Motivo: "+item.rejection_reason;info.append(reason);}
+      const actions=document.createElement("div");actions.className="flex flex-wrap gap-2";
+      if(item.status==="rejected"){
+        const deleteRejected=document.createElement("button");deleteRejected.type="button";deleteRejected.className="admin-small-btn danger";deleteRejected.textContent="Excluir rejeitada";
+        deleteRejected.addEventListener("click",async()=>{if(!confirm("Excluir permanentemente a inscrição rejeitada de "+item.full_name+"?"))return;const {error:deleteError}=await client.from("course_applications").delete().eq("id",item.id).eq("status","rejected");if(deleteError)showMessage("adminApplicationsMessage","Não foi possível excluir: "+deleteError.message,true);else{showMessage("adminApplicationsMessage","Inscrição rejeitada excluída.");loadApplications();}});
+        actions.append(deleteRejected);
+      }
+      if(item.status==="approved" && item.contract_signature_exempt!==true){
+        const whatsappRelease=document.createElement("button");whatsappRelease.type="button";whatsappRelease.className="admin-small-btn";whatsappRelease.textContent="Liberar por WhatsApp (dispensar portal)";
+        whatsappRelease.addEventListener("click",async()=>{if(!confirm("Confirma que o contrato deste aluno já foi encaminhado/aceito via WhatsApp? O aluno ficará dispensado de enviar assinatura pelo portal. Guarde o comprovante do envio e aceite."))return;whatsappRelease.disabled=true;try{const payload={contract_signature_exempt:true,contract_signature_method:"whatsapp",contract_sent_via_whatsapp_at:new Date().toISOString(),contract_sent_by:currentProfile.id};const {error:updateError}=await client.from("course_applications").update(payload).eq("id",item.id).eq("status","approved");if(updateError)throw updateError;showMessage("adminApplicationsMessage","Isenção do portal registrada para "+item.full_name+". O acesso permanece liberado.");loadApplications();}catch(err){showMessage("adminApplicationsMessage","Não foi possível registrar a liberação via WhatsApp: "+err.message,true);whatsappRelease.disabled=false;}});
+        actions.append(whatsappRelease);
+      }
+      if(item.status==="pending"){
+        const createAccount=async(waiver,button)=>{
+          const initialPassword=prompt("Defina uma senha inicial com pelo menos 8 caracteres para este aluno. Depois, encaminhe-a diretamente ao interessado:");
+          if(!initialPassword)return;
+          if(initialPassword.length<8){showMessage("adminApplicationsMessage","A senha precisa ter pelo menos 8 caracteres.",true);return;}
+          const confirmText=waiver
+            ? "Confirma que o contrato deste aluno já foi enviado/recebido via WhatsApp e que ele ficará isento da assinatura pelo portal? A administração deverá guardar o comprovante do envio/aceite."
+            : "Confirma a aprovação de "+item.full_name+" e a criação de uma conta de aluno?";
+          if(!confirm(confirmText))return;
+          button.disabled=true;button.textContent="Criando acesso...";
+          try{
+            const {data:{session}}=await client.auth.getSession();
+            if(!session?.access_token)throw new Error("Sessão administrativa expirada. Entre novamente.");
+            const response=await fetch(CREATE_USER_FUNCTION,{method:"POST",headers:{"Content-Type":"application/json","Authorization":"Bearer "+session.access_token,"apikey":SUPABASE_ANON_KEY},body:JSON.stringify({full_name:item.full_name,email:item.email,password:initialPassword,course:item.course})});
+            const result=await response.json().catch(()=>({}));
+            if(!response.ok)throw new Error(result.error||"Não foi possível criar o usuário.");
+            const createdUserId=result.user?.id||result.id||null;
+            if(!createdUserId)throw new Error("A função criou a conta, mas não retornou o ID do usuário. Verifique a função admin-users.");
+            const {data:registrationNumber,error:registrationError}=await client.rpc("assign_student_registration",{p_user_id:createdUserId,p_course:item.course});
+            if(registrationError)throw new Error("Conta criada, mas a matrícula não foi emitida: "+registrationError.message);
+            const updatePayload={status:"approved",student_user_id:createdUserId,reviewed_at:new Date().toISOString(),reviewed_by:currentProfile.id};
+            if(waiver){updatePayload.contract_signature_exempt=true;updatePayload.contract_signature_method="whatsapp";updatePayload.contract_sent_via_whatsapp_at=new Date().toISOString();updatePayload.contract_sent_by=currentProfile.id;}
+            const {error:updateError}=await client.from("course_applications").update(updatePayload).eq("id",item.id).eq("status","pending");
+            if(updateError)throw new Error("Conta criada, mas a inscrição não foi atualizada: "+updateError.message+". Confira a migração SQL.");
+            showMessage("adminApplicationsMessage",waiver
+              ? "Acesso criado. Matrícula: "+registrationNumber+". Isenção da assinatura pelo portal registrada (contrato via WhatsApp)."
+              : "Inscrição aprovada. Matrícula: "+registrationNumber+". Conta criada; encaminhe as credenciais por canal seguro.");
+            await Promise.all([loadApplications(),loadUsers()]);
+          }catch(err){showMessage("adminApplicationsMessage",err.message||"Falha ao criar acesso.",true);button.disabled=false;button.textContent=waiver?"Liberar e criar usuário — contrato via WhatsApp":"Aprovar e criar acesso";}
+        };
+        const create=document.createElement("button");create.type="button";create.className="admin-small-btn";create.textContent="Aprovar e criar acesso";
+        create.addEventListener("click",()=>createAccount(false,create));
+        const createWhatsapp=document.createElement("button");createWhatsapp.type="button";createWhatsapp.className="admin-small-btn";createWhatsapp.textContent="Liberar e criar usuário — contrato via WhatsApp";
+        createWhatsapp.addEventListener("click",()=>createAccount(true,createWhatsapp));
+        const reject=document.createElement("button");reject.type="button";reject.className="admin-small-btn danger";reject.textContent="Rejeitar";
+        reject.addEventListener("click",async()=>{const reason=prompt("Informe o motivo da rejeição (opcional):")||"Inscrição não aprovada pela administração.";if(!confirm("Rejeitar a inscrição de "+item.full_name+"?"))return;const {error:updateError}=await client.from("course_applications").update({status:"rejected",rejection_reason:reason,reviewed_at:new Date().toISOString(),reviewed_by:currentProfile.id}).eq("id",item.id).eq("status","pending");if(updateError)showMessage("adminApplicationsMessage",updateError.message,true);else{showMessage("adminApplicationsMessage","Inscrição rejeitada.");loadApplications();}});
+        actions.append(create,createWhatsapp,reject);
+      }
+      const contact=document.createElement("a");contact.className="admin-small-btn";contact.textContent="WhatsApp";contact.href="https://wa.me/"+String(item.phone||"").replace(/\D/g,"");contact.target="_blank";contact.rel="noopener";actions.append(contact);
+      row.append(info,actions);target.append(row);
+    }
+  }
+  // Navegação por abas do painel administrativo
+  function activateAdminTab(tab){
+    document.querySelectorAll("[data-admin-section]").forEach(section=>{section.hidden=section.dataset.adminSection!==tab;});
+    document.querySelectorAll("[data-admin-tab]").forEach(button=>{const active=button.dataset.adminTab===tab;button.classList.toggle("active",active);button.setAttribute("aria-selected",active?"true":"false");});
+  }
+  document.querySelectorAll("[data-admin-tab]").forEach(button=>button.addEventListener("click",()=>activateAdminTab(button.dataset.adminTab)));
+  activateAdminTab("overview");
+
+  const CONTRACTOR_FIELDS={csLegalName:"legal_name",csTradeName:"trade_name",csDocument:"document_number",csRepresentative:"legal_representative",csRepresentativeCpf:"representative_cpf",csEmail:"email",csPhone:"phone",csWhatsapp:"whatsapp",csAddress:"address",csCancellation:"cancellation_channel",csPrivacy:"privacy_channel",csPrivacyUrl:"privacy_url",csModality:"course_modality",csCohort:"course_cohort",csStart:"course_start_date",csEnd:"course_end_date",csWorkload:"course_workload",csSchedule:"course_schedule",csPlatform:"course_platform",csTotal:"total_price",csInstallments:"installment_count",csInstallmentAmount:"installment_amount",csPaymentMethods:"payment_methods",csFirstDue:"first_due_date",csOtherDue:"other_due_dates",csPaymentReference:"payment_reference"};
+  async function loadContractorSettings(){
+    const {data,error}=await client.from("contractor_settings").select("*").eq("id",1).maybeSingle();
+    if(error){showMessage("contractorSettingsMessage","Não foi possível carregar os dados: "+error.message,true);return;}
+    Object.entries(CONTRACTOR_FIELDS).forEach(([id,key])=>{const el=document.getElementById(id);if(el)el.value=data?.[key]??"";});
+  }
+  document.getElementById("contractorSettingsForm")?.addEventListener("submit",async e=>{
+    e.preventDefault();if(!currentProfile||currentProfile.role!=="admin"){showMessage("contractorSettingsMessage","Ação não autorizada.",true);return;}
+    const button=document.getElementById("saveContractorSettings");button.disabled=true;button.textContent="Salvando...";
+    try{
+      const payload={id:1,updated_by:currentProfile.id,updated_at:new Date().toISOString()};
+      Object.entries(CONTRACTOR_FIELDS).forEach(([id,key])=>{const el=document.getElementById(id);let value=el?.value?.trim()||null;if(["total_price","installment_count","installment_amount"].includes(key))value=value===null?null:Number(value);payload[key]=value;});
+      const {error}=await client.from("contractor_settings").upsert(payload,{onConflict:"id"});if(error)throw error;
+      showMessage("contractorSettingsMessage","Dados da contratada e condições comerciais salvos.");
+    }catch(err){showMessage("contractorSettingsMessage","Não foi possível salvar: "+err.message,true);}
+    finally{button.disabled=false;button.textContent="Salvar dados e condições";}
+  });
+  document.getElementById("reloadContractorSettings")?.addEventListener("click",loadContractorSettings);
+
+  const APPEARANCE_DEFAULTS={hero_badge:"Concurso autorizado — Prepare-se com quem vive a segurança pública",hero_title_prefix:"Curso Preparatório para",hero_title_highlight:"Guarda Civil Municipal",hero_title_suffix:" de Capão Bonito",hero_course_line:"+ Curso para QP de Soldados da Polícia Militar",hero_description:"Disciplina, estratégia, foco e resultados. Mais que um curso, uma missão com você. Sua aprovação começa aqui.",hero_image_url:"",favicon_url:""};
+  function applyAppearance(settings){
+    const values={...APPEARANCE_DEFAULTS,...(settings||{})};
+    const setText=(id,value)=>{const el=document.getElementById(id);if(el)el.textContent=value??"";};
+    setText("heroBadgeText",values.hero_badge);setText("heroTitlePrefix",values.hero_title_prefix);setText("heroTitleHighlight",values.hero_title_highlight);setText("heroTitleSuffix",values.hero_title_suffix);setText("heroCourseLine",values.hero_course_line);setText("heroDescription",values.hero_description);
+    const favicon=document.getElementById("siteFavicon");if(favicon)favicon.href=values.favicon_url||"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%2322e07a%27/%3E%3Ctext x=%2732%27 y=%2745%27 font-size=%2744%27 font-family=%27Arial%27 font-weight=%27bold%27 text-anchor=%27middle%27 fill=%27%2306210f%27%3EB%3C/text%3E%3C/svg%3E";
+    const heroImage=document.getElementById("heroFlyerImage");if(heroImage&&values.hero_image_url)heroImage.src=values.hero_image_url;
+    const fields={settingHeroBadge:"hero_badge",settingHeroPrefix:"hero_title_prefix",settingHeroHighlight:"hero_title_highlight",settingHeroSuffix:"hero_title_suffix",settingHeroCourse:"hero_course_line",settingHeroDescription:"hero_description",settingFaviconUrl:"favicon_url"};
+    Object.entries(fields).forEach(([id,key])=>{const el=document.getElementById(id);if(el)el.value=values[key]??"";});
+  }
+  async function loadAppearance(){
+    const {data,error}=await client.from("site_settings").select("hero_badge,hero_title_prefix,hero_title_highlight,hero_title_suffix,hero_course_line,hero_description,favicon_url,hero_image_url").eq("id","main").maybeSingle();
+    if(error){showMessage("appearanceMessage","Não foi possível carregar as configurações: "+error.message,true);applyAppearance(APPEARANCE_DEFAULTS);return;}
+    applyAppearance(data||APPEARANCE_DEFAULTS);
+  }
+  // Textos públicos carregam para todos os visitantes; o formulário só aparece ao administrador.
+  if(configured)loadAppearance();
+  const SITE_ASSETS_BUCKET="site-assets";
+  async function uploadSiteImage(inputId,storageName,allowedTypes){
+    const input=document.getElementById(inputId);const file=input?.files?.[0];if(!file)return null;
+    if(!allowedTypes.includes(file.type)){throw new Error("Formato de imagem não permitido.");}
+    if(file.size>5*1024*1024)throw new Error("A imagem deve ter no máximo 5 MB.");
+    const ext=({"image/jpeg":"jpg","image/png":"png","image/webp":"webp","image/svg+xml":"svg","image/x-icon":"ico","image/vnd.microsoft.icon":"ico"})[file.type]||"img";
+    const path=storageName+"."+ext;
+    const {error:uploadError}=await client.storage.from(SITE_ASSETS_BUCKET).upload(path,file,{upsert:true,contentType:file.type,cacheControl:"3600"});
+    if(uploadError)throw uploadError;
+    const {data}=client.storage.from(SITE_ASSETS_BUCKET).getPublicUrl(path);
+    return data.publicUrl+"?v="+Date.now();
+  }
+  for(const [inputId,previewId] of [["settingHeroImageFile","settingHeroImagePreview"],["settingFaviconFile","settingFaviconPreview"]]){
+    document.getElementById(inputId).addEventListener("change",event=>{const file=event.target.files?.[0];const preview=document.getElementById(previewId);if(!file){preview.style.display="none";return;}preview.src=URL.createObjectURL(file);preview.style.display="block";});
+  }
+  document.getElementById("siteAppearanceForm").addEventListener("submit",async event=>{
+    event.preventDefault();
+    if(!currentProfile||currentProfile.role!=="admin"){showMessage("appearanceMessage","Ação não autorizada.",true);return;}
+    const button=document.getElementById("saveAppearanceButton");button.disabled=true;button.textContent="Enviando imagens...";
+    try{
+      let faviconUrl=document.getElementById("settingFaviconUrl").value.trim();
+      let heroImageUrl=null;
+      const heroFile=document.getElementById("settingHeroImageFile").files?.[0];
+      const faviconFile=document.getElementById("settingFaviconFile").files?.[0];
+      if(heroFile)heroImageUrl=await uploadSiteImage("settingHeroImageFile","homepage-flyer",["image/jpeg","image/png","image/webp"]);
+      if(faviconFile)faviconUrl=await uploadSiteImage("settingFaviconFile","site-favicon",["image/jpeg","image/png","image/webp","image/svg+xml","image/x-icon","image/vnd.microsoft.icon"]);
+      const current={hero_image_url:"",favicon_url:""};
+      const {data:existing}=await client.from("site_settings").select("hero_image_url,favicon_url").eq("id","main").maybeSingle();
+      Object.assign(current,existing||{});
+      const payload={hero_badge:document.getElementById("settingHeroBadge").value.trim(),hero_title_prefix:document.getElementById("settingHeroPrefix").value.trim(),hero_title_highlight:document.getElementById("settingHeroHighlight").value.trim(),hero_title_suffix:document.getElementById("settingHeroSuffix").value,hero_course_line:document.getElementById("settingHeroCourse").value.trim(),hero_description:document.getElementById("settingHeroDescription").value.trim(),favicon_url:faviconUrl||current.favicon_url,hero_image_url:heroImageUrl||current.hero_image_url,updated_at:new Date().toISOString()};
+      button.textContent="Salvando...";
+      const {error}=await client.from("site_settings").update(payload).eq("id","main");
+      if(error)throw error;
+      applyAppearance(payload);
+      document.getElementById("settingHeroImageFile").value="";document.getElementById("settingFaviconFile").value="";
+      showMessage("appearanceMessage","Alterações e imagens salvas e publicadas para os visitantes.");
+    }catch(error){showMessage("appearanceMessage","Não foi possível salvar: "+error.message,true);}
+    finally{button.disabled=false;button.textContent="Salvar alterações do site";}
+  });
+  document.getElementById("reloadAppearanceButton").addEventListener("click",loadAppearance);
+
+  async function uploadLegalTemplate(file,documentType,version){
+    if(!file||file.type!=="application/pdf"||!file.name.toLowerCase().endsWith(".pdf"))throw new Error("Selecione um arquivo PDF válido.");
+    if(file.size<100)throw new Error("O PDF selecionado está vazio ou incompleto. Escolha o contrato oficial correto.");
+    if(file.size>20*1024*1024)throw new Error("O PDF deve ter no máximo 20 MB.");
+    const header=new TextDecoder().decode(await file.slice(0,5).arrayBuffer());
+    if(header!=="%PDF-")throw new Error("O arquivo selecionado não possui estrutura PDF válida.");
+    const path=documentType+"/"+crypto.randomUUID()+".pdf";
+    const {error:uploadError}=await client.storage.from(LEGAL_DOCS_BUCKET).upload(path,file,{contentType:"application/pdf",upsert:false});if(uploadError)throw uploadError;
+    const {error:upsertError}=await client.from("legal_document_templates").upsert({document_type:documentType,storage_path:path,version:version||"1.0",updated_by:currentProfile.id,updated_at:new Date().toISOString()},{onConflict:"document_type"});
+    if(upsertError){await client.storage.from(LEGAL_DOCS_BUCKET).remove([path]);throw upsertError;}
+  }
+  document.getElementById("contractTemplateForm")?.addEventListener("submit",async e=>{
+    e.preventDefault();if(!currentProfile||currentProfile.role!=="admin"){showMessage("contractTemplateMessage","Ação não autorizada.",true);return;}
+    const file=document.getElementById("contractTemplateFile").files?.[0];const version=document.getElementById("contractTemplateVersion").value.trim();
+    try{await uploadLegalTemplate(file,"contract",version);showMessage("contractTemplateMessage","Modelo do contrato publicado. Os próximos alunos receberão esta versão.");document.getElementById("contractTemplateFile").value="";}catch(err){showMessage("contractTemplateMessage",err.message,true);}
+  });
+  document.getElementById("uploadEnrollmentTemplate")?.addEventListener("click",async()=>{
+    if(!currentProfile||currentProfile.role!=="admin"){showMessage("enrollmentTemplateMessage","Ação não autorizada.",true);return;}
+    const file=document.getElementById("enrollmentTemplateFile").files?.[0];
+    try{await uploadLegalTemplate(file,"pre_enrollment","1.0");showMessage("enrollmentTemplateMessage","Pré-ficha PDF enviada com sucesso.");document.getElementById("enrollmentTemplateFile").value="";}catch(err){showMessage("enrollmentTemplateMessage",err.message,true);}
+  });
+
+  document.getElementById("refreshApplications").addEventListener("click",loadApplications);
+  document.getElementById("deleteApplications").addEventListener("click",async()=>{
+    const confirmed=confirm("ATENÇÃO: esta ação excluirá permanentemente TODAS as solicitações recebidas, incluindo pendentes, aprovadas e rejeitadas. Os usuários já criados continuarão existindo, mas o histórico das solicitações será apagado. Deseja continuar?");
+    if(!confirmed)return;
+    const button=document.getElementById("deleteApplications");
+    button.disabled=true;button.textContent="Excluindo...";
+    try{
+      const {error}=await client.from("course_applications").delete().not("id","is",null);
+      if(error)throw error;
+      showMessage("adminApplicationsMessage","Solicitações excluídas com sucesso.");
+      await loadApplications();
+    }catch(err){
+      showMessage("adminApplicationsMessage","Não foi possível excluir as solicitações: "+err.message,true);
+    }finally{
+      button.disabled=false;button.textContent="Excluir solicitações";
+    }
+  });
+
+  document.getElementById("refreshContractQueue").addEventListener("click",loadContractQueue);
+  document.getElementById("contractLogoutButton").addEventListener("click",async()=>{
+    await client.auth.signOut();currentProfile=null;pendingStudentUser=null;showLogin();
+  });
+  document.getElementById("logoutButton").addEventListener("click",async()=>{await client.auth.signOut();currentProfile=null;showLogin();});
+  document.getElementById("refreshUsers").addEventListener("click",loadUsers);
+  document.getElementById("createStudentForm").addEventListener("submit",async e=>{
+    e.preventDefault();
+    if(!currentProfile || currentProfile.role!=="admin"){showMessage("createStudentMessage","Ação não autorizada.",true);return;}
+    const btn=document.getElementById("createStudentButton");btn.disabled=true;btn.textContent="Criando...";
+    try{
+      const {data:{session}}=await client.auth.getSession();
+      const response=await fetch(CREATE_USER_FUNCTION,{
+        method:"POST",
+        headers:{ "Content-Type":"application/json", "Authorization":"Bearer "+session.access_token, "apikey":SUPABASE_ANON_KEY },
+        body:JSON.stringify({
+          full_name:document.getElementById("studentName").value.trim(),
+          email:document.getElementById("studentEmail").value.trim(),
+          password:document.getElementById("studentPassword").value,
+          course:document.getElementById("studentCourse").value
+        })
+      });
+      const result=await response.json();
+      if(!response.ok)throw new Error(result.error||"Não foi possível criar o usuário.");
+      const newUserId=result.user?.id||result.id||null;
+      if(!newUserId)throw new Error("A função não retornou o ID do usuário para emissão da matrícula.");
+      const {data:registrationNumber,error:registrationError}=await client.rpc("assign_student_registration",{p_user_id:newUserId,p_course:document.getElementById("studentCourse").value});
+      if(registrationError)throw new Error("Conta criada, mas a matrícula não foi emitida: "+registrationError.message+". Execute a migração SQL.");
+      document.getElementById("createStudentForm").reset();
+      showMessage("createStudentMessage","Usuário criado com sucesso. Matrícula: "+registrationNumber+". Oriente o aluno a entrar com o e-mail e a senha inicial.");
+      await loadUsers();
+    }catch(err){showMessage("createStudentMessage",err.message,true);}
+    finally{btn.disabled=false;btn.textContent="Criar usuário";}
+  });
+
+
+  // ===== BIBLIOTECA DE CONTEÚDOS BRAVO =====
+  let activeStudentTab = "video";
+  const contentLabels = {video:"Videoaula", booklet:"Apostila", note:"Anotação"};
+  function safeDriveUrl(raw){
+    const value=(raw||"").trim();
+    if(!value) return "";
+    try{
+      const u=new URL(value);
+      if(u.protocol!=="https:") return "";
+      if(!["drive.google.com","docs.google.com","www.youtube.com","youtu.be","youtube.com"].includes(u.hostname)) return "";
+      return u.href;
+    }catch(_){return "";}
+  }
+  function getDriveOpenUrl(raw){
+    const value=safeDriveUrl(raw);
+    if(!value) return "";
+    const match=value.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+    return match ? "https://drive.google.com/file/d/"+match[1]+"/view" : value;
+  }
+  function renderStudentContents(items){
+    const list=document.getElementById("studentContentList");
+    list.innerHTML="";
+    const filtered=(items||[]).filter(x=>x.content_type===activeStudentTab);
+    if(!filtered.length){
+      list.innerHTML='<div class="card p-5 text-muted">Ainda não há conteúdos publicados nesta categoria.</div>';
+      return;
+    }
+    filtered.forEach(item=>{
+      const card=document.createElement("article");card.className="learning-card";
+      const tag=document.createElement("span");tag.className="auth-tag";tag.textContent=contentLabels[item.content_type]||"Material";
+      const title=document.createElement("h4");title.className="mt-3";title.textContent=item.title;
+      const desc=document.createElement("p");desc.className="learning-description";desc.textContent=item.description||"Material disponibilizado pela equipe BRAVO.";
+      card.append(tag,title,desc);
+      if(item.drive_url){
+        const link=document.createElement("a");link.className="learning-open";link.href=getDriveOpenUrl(item.drive_url)||item.drive_url;
+        link.target="_blank";link.rel="noopener";link.textContent=item.content_type==="video"?"Assistir / abrir conteúdo":"Abrir material";
+        card.appendChild(link);
+      }
+      list.appendChild(card);
+    });
+  }
+  async function loadStudentContents(){
+    const status=document.getElementById("studentContentStatus");
+    status.textContent="Carregando materiais...";
+    const {data,error}=await client.from("course_contents").select("id,title,description,content_type,drive_url,course,created_at").eq("is_published",true).order("created_at",{ascending:false});
+    if(error){status.textContent="Não foi possível carregar os materiais: "+error.message;return;}
+    const course=currentProfile?.course||"";
+    const visible=(data||[]).filter(x=>!x.course||x.course==="Ambos os cursos"||x.course===course);
+    status.textContent=visible.length+" conteúdo(s) disponível(is).";
+    renderStudentContents(visible);
+    document.querySelectorAll("[data-content-tab]").forEach(btn=>btn.onclick=()=>{
+      activeStudentTab=btn.dataset.contentTab;
+      document.querySelectorAll("[data-content-tab]").forEach(b=>b.classList.toggle("active",b===btn));
+      renderStudentContents(visible);
+    });
+    const active=document.querySelector('[data-content-tab="'+activeStudentTab+'"]');
+    if(active)active.classList.add("active");
+  }
+  async function loadAdminContents(){
+    const target=document.getElementById("adminContentList");
+    target.innerHTML='<p class="text-muted text-sm">Carregando...</p>';
+    const {data,error}=await client.from("course_contents").select("id,title,content_type,course,is_published,created_at").order("created_at",{ascending:false});
+    if(error){target.textContent="Erro ao carregar conteúdos: "+error.message;return;}
+    target.innerHTML="";
+    if(!data?.length){target.textContent="Nenhum conteúdo cadastrado.";return;}
+    data.forEach(item=>{
+      const row=document.createElement("div");row.className="learning-admin-row";
+      const info=document.createElement("div");info.className="min-w-0";
+      const title=document.createElement("div");title.className="font-bold";title.textContent=item.title;
+      const meta=document.createElement("div");meta.className="text-xs text-muted";meta.textContent=(contentLabels[item.content_type]||item.content_type)+" • "+item.course+" • "+(item.is_published?"Publicado":"Rascunho");
+      info.append(title,meta);
+      const actions=document.createElement("div");actions.className="flex flex-wrap gap-2 shrink-0";
+      const toggle=document.createElement("button");toggle.className="admin-small-btn";toggle.type="button";toggle.textContent=item.is_published?"Despublicar":"Publicar";
+      toggle.onclick=async()=>{
+        const {error}=await client.from("course_contents").update({is_published:!item.is_published}).eq("id",item.id);
+        if(error)alert("Não foi possível alterar a publicação: "+error.message);else loadAdminContents();
+      };
+      const del=document.createElement("button");del.className="admin-small-btn danger";del.type="button";del.textContent="Excluir";
+      del.onclick=async()=>{
+        if(!confirm("Excluir o conteúdo '"+item.title+"'? O arquivo original no Google Drive não será apagado."))return;
+        const {error}=await client.from("course_contents").delete().eq("id",item.id);
+        if(error)alert("Não foi possível excluir: "+error.message);else loadAdminContents();
+      };
+      actions.append(toggle,del);row.append(info,actions);target.append(row);
+    });
+  }
+  document.querySelectorAll("[data-content-tab]").forEach(btn=>btn.addEventListener("click",()=>{
+    activeStudentTab=btn.dataset.contentTab;
+    document.querySelectorAll("[data-content-tab]").forEach(b=>b.classList.toggle("active",b===btn));
+  }));
+  document.getElementById("addContentForm").addEventListener("submit",async e=>{
+    e.preventDefault();
+    if(!currentProfile||currentProfile.role!=="admin"){showMessage("addContentMessage","Ação não autorizada.",true);return;}
+    const type=document.getElementById("contentType").value;
+    const rawUrl=document.getElementById("contentDriveUrl").value;
+    const url=safeDriveUrl(rawUrl);
+    const description=document.getElementById("contentDescription").value.trim();
+    if(type!=="note"&&!url){showMessage("addContentMessage","Informe um link HTTPS válido do Google Drive ou YouTube.",true);return;}
+    if(rawUrl.trim()&&!url){showMessage("addContentMessage","Use um link HTTPS do Google Drive, Google Docs, YouTube ou youtu.be.",true);return;}
+    if(type==="note"&&!description){showMessage("addContentMessage","Para anotações, escreva o conteúdo no campo de descrição/anotação.",true);return;}
+    const btn=document.getElementById("addContentButton");btn.disabled=true;btn.textContent="Salvando...";
+    const payload={title:document.getElementById("contentTitle").value.trim(),description,content_type:type,drive_url:url||null,course:document.getElementById("contentCourse").value,is_published:document.getElementById("contentPublish").checked,created_by:currentProfile.id};
+    const {error}=await client.from("course_contents").insert(payload);
+    btn.disabled=false;btn.textContent="Adicionar conteúdo";
+    if(error){showMessage("addContentMessage","Erro ao salvar: "+error.message,true);return;}
+    document.getElementById("addContentForm").reset();document.getElementById("contentPublish").checked=true;
+    showMessage("addContentMessage","Conteúdo cadastrado com sucesso.");
+    loadAdminContents();
+  });
+  document.getElementById("refreshContents").addEventListener("click",loadAdminContents);
+
+  if(configured){
+    client.auth.getSession().then(({data})=>{if(data.session){openArea();showDashboard(data.session.user);}});
+    client.auth.onAuthStateChange((event,session)=>{
+      if(event==="SIGNED_OUT"){currentProfile=null;pendingStudentUser=null;showLogin();}
+    });
+  }
+})();
+
+</script>
+</body>
+</html>

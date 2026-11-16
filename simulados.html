@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Simulados | BRAVO Preparatório Policial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{--bg:#070d1f;--bg2:#0b1633;--card:#0f1d3d;--card2:#12264a;--text:#eef2ff;--muted:#93a3c9;--green:#22e07a;--gold:#fbbf24;--border:rgba(148,163,201,.16);--red:#fb7185}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(900px 500px at 90% -10%,rgba(34,224,122,.13),transparent 60%),var(--bg);color:var(--text);font-family:'Baloo 2',system-ui,sans-serif;min-height:100vh}button,input,select,textarea{font:inherit}.wrap{max-width:1180px;margin:auto;padding:22px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 0 22px;border-bottom:1px solid var(--border)}.brand{display:flex;gap:12px;align-items:center;font-weight:800;font-size:20px}.mark{width:42px;height:42px;border-radius:13px;background:var(--green);color:#06210f;display:grid;place-items:center;font:30px 'Bebas Neue'}.brand small{display:block;color:var(--green);font:16px 'Bebas Neue';letter-spacing:1px}.top-actions{display:flex;gap:9px;align-items:center}.btn{border:0;border-radius:12px;padding:11px 17px;font-weight:800;cursor:pointer;background:var(--green);color:#06210f}.btn.secondary{background:#1b2c50;color:var(--text);border:1px solid var(--border)}.btn.gold{background:var(--gold);color:#3a2503}.btn:disabled{opacity:.5;cursor:not-allowed}.hero{padding:34px 0 24px}.eyebrow{color:var(--green);font-size:13px;font-weight:800;letter-spacing:1px;text-transform:uppercase}.hero h1{font-size:clamp(30px,5vw,48px);line-height:1.08;margin:8px 0}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}.card{background:linear-gradient(145deg,var(--card),#0b1731);border:1px solid var(--border);border-radius:19px;padding:20px;min-width:0}.span-8{grid-column:span 8}.span-4{grid-column:span 4}.span-12{grid-column:span 12}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.stat{padding:15px;border-radius:14px;background:#071329;border:1px solid var(--border)}.stat strong{font:30px 'Bebas Neue';color:var(--green);display:block}.field{width:100%;background:#071329;border:1px solid rgba(148,163,201,.28);border-radius:11px;padding:12px;color:var(--text);outline:none}.field:focus{border-color:var(--green)}label{display:block;font-size:13px;color:#c3cdea;font-weight:700;margin:12px 0 6px}.subject-list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}.subject{display:flex;gap:10px;align-items:flex-start;padding:12px;background:#071329;border:1px solid var(--border);border-radius:12px}.subject input{accent-color:var(--green);margin-top:5px}.subject b{display:block}.subject small{color:var(--muted)}.question{font-size:19px;font-weight:700;line-height:1.4;margin:18px 0}.option{display:flex;gap:12px;align-items:flex-start;padding:13px;margin:9px 0;background:#071329;border:1px solid var(--border);border-radius:12px;cursor:pointer}.option:has(input:checked){border-color:var(--green);background:rgba(34,224,122,.08)}.option input{accent-color:var(--green);margin-top:6px}.progress{height:8px;background:#071329;border-radius:99px;overflow:hidden}.progress>i{display:block;height:100%;background:var(--green);width:0}.hidden{display:none!important}.notice{padding:12px 14px;border-radius:12px;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.25);color:#fcd977;margin:12px 0}.success{color:var(--green)}.danger{color:var(--red)}.row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.table{width:100%;border-collapse:collapse;font-size:14px}.table td,.table th{padding:11px 8px;border-bottom:1px solid var(--border);text-align:left}.table th{color:var(--green);font-size:12px;text-transform:uppercase}.pill{display:inline-block;padding:4px 10px;border-radius:99px;background:rgba(34,224,122,.12);color:var(--green);font-size:12px;font-weight:800}.login{max-width:440px;margin:8vh auto}.admin-form{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}.admin-form .wide{grid-column:1/-1}.footer{padding:32px 0;color:var(--muted);font-size:12px;text-align:center}
+@media(max-width:800px){.span-8,.span-4{grid-column:span 12}.subject-list{grid-template-columns:1fr}.wrap{padding:14px}.stats{grid-template-columns:1fr 1fr}.top{align-items:flex-start}.top-actions{flex-wrap:wrap;justify-content:flex-end}.admin-form{grid-template-columns:1fr}.admin-form .wide{grid-column:auto}}
+</style></head>
+<body><div class="wrap">
+<header class="top"><a class="brand" href="./index.html" style="color:inherit;text-decoration:none"><span class="mark">B</span><span>BRAVO<small>PREPARATÓRIO POLICIAL</small></span></a><div class="top-actions"><span id="userLabel" class="muted"></span><button id="logoutBtn" class="btn secondary hidden">Sair</button></div></header>
+<main id="loginView" class="login card"><div class="eyebrow">Ambiente de treinamento</div><h1 style="font-size:32px;margin:4px 0">Acesse seus simulados</h1><p class="muted">Entre com o mesmo e-mail e senha utilizados na Área do Aluno do Bravo.</p><form id="loginForm"><label for="email">E-mail</label><input class="field" id="email" type="email" autocomplete="username" required><label for="password">Senha</label><input class="field" id="password" type="password" autocomplete="current-password" required><button class="btn" style="width:100%;margin-top:18px" id="loginBtn">Entrar</button></form><p id="loginMsg" class="muted" role="status"></p><p class="muted" style="font-size:12px">A autenticação é compartilhada com o projeto Supabase do site Bravo.</p></main>
+<main id="appView" class="hidden"><section class="hero"><div class="eyebrow">Sua preparação começa com prática</div><h1 id="welcome">Painel de simulados</h1><p class="muted">Treine, acompanhe sua evolução e revise cada questão comentada.</p></section>
+<section id="studentView" class="grid"><div class="card span-8"><div class="row"><div><div class="eyebrow">Novo treinamento</div><h2 style="margin:4px 0">Monte seu simulado</h2></div><span class="pill">Banco Bravo</span></div><p class="muted">Selecione a matéria e a quantidade de questões disponíveis no banco aprovado.</p><label for="subjectSelect">Matéria</label><select class="field" id="subjectSelect"><option value="">Carregando matérias...</option></select><label for="questionCount">Quantidade de questões</label><select class="field" id="questionCount"><option>10</option><option selected>20</option><option>30</option><option>40</option></select><div id="quotaNote" class="notice">A disponibilidade e os limites de simulados são validados no banco.</div><button id="startBtn" class="btn">Iniciar simulado →</button><p id="studentMsg" class="muted" role="status"></p></div>
+<div class="card span-4"><div class="eyebrow">Seu desempenho</div><h2 style="margin:4px 0 14px">Resumo</h2><div class="stats"><div class="stat"><strong id="attemptsStat">—</strong><small class="muted">Simulados</small></div><div class="stat"><strong id="averageStat">—</strong><small class="muted">Média</small></div><div class="stat"><strong id="bestStat">—</strong><small class="muted">Melhor nota</small></div></div><p class="muted" style="font-size:12px;margin-top:14px">Os indicadores consideram suas tentativas registradas nesta plataforma.</p></div>
+<div class="card span-12"><div class="row"><h2 style="margin:0">Meu histórico</h2><button class="btn secondary" id="refreshHistory">Atualizar</button></div><div style="overflow-x:auto"><table class="table"><thead><tr><th>Data</th><th>Matéria</th><th>Questões</th><th>Nota</th><th>Resultado</th></tr></thead><tbody id="historyBody"><tr><td colspan="5" class="muted">Carregando histórico...</td></tr></tbody></table></div></div></section>
+<section id="quizView" class="card hidden"><div class="row"><div><div class="eyebrow" id="quizSubject">Simulado</div><h2 id="quizHeading" style="margin:4px 0">Questão 1</h2></div><button class="btn secondary" id="quitQuiz">Sair do simulado</button></div><div class="progress"><i id="progressBar"></i></div><p class="muted" id="progressText"></p><div id="questionText" class="question"></div><div id="options"></div><div class="row" style="margin-top:18px"><button id="prevBtn" class="btn secondary">← Anterior</button><button id="nextBtn" class="btn">Próxima →</button><button id="finishBtn" class="btn gold hidden">Finalizar simulado</button></div><p id="quizMsg" class="muted" role="status"></p></section>
+<section id="resultView" class="hidden"><div class="card"><div class="eyebrow">Simulado concluído</div><h1 id="resultScore" style="font:56px 'Bebas Neue';color:var(--green);margin:0">0%</h1><p id="resultSummary" class="muted"></p><div id="reviewList"></div><button id="backHome" class="btn" style="margin-top:18px">Voltar ao painel</button></div></section>
+<section id="adminView" class="hidden"><div class="hero"><div class="eyebrow">Gestão pedagógica</div><h1>Painel administrativo</h1><p class="muted">Cadastre e publique questões revisadas para os alunos.</p></div><div class="grid"><div class="card span-8"><h2>Adicionar questão</h2><form id="questionForm" class="admin-form"><div class="wide"><label>Matéria</label><select id="adminSubject" class="field" required></select></div><div class="wide"><label>Enunciado</label><textarea id="qStatement" class="field" rows="3" required></textarea></div><div><label>Alternativa A</label><input id="optA" class="field" required></div><div><label>Alternativa B</label><input id="optB" class="field" required></div><div><label>Alternativa C</label><input id="optC" class="field" required></div><div><label>Alternativa D</label><input id="optD" class="field" required></div><div><label>Alternativa E</label><input id="optE" class="field" required></div><div><label>Gabarito</label><select id="qAnswer" class="field"><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option></select></div><div class="wide"><label>Comentário / explicação</label><textarea id="qExplanation" class="field" rows="3"></textarea></div><div><label>Dificuldade</label><select id="qDifficulty" class="field"><option value="easy">Fácil</option><option value="medium" selected>Média</option><option value="hard">Difícil</option></select></div><div><label>Fonte / referência</label><input id="qSource" class="field" placeholder="Ex.: CF/88, art. 5º"></div><div class="wide"><label><input id="qPublish" type="checkbox"> Publicar para os alunos após revisão</label><div class="row" style="justify-content:flex-start;margin-top:12px"><button class="btn" id="saveQuestion" type="submit">Salvar questão</button><button class="btn secondary hidden" id="cancelQuestionEdit" type="button">Cancelar edição</button></div></div></form><p id="adminMsg" class="muted" role="status"></p></div><div class="card span-4"><h2>Biblioteca</h2><p class="muted">O módulo permite cadastrar questões manualmente nesta primeira versão. A ingestão de PDFs, geração por IA, revisão em lote e integração com Google Drive serão conectadas pelo backend, sem expor chaves no navegador.</p><div class="notice">Questões não publicadas ficam disponíveis somente para administradores.</div><div id="adminCounts" class="muted">Carregando banco...</div></div>
+<div class="card span-12" id="adminQuestionManager">
+  <div class="row"><div><div class="eyebrow">Banco de questões</div><h2 style="margin:4px 0">Consultar, editar e remover questões</h2></div><button type="button" class="btn secondary" id="refreshAdminQuestions">Atualizar lista</button></div>
+  <label for="adminQuestionSearch">Pesquisar por enunciado ou matéria</label>
+  <input id="adminQuestionSearch" class="field" type="search" placeholder="Digite um termo para filtrar as questões">
+  <p id="adminQuestionMsg" class="muted" role="status">Carregando questões...</p>
+  <div style="overflow-x:auto"><table class="table"><thead><tr><th>Matéria</th><th>Enunciado</th><th>Status</th><th>Ações</th></tr></thead><tbody id="adminQuestionRows"><tr><td colspan="4" class="muted">Carregando...</td></tr></tbody></table></div>
+</div>
+<div class="card span-12" id="adminHistoryTools"><div class="eyebrow">Manutenção de registros</div><h2 style="margin:4px 0">Zerar histórico de um aluno</h2><p class="muted">Apaga somente tentativas, respostas, notas e indicadores de desempenho do aluno informado. As matérias, questões, alternativas, gabaritos e simulados cadastrados permanecem intactos.</p><label for="historyStudentId">ID do usuário (UUID do Supabase Auth)</label><input id="historyStudentId" class="field" type="text" autocomplete="off" placeholder="Cole aqui o UUID do aluno" aria-describedby="historyResetHelp"><small id="historyResetHelp" class="muted">O ID pode ser consultado em Supabase → Authentication → Users. Confira cuidadosamente antes de confirmar.</small><div style="margin-top:14px"><button type="button" id="resetStudentHistoryBtn" class="btn" style="background:#dc2626;color:#fff">Zerar histórico do aluno</button></div><p id="historyResetMsg" class="muted" role="status" aria-live="polite"></p></div></div></section>
+</main><footer class="footer">BRAVO PREPARATÓRIO POLICIAL · Plataforma de treinamento</footer></div>
+<script>
+(()=>{
+// Mesmas credenciais públicas (publishable) declaradas no index.html do repositório.
+// Nunca inserir service_role, senha de banco ou chave OpenAI neste arquivo.
+const SUPABASE_URL='https://kgliyuffqwvdeauxnube.supabase.co';
+const SUPABASE_ANON_KEY='sb_publishable_wsDxq6qpa4NVqcfLNpiydw_MydLUOzB';
+const db=window.supabase?.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+const $=id=>document.getElementById(id);let user=null,profile=null,subjects=[],questions=[],answers={},qIndex=0,currentAttempt=null;
+const show=(id)=>$(id).classList.remove('hidden'),hide=(id)=>$(id).classList.add('hidden');
+const msg=(id,text,error=false)=>{const el=$(id);el.textContent=text;el.className=error?'danger':''};
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function setHome(){show('appView');show('studentView');hide('quizView');hide('resultView');hide('adminView')}
+async function loadProfile(u){const {data,error}=await db.from('profiles').select('id,full_name,role,course').eq('id',u.id).single();if(error||!data)throw new Error('Perfil Bravo não encontrado. Procure a administração.');profile=data;user=u;$('userLabel').textContent=u.email;show('logoutBtn'); $('welcome').textContent='Olá, '+(data.full_name||u.email);hide('loginView');show('appView');show('studentView');$('adminView').classList.toggle('hidden',data.role!=='admin');if(data.role==='admin'){show('adminView');hide('studentView')}await loadSubjects();if(data.role==='student'){await loadHistory()}else{await loadAdminCounts()}}
+async function loadSubjects(){const {data,error}=await db.from('quiz_subjects').select('id,name,description').eq('active',true).order('name');if(error){msg(profile.role==='admin'?'adminMsg':'studentMsg','Não foi possível carregar matérias. Execute o arquivo supabase_simulados.sql no SQL Editor. '+error.message,true);return}subjects=data||[];const options=subjects.map(s=>`<option value="${s.id}">${esc(s.name)}</option>`).join('');$('subjectSelect').innerHTML=options||'<option value="">Nenhuma matéria cadastrada</option>';$('adminSubject').innerHTML=options}
+async function loadHistory(){const {data,error}=await db.from('quiz_attempts').select('id,subject_name,total_questions,correct_answers,score,finished_at').eq('user_id',user.id).not('finished_at','is',null).order('finished_at',{ascending:false}).limit(30);if(error){$('historyBody').innerHTML='<tr><td colspan="5">Histórico ainda não disponível: '+esc(error.message)+'</td></tr>';return}const rows=data||[];$('historyBody').innerHTML=rows.length?rows.map(r=>`<tr><td>${new Date(r.finished_at).toLocaleDateString('pt-BR')}</td><td>${esc(r.subject_name)}</td><td>${r.total_questions}</td><td><b>${Number(r.score).toFixed(1)}%</b></td><td>${r.correct_answers}/${r.total_questions}</td></tr>`).join(''):'<tr><td colspan="5" class="muted">Você ainda não concluiu simulados.</td></tr>';$('attemptsStat').textContent=rows.length;$('averageStat').textContent=rows.length?(rows.reduce((a,r)=>a+Number(r.score),0)/rows.length).toFixed(0)+'%':'—';$('bestStat').textContent=rows.length?Math.max(...rows.map(r=>Number(r.score))).toFixed(0)+'%':'—'}
+async function startQuiz(){const subject=subjects.find(s=>s.id===$('subjectSelect').value);if(!subject){msg('studentMsg','Selecione uma matéria.',true);return}const count=Math.min(50,Math.max(1,Number($('questionCount').value)||20));$('startBtn').disabled=true;try{const {data,error}=await db.from('quiz_questions').select('id,statement,options,source').eq('subject_id',subject.id).eq('status','approved').limit(300);if(error)throw error;if(!data||!data.length)throw new Error('Ainda não há questões aprovadas nesta matéria.');questions=[...data].sort(()=>Math.random()-.5).slice(0,count);answers={};qIndex=0;const {data:attempt,error:attemptError}=await db.from('quiz_attempts').insert({user_id:user.id,subject_id:subject.id,subject_name:subject.name,total_questions:questions.length}).select().single();if(attemptError)throw attemptError;currentAttempt=attempt;hide('studentView');hide('adminView');show('quizView');$('quizSubject').textContent=subject.name;renderQuestion()}catch(e){msg('studentMsg',e.message||'Falha ao iniciar.',true)}finally{$('startBtn').disabled=false}}
+function renderQuestion(){const q=questions[qIndex];$('quizHeading').textContent=`Questão ${qIndex+1} de ${questions.length}`;$('progressText').textContent=`${Math.round((qIndex+1)/questions.length*100)}% concluído`;$('progressBar').style.width=((qIndex+1)/questions.length*100)+'%';$('questionText').textContent=q.statement;$('options').innerHTML=(Array.isArray(q.options)?q.options:Object.entries(q.options||{}).map(([key,text])=>({key,text}))).map((o,i)=>{const key=o.key||'ABCDE'[i],text=o.text||o.value||'';return `<label class="option"><input type="radio" name="answer" value="${esc(key)}" ${answers[q.id]===key?'checked':''}><span><b>${esc(key)})</b> ${esc(text)}</span></label>`}).join('');$('prevBtn').disabled=qIndex===0;$('nextBtn').classList.toggle('hidden',qIndex===questions.length-1);$('finishBtn').classList.toggle('hidden',qIndex!==questions.length-1)}
+$('options').addEventListener('change',e=>{if(e.target.name==='answer')answers[questions[qIndex].id]=e.target.value});$('prevBtn').onclick=()=>{if(qIndex>0){qIndex--;renderQuestion()}};$('nextBtn').onclick=()=>{if(!answers[questions[qIndex].id]){msg('quizMsg','Escolha uma alternativa para continuar.',true);return}qIndex++;renderQuestion();msg('quizMsg','')};
+async function finishQuiz(){const missing=questions.filter(q=>!answers[q.id]);if(missing.length){msg('quizMsg',`Responda às ${missing.length} questão(ões) restantes antes de finalizar.`,true);return}if(!confirm('Deseja finalizar e registrar suas respostas?'))return;$('finishBtn').disabled=true;try{const submitted=questions.map(q=>({question_id:q.id,selected_option:answers[q.id]}));const {data,error}=await db.rpc('finish_bravo_quiz',{p_attempt_id:currentAttempt.id,p_answers:submitted});if(error)throw error;if(!data?.success)throw new Error(data?.error||'Não foi possível finalizar o simulado.');const correct=data.correct_answers,score=Number(data.score);$('resultScore').textContent=score.toFixed(1)+'%';$('resultSummary').textContent=`Você acertou ${correct} de ${questions.length} questões.`;const keyById=new Map((data.review||[]).map(x=>[x.question_id,x]));$('reviewList').innerHTML=questions.map((q,i)=>{const result=keyById.get(q.id)||{};const right=!!result.is_correct;return `<article class="card" style="margin-top:12px"><div class="row"><b>Questão ${i+1}</b><span class="${right?'success':'danger'}">${right?'Acertou':'Errou'} · Gabarito ${esc(result.correct_option||'—')}</span></div><p>${esc(q.statement)}</p><p class="muted">Sua resposta: ${esc(answers[q.id])}</p><p>${esc(result.explanation||q.explanation||'Comentário ainda não cadastrado.')}</p><small class="muted">${esc(q.source||'')}</small></article>`}).join('');hide('quizView');show('resultView')}catch(e){msg('quizMsg',e.message||'Erro ao registrar resultado.',true)}finally{$('finishBtn').disabled=false}}
+$('finishBtn').onclick=finishQuiz;$('quitQuiz').onclick=async()=>{if(!confirm('Sair agora? O simulado não será considerado concluído.'))return;await db.from('quiz_attempts').delete().eq('id',currentAttempt.id).eq('user_id',user.id);setHome();await loadHistory()};$('backHome').onclick=async()=>{setHome();await loadHistory()};$('startBtn').onclick=startQuiz;$('refreshHistory').onclick=loadHistory;
+let editingQuestionId=null;
+let adminQuestionCache=[];
+function resetQuestionEditor(){
+  editingQuestionId=null;
+  $('questionForm').reset();
+  $('saveQuestion').textContent='Salvar questão';
+  $('cancelQuestionEdit').classList.add('hidden');
+  $('adminMsg').textContent='';
+}
+function renderAdminQuestions(){
+  const term=$('adminQuestionSearch').value.trim().toLocaleLowerCase('pt-BR');
+  const filtered=adminQuestionCache.filter(q=>!term||`${q.statement||''} ${q.subject_name||''}`.toLocaleLowerCase('pt-BR').includes(term));
+  $('adminQuestionRows').innerHTML=filtered.length?filtered.map(q=>`<tr>
+    <td>${esc(q.subject_name||'Matéria não identificada')}</td>
+    <td>${esc(q.statement||'').slice(0,180)}${(q.statement||'').length>180?'…':''}</td>
+    <td><span class="pill">${esc(q.status||'draft')}</span></td>
+    <td><div class="row" style="justify-content:flex-start;gap:6px"><button type="button" class="btn secondary" data-edit-question="${q.id}">Editar</button><button type="button" class="btn" style="background:#dc2626;color:white" data-delete-question="${q.id}">Remover</button></div></td>
+  </tr>`).join(''):'<tr><td colspan="4" class="muted">Nenhuma questão encontrada.</td></tr>';
+}
+async function loadAdminQuestions(){
+  if(profile?.role!=='admin')return;
+  $('adminQuestionRows').innerHTML='<tr><td colspan="4" class="muted">Consultando banco de dados...</td></tr>';
+  $('adminQuestionMsg').textContent='';
+  try{
+    const {data,error}=await db.rpc('admin_list_bravo_questions');
+    if(error)throw error;
+    adminQuestionCache=data||[];
+    renderAdminQuestions();
+    $('adminQuestionMsg').textContent=`${adminQuestionCache.length} questão(ões) encontradas.`;
+  }catch(err){
+    $('adminQuestionRows').innerHTML='<tr><td colspan="4" class="danger">Não foi possível consultar as questões.</td></tr>';
+    $('adminQuestionMsg').textContent=`Erro ao consultar o banco: ${err.message||'erro desconhecido'}. Confira se executou o arquivo admin_questions_management.sql no SQL Editor do Supabase.`;
+    $('adminQuestionMsg').className='danger';
+  }
+}
+async function loadAdminCounts(){
+  // Consulta apenas a coluna id, que é liberada para SELECT. Evita SELECT *,
+  // que falha porque correct_option é deliberadamente protegida contra alunos.
+  const {count,error}=await db.from('quiz_questions').select('id',{count:'exact',head:true});
+  $('adminCounts').textContent=error?`Falha na contagem: ${error.message}`:`${count||0} questão(ões) cadastrada(s).`;
+  await loadAdminQuestions();
+}
+$('questionForm').onsubmit=async e=>{
+  e.preventDefault();
+  if(profile?.role!=='admin')return;
+  const opts=['A','B','C','D','E'].map(k=>({key:k,text:$('opt'+k).value.trim()}));
+  const payload={subject_id:$('adminSubject').value,statement:$('qStatement').value.trim(),options:opts,correct_option:$('qAnswer').value,explanation:$('qExplanation').value.trim(),difficulty:$('qDifficulty').value,source:$('qSource').value.trim(),status:$('qPublish').checked?'approved':'draft'};
+  $('saveQuestion').disabled=true;
+  try{
+    let error;
+    if(editingQuestionId){
+      ({error}=await db.from('quiz_questions').update({...payload,updated_at:new Date().toISOString()}).eq('id',editingQuestionId));
+    }else{
+      ({error}=await db.from('quiz_questions').insert({...payload,created_by:user.id}));
+    }
+    if(error)throw error;
+    const wasEditing=!!editingQuestionId;
+    resetQuestionEditor();
+    $('adminMsg').textContent=wasEditing?'Questão atualizada com sucesso.':'Questão cadastrada com sucesso.';
+    $('adminMsg').className='success';
+    await loadAdminCounts();
+  }catch(err){msg('adminMsg',`Não foi possível salvar: ${err.message}`,true)}
+  finally{$('saveQuestion').disabled=false}
+};
+$('cancelQuestionEdit').onclick=resetQuestionEditor;
+$('adminQuestionSearch').addEventListener('input',renderAdminQuestions);
+$('refreshAdminQuestions').onclick=loadAdminQuestions;
+$('adminQuestionRows').addEventListener('click',async e=>{
+  const editButton=e.target.closest('[data-edit-question]');
+  const deleteButton=e.target.closest('[data-delete-question]');
+  if(editButton){
+    const q=adminQuestionCache.find(item=>item.id===editButton.dataset.editQuestion);
+    if(!q)return;
+    editingQuestionId=q.id;
+    $('adminSubject').value=q.subject_id;
+    $('qStatement').value=q.statement||'';
+    const options=Array.isArray(q.options)?q.options:[];
+    for(const key of ['A','B','C','D','E']){
+      const option=options.find(o=>o.key===key);
+      $('opt'+key).value=option?.text||option?.value||'';
+    }
+    $('qAnswer').value=q.correct_option||'A';
+    $('qExplanation').value=q.explanation||'';
+    $('qDifficulty').value=q.difficulty||'medium';
+    $('qSource').value=q.source||'';
+    $('qPublish').checked=q.status==='approved';
+    $('saveQuestion').textContent='Salvar alterações';
+    $('cancelQuestionEdit').classList.remove('hidden');
+    $('questionForm').scrollIntoView({behavior:'smooth',block:'start'});
+    $('adminMsg').textContent=`Editando questão ${q.id}`;
+    $('adminMsg').className='muted';
+    return;
+  }
+  if(deleteButton){
+    const id=deleteButton.dataset.deleteQuestion;
+    const q=adminQuestionCache.find(item=>item.id===id);
+    if(!q||!confirm(`Remover esta questão permanentemente?\n\n${q.statement.slice(0,220)}\n\nQuestões já utilizadas em tentativas podem estar protegidas por vínculo de histórico.`))return;
+    deleteButton.disabled=true;
+    try{
+      const {error}=await db.from('quiz_questions').delete().eq('id',id);
+      if(error)throw error;
+      $('adminQuestionMsg').textContent='Questão removida com sucesso.';
+      $('adminQuestionMsg').className='success';
+      if(editingQuestionId===id)resetQuestionEditor();
+      await loadAdminCounts();
+    }catch(err){
+      $('adminQuestionMsg').textContent=`Não foi possível remover a questão: ${err.message}`;
+      $('adminQuestionMsg').className='danger';
+    }finally{deleteButton.disabled=false}
+  }
+});
+async function resetStudentHistory(){
+  const output=$('historyResetMsg');
+  output.textContent=''; output.className='muted';
+  if(profile?.role!=='admin'){output.textContent='Acesso não autorizado.';output.className='danger';return;}
+  const studentId=$('historyStudentId').value.trim();
+  const uuidPattern=/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+  if(!uuidPattern.test(studentId)){output.textContent='Informe um UUID válido do aluno.';output.className='danger';return;}
+  if(studentId===user.id){output.textContent='Por segurança, não é permitido zerar o próprio histórico por esta ferramenta.';output.className='danger';return;}
+  const firstConfirm=confirm('Você está prestes a apagar todas as tentativas e respostas deste aluno. As questões e os conteúdos dos simulados serão preservados. Deseja continuar?');
+  if(!firstConfirm)return;
+  const typed=prompt('Para confirmar, digite exatamente ZERAR HISTORICO');
+  if(typed!=='ZERAR HISTORICO'){output.textContent='Operação cancelada. A confirmação não corresponde.';return;}
+  const button=$('resetStudentHistoryBtn'); button.disabled=true; button.textContent='Processando...';
+  try{
+    const {data,error}=await db.rpc('admin_clear_bravo_history',{p_user_id:studentId});
+    if(error)throw error;
+    if(!data?.success)throw new Error(data?.error||'O banco não confirmou a operação.');
+    output.textContent=`Histórico apagado. ${Number(data.deleted_attempts||0)} tentativa(s) e ${Number(data.deleted_answers||0)} resposta(s) removida(s). O banco de questões foi preservado.`;
+    output.className='success';
+    $('historyStudentId').value='';
+  }catch(err){output.textContent='Não foi possível zerar o histórico: '+(err.message||'erro desconhecido');output.className='danger';}
+  finally{button.disabled=false;button.textContent='Zerar histórico do aluno';}
+}
+$('resetStudentHistoryBtn').addEventListener('click',resetStudentHistory);
+$('loginForm').onsubmit=async e=>{e.preventDefault();$('loginBtn').disabled=true;msg('loginMsg','Validando acesso...');try{const {data,error}=await db.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});if(error)throw error;await loadProfile(data.user)}catch(err){msg('loginMsg',err.message==='Invalid login credentials'?'E-mail ou senha inválidos.':err.message,true)}finally{$('loginBtn').disabled=false}};$('logoutBtn').onclick=async()=>{await db.auth.signOut();location.reload()};
+if(!db){msg('loginMsg','Não foi possível inicializar a conexão Supabase.',true);return}db.auth.getSession().then(async({data})=>{if(data.session){try{await loadProfile(data.session.user);show('logoutBtn')}catch(e){msg('loginMsg',e.message,true)}}});db.auth.onAuthStateChange((event,session)=>{if(event==='SIGNED_OUT')location.reload()});
+})();
+</script></body></html>

@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BRAVO Preparatório Policial | GCM Capão Bonito e PM - QP Soldados</title>
 <meta name="description" content="Curso preparatório para Guarda Civil Municipal de Capão Bonito e curso para QP de soldados da Polícia Militar. Salários de até R$ 8.000,00. Prepare-se com quem vive a segurança pública.">
+<link id="siteFavicon" rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%2322e07a%27/%3E%3Ctext x=%2732%27 y=%2745%27 font-size=%2744%27 font-family=%27Arial%27 font-weight=%27bold%27 text-anchor=%27middle%27 fill=%27%2306210f%27%3EB%3C/text%3E%3C/svg%3E">
 <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
@@ -189,9 +191,9 @@
 
 
 </style>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
+
 <!-- CONFIGURAÇÃO DE CONTATO BRAVO -->
 <script>
   // Número que receberá a mensagem após a inscrição e os contatos do site.
@@ -217,7 +219,7 @@
       <a class="nav-link" href="#professores">Professores</a>
       <a class="nav-link" href="#faq">Dúvidas</a>
     </nav>
-    <div class="flex items-center gap-2"><button type="button" class="auth-link" id="openLogin">Área do aluno</button><a href="#inscricao" class="btn-primary !py-2.5 !px-5 !text-sm cta-btn">Garantir minha vaga</a></div>
+    <div class="flex items-center gap-2"><a type="button" class="auth-link" id="openLogin" href="arealogada.html">Área do aluno</a><a href="#inscricao" class="btn-primary !py-2.5 !px-5 !text-sm cta-btn">Garantir minha vaga</a></div>
   </div>
 </header>
 
@@ -227,16 +229,16 @@
     <div>
       <span class="pill bg-soft-green text-green mb-5">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        Concurso autorizado — Prepare-se com quem vive a segurança pública
+        <span id="heroBadgeText">Concurso autorizado — Prepare-se com quem vive a segurança pública</span>
       </span>
       <h1 class="font-display text-4xl md:text-5xl lg:text-6xl leading-[1.05] mb-5">
-        Curso Preparatório para <span class="text-green">Guarda Civil Municipal</span> de Capão Bonito
+        <span id="heroTitlePrefix">Curso Preparatório para</span> <span class="text-green" id="heroTitleHighlight">Guarda Civil Municipal</span><span id="heroTitleSuffix"> de Capão Bonito</span>
       </h1>
       <p class="text-lg text-muted mb-3 max-w-xl">
-        + <strong class="text-white">Curso para QP de Soldados da Polícia Militar</strong>
+        <span id="heroCourseLine">+ Curso para QP de Soldados da Polícia Militar</span>
       </p>
       <p class="text-base text-muted mb-7 max-w-xl">
-        Disciplina, estratégia, foco e resultados. Mais que um curso, uma missão com você. Sua aprovação começa aqui.
+        <span id="heroDescription">Disciplina, estratégia, foco e resultados. Mais que um curso, uma missão com você. Sua aprovação começa aqui.</span>
       </p>
 
       <!-- SALARY HOOK -->
@@ -519,12 +521,72 @@
           </select>
         </div>
         <div>
+          <label class="auth-label" for="applicationBirthDate">Data de nascimento *</label>
+          <input class="auth-field" id="applicationBirthDate" name="birth_date" type="date" required>
+        </div>
+        <div>
+          <label class="auth-label" for="applicationCpf">CPF *</label>
+          <input class="auth-field" id="applicationCpf" name="cpf" inputmode="numeric" maxlength="14" required placeholder="000.000.000-00">
+        </div>
+        <div>
+          <label class="auth-label" for="applicationRg">RG *</label>
+          <input class="auth-field" id="applicationRg" name="rg" maxlength="30" required autocomplete="off" placeholder="Número do RG">
+        </div>
+        <div>
+          <label class="auth-label" for="applicationStreet">Rua / Avenida *</label>
+          <input class="auth-field" id="applicationStreet" name="street" maxlength="160" required autocomplete="street-address" placeholder="Nome da rua ou avenida">
+        </div>
+        <div>
+          <label class="auth-label" for="applicationNumber">Número *</label>
+          <input class="auth-field" id="applicationNumber" name="street_number" maxlength="20" required placeholder="Número">
+        </div>
+        <div>
+          <label class="auth-label" for="applicationComplement">Complemento</label>
+          <input class="auth-field" id="applicationComplement" name="complement" maxlength="100" placeholder="Casa, bloco, apartamento...">
+        </div>
+        <div>
+          <label class="auth-label" for="applicationZip">CEP *</label>
+          <input class="auth-field" id="applicationZip" name="zip_code" maxlength="9" required inputmode="numeric" autocomplete="postal-code" placeholder="00000-000">
+        </div>
+        <div>
+          <label class="auth-label" for="applicationMaritalStatus">Estado civil</label>
+          <select class="auth-field" id="applicationMaritalStatus"><option value="">Selecione</option><option>Solteiro(a)</option><option>Casado(a)</option><option>União estável</option><option>Divorciado(a)</option><option>Viúvo(a)</option><option>Prefiro não informar</option></select>
+        </div>
+        <div>
           <label class="auth-label" for="applicationCity">Cidade/UF</label>
-          <input class="auth-field" id="applicationCity" name="city" maxlength="100" placeholder="Ex.: Capão Bonito/SP">
+          <input class="auth-field" id="applicationCity" name="city" maxlength="120" autocomplete="address-level2" placeholder="Ex.: Capão Bonito/SP">
+        </div>
+        <div>
+          <label class="auth-label" for="applicationNeighborhood">Bairro</label>
+          <input class="auth-field" id="applicationNeighborhood" name="neighborhood" maxlength="100" autocomplete="address-level3">
+        </div>
+        <div>
+          <label class="auth-label" for="applicationEducation">Escolaridade</label>
+          <select class="auth-field" id="applicationEducation"><option value="">Selecione</option><option>Ensino fundamental incompleto</option><option>Ensino fundamental completo</option><option>Ensino médio incompleto</option><option>Ensino médio completo</option><option>Ensino superior incompleto</option><option>Ensino superior completo</option><option>Pós-graduação</option></select>
+        </div>
+        <div>
+          <label class="auth-label" for="applicationBestTime">Melhor horário para contato</label>
+          <select class="auth-field" id="applicationBestTime"><option value="">Selecione</option><option>Manhã</option><option>Tarde</option><option>Noite</option><option>Qualquer horário</option></select>
+        </div>
+        <div>
+          <label class="auth-label" for="applicationReferral">Como conheceu a BRAVO?</label>
+          <select class="auth-field" id="applicationReferral"><option value="">Selecione</option><option>Instagram</option><option>Facebook</option><option>WhatsApp</option><option>Indicação</option><option>Pesquisa na internet</option><option>Outro</option></select>
+        </div>
+        <div>
+          <label class="auth-label" for="applicationPriorExam">Já prestou concurso público?</label>
+          <select class="auth-field" id="applicationPriorExam"><option value="">Selecione</option><option value="true">Sim</option><option value="false">Não</option></select>
         </div>
         <div class="md:col-span-2">
-          <label class="auth-label" for="applicationMessage">Mensagem (opcional)</label>
-          <textarea class="auth-field" id="applicationNotes" name="message" rows="3" maxlength="1000" placeholder="Conte se deseja receber informações sobre turma, horários e valores."></textarea>
+          <label class="auth-label" for="applicationPriorExamDetails">Se sim, qual concurso?</label>
+          <input class="auth-field" id="applicationPriorExamDetails" maxlength="240">
+        </div>
+        <div class="md:col-span-2">
+          <label class="auth-label" for="applicationStudyAvailability">Disponibilidade para estudar</label>
+          <textarea class="auth-field" id="applicationStudyAvailability" rows="2" maxlength="500" placeholder="Ex.: noites durante a semana e sábados pela manhã"></textarea>
+        </div>
+        <div class="md:col-span-2">
+          <label class="auth-label" for="applicationMessage">Observações</label>
+          <textarea class="auth-field" id="applicationNotes" name="message" rows="3" maxlength="1000" placeholder="Informações complementares (opcional)"></textarea>
         </div>
         <!-- Campo honeypot anti-spam; deve permanecer vazio e oculto. -->
         <div aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden"><label for="applicationWebsite">Não preencher</label><input id="applicationWebsite" name="website" tabindex="-1" autocomplete="off"></div>
@@ -532,9 +594,18 @@
           <div id="applicationRecaptcha"></div>
           <p class="text-xs text-muted mt-2">Confirme que você não é um robô para enviar sua inscrição.</p>
         </div>
+        <div class="md:col-span-2 border-t border-soft pt-4 mt-2">
+          <h3 class="font-bold mb-2">Assinatura eletrônica da pré-inscrição</h3>
+          <p class="text-xs text-muted mb-3">Digite seu nome completo e assine no quadro. O sistema registrará o resumo criptográfico SHA-256 dos dados e da assinatura, além do horário de envio e dados técnicos do navegador.</p>
+          <label class="auth-label" for="applicationSignatureName">Nome completo para assinatura *</label>
+          <input class="auth-field" id="applicationSignatureName" maxlength="120" required placeholder="Repita seu nome completo">
+          <canvas id="applicationSignatureCanvas" width="900" height="220" style="width:100%;height:150px;background:#fff;border:1px solid #64748b;border-radius:10px;touch-action:none"></canvas>
+          <div class="flex justify-between items-center gap-2 mt-2"><span class="text-xs text-muted">Assine com o dedo, mouse ou caneta digital.</span><button class="admin-small-btn" type="button" id="clearApplicationSignature">Limpar assinatura</button></div>
+        </div>
+        <p class="md:col-span-2 text-xs text-muted">Os dados pessoais serão utilizados para análise desta pré-inscrição, contato e eventual cadastro do aluno. O acesso às informações ficará restrito à administração da BRAVO, observada a legislação de proteção de dados.</p>
         <div class="md:col-span-2 flex items-start gap-3 mt-2">
           <input id="applicationConsent" type="checkbox" required class="mt-1">
-          <label for="applicationConsent" class="text-xs text-muted">Autorizo a BRAVO Preparatório Policial a utilizar meus dados para responder a esta solicitação e entrar em contato sobre os cursos. *</label>
+          <label for="applicationConsent" class="text-xs text-muted">Autorizo a BRAVO Preparatório Policial a utilizar os dados informados para responder à solicitação e entrar em contato sobre os cursos. Estou ciente de que esta ficha é uma pré-inscrição e não garante vaga ou matrícula. *</label>
         </div>
         <div class="md:col-span-2 mt-2">
           <button class="btn-primary w-full justify-center" id="applicationSubmit" type="submit">Enviar inscrição e continuar no WhatsApp</button>
@@ -586,320 +657,48 @@
 })();
 </script>
 
-<!-- ÁREA RESTRITA: LOGIN, PAINEL DO ALUNO E ADMINISTRAÇÃO -->
-<div class="auth-overlay" id="authOverlay" aria-modal="true" role="dialog" aria-labelledby="authTitle">
-  <section class="auth-panel" id="loginPanel">
-    <button class="auth-close" type="button" id="closeAuth" aria-label="Fechar">×</button>
-    <span class="pill bg-soft-green text-green mb-3">BRAVO • Área restrita</span>
-    <h2 class="font-display text-3xl mb-1" id="authTitle">Acesse sua conta</h2>
-    <p class="text-muted text-sm mb-5">Entre com o e-mail e a senha fornecidos pela equipe BRAVO.</p>
-    <form id="loginForm">
-      <label class="auth-label" for="loginEmail">E-mail</label>
-      <input class="auth-field" id="loginEmail" type="email" autocomplete="username" required>
-      <label class="auth-label" for="loginPassword">Senha</label>
-      <input class="auth-field" id="loginPassword" type="password" autocomplete="current-password" required>
-      <div class="mt-4" id="loginRecaptchaWrap" hidden>
-        <div id="loginRecaptcha"></div>
-        <p class="text-xs text-muted mt-2">Confirme que você não é um robô para continuar.</p>
-      </div>
-      <button class="btn-primary w-full justify-center mt-5" type="submit" id="loginSubmit">Entrar</button>
-    </form>
-    <p class="auth-message" id="loginMessage" role="status"></p>
-    <p class="text-xs text-muted mt-3">Problemas de acesso? Entre em contato com a administração.</p>
-  </section>
 
-  <section class="auth-panel wide" id="contractPanel" hidden>
-    <span class="pill bg-soft-green text-green mb-3">BRAVO • Assinatura obrigatória</span>
-    <h2 class="font-display text-3xl mb-2">Contrato de adesão e condições de uso</h2>
-    <p class="text-muted text-sm mb-4">Para liberar seu acesso, baixe o contrato, assine pelo portal oficial gov.br e envie aqui o PDF original assinado digitalmente.</p>
-    <div class="card p-5 mb-4" id="contractTerms" style="max-height:45vh;overflow-y:auto">
-      <h3 class="font-bold text-lg mb-2">TERMO DE ADESÃO AOS SERVIÇOS EDUCACIONAIS — BRAVO PREPARATÓRIO POLICIAL</h3>
-      <p class="text-sm text-muted mb-3">Versão do documento: BRAVO-2026-01</p>
-      <p class="text-sm text-muted">Aluno: <strong id="contractStudentName"></strong><br>E-mail: <strong id="contractStudentEmail"></strong></p>
-      <h4 class="font-bold mt-3">1. Objeto</h4>
-      <p class="text-sm text-muted">Este termo estabelece as condições gerais de acesso e utilização dos conteúdos educacionais disponibilizados pela BRAVO Preparatório Policial, incluindo videoaulas, apostilas, anotações e materiais complementares relacionados ao curso contratado pelo aluno.</p>
-      <h4 class="font-bold mt-3">2. Acesso individual</h4>
-      <p class="text-sm text-muted">O acesso é pessoal e individual. O aluno deve manter suas credenciais em sigilo e não poderá compartilhar, ceder, comercializar ou permitir que terceiros utilizem sua conta ou os materiais restritos.</p>
-      <h4 class="font-bold mt-3">3. Uso dos materiais</h4>
-      <p class="text-sm text-muted">Os conteúdos disponibilizados destinam-se exclusivamente ao estudo individual do aluno. É vedada a reprodução, distribuição, publicação, comercialização ou compartilhamento não autorizado dos materiais, respeitados os limites legais aplicáveis.</p>
-      <h4 class="font-bold mt-3">4. Responsabilidades do aluno</h4>
-      <p class="text-sm text-muted">O aluno compromete-se a fornecer informações verdadeiras, utilizar a plataforma de forma adequada, respeitar os direitos autorais e comunicar à administração qualquer suspeita de uso indevido de sua conta.</p>
-      <h4 class="font-bold mt-3">5. Disponibilidade e suporte</h4>
-      <p class="text-sm text-muted">A BRAVO buscará manter a plataforma e os conteúdos disponíveis, podendo realizar manutenções, atualizações e ajustes técnicos. Dúvidas ou problemas de acesso deverão ser comunicados à administração pelos canais oficiais.</p>
-      <h4 class="font-bold mt-3">6. Condições comerciais</h4>
-      <p class="text-sm text-muted">Valores, forma de pagamento, prazo de acesso, política de cancelamento, reembolso e demais condições comerciais devem corresponder à oferta e ao instrumento de contratação efetivamente apresentados ao aluno. Este termo geral não substitui essas condições específicas.</p>
-      <h4 class="font-bold mt-3">7. Privacidade e dados</h4>
-      <p class="text-sm text-muted">Os dados de cadastro e os registros de utilização serão tratados para administrar o acesso à plataforma, prestar suporte e cumprir obrigações legais, observada a legislação aplicável de proteção de dados pessoais.</p>
-      <h4 class="font-bold mt-3">8. Assinatura eletrônica</h4>
-      <p class="text-sm text-muted">O aluno deverá assinar este documento por meio do Portal de Assinatura Eletrônica gov.br, utilizando conta gov.br nível prata ou ouro, e devolver o arquivo PDF assinado digitalmente. A liberação do acesso depende da conferência da assinatura e da integridade do documento pela administração.</p>
-      <p class="text-sm text-muted mt-4">Data de emissão: <span id="contractIssueDate"></span></p>
-    </div>
-    <div class="card p-4 mb-4">
-      <h3 class="font-bold mb-2">Etapa 1 — Gere o contrato em PDF</h3>
-      <p class="text-sm text-muted mb-3">Use a opção de impressão e escolha “Salvar como PDF”. Confira se seus dados estão corretos.</p>
-      <button class="btn-primary" type="button" id="downloadUnsignedContract">Baixar contrato para assinatura (PDF)</button>
-    </div>
-    <div class="card p-4 mb-4">
-      <h3 class="font-bold mb-2">Etapa 2 — Assine no gov.br</h3>
-      <p class="text-sm text-muted mb-3">Acesse o portal oficial, entre com sua conta gov.br prata ou ouro, envie o PDF e baixe o documento assinado. Não use “Imprimir” para salvar o PDF assinado, pois isso pode remover a assinatura digital.</p>
-      <a class="auth-secondary inline-block" href="https://assinador.iti.br/" target="_blank" rel="noopener">Abrir Portal de Assinatura gov.br ↗</a>
-      <p class="text-xs text-muted mt-2">Após assinar, volte a esta página e envie o arquivo original baixado do portal.</p>
-    </div>
-    <div class="card p-4 mb-4">
-      <h3 class="font-bold mb-2">Etapa 3 — Envie o PDF assinado</h3>
-      <label class="auth-label" for="signedContractFile">Arquivo PDF assinado digitalmente</label>
-      <input class="auth-field" id="signedContractFile" type="file" accept="application/pdf,.pdf">
-      <button class="btn-primary mt-3" type="button" id="uploadSignedContract">Enviar contrato para validação</button>
-      <p class="text-sm text-muted mt-2">O acesso permanecerá bloqueado enquanto a administração não validar a assinatura no serviço oficial VALIDAR do ITI.</p>
-    </div>
-    <p class="auth-message" id="contractMessage" role="status"></p>
-    <button class="auth-secondary mt-3" type="button" id="contractLogoutButton">Sair da conta</button>
-  </section>
-
-  <section class="auth-panel wide" id="dashboardPanel" hidden>
-    <div class="flex flex-wrap justify-between items-center gap-3 mb-6">
-      <div><span class="pill bg-soft-green text-green mb-2">BRAVO • Área restrita</span><h2 class="font-display text-3xl" id="dashboardTitle">Painel</h2><p class="text-muted text-sm" id="welcomeText"></p></div>
-      <button class="auth-secondary" id="logoutButton" type="button">Sair da conta</button>
-    </div>
-    <div id="studentDashboard" hidden>
-      <div class="card p-5 mb-5">
-        <span class="auth-tag">ÁREA DO ALUNO</span>
-        <h3 class="font-display text-2xl mt-2">Sua preparação começa aqui</h3>
-        <p class="text-muted text-sm mt-1">Acesse as aulas, apostilas e anotações liberadas pela equipe BRAVO.</p>
-        <div class="student-tabs mt-5" role="tablist" aria-label="Materiais de estudo">
-          <button class="student-tab active" type="button" data-content-tab="video">▶ Videoaulas</button>
-          <button class="student-tab" type="button" data-content-tab="booklet">▤ Apostilas</button>
-          <button class="student-tab" type="button" data-content-tab="note">✎ Anotações</button>
-        </div>
-      </div>
-      <div id="studentContentStatus" class="auth-message" role="status">Carregando seus materiais...</div>
-      <div id="studentContentList" class="learning-grid"></div>
-    </div>
-    <div id="adminDashboard" hidden>
-      <div class="grid md:grid-cols-3 gap-3 mb-5">
-        <div class="card p-4"><p class="text-muted text-xs uppercase">Perfil</p><p class="text-green font-bold text-xl">Administrador</p></div>
-        <div class="card p-4"><p class="text-muted text-xs uppercase">Permissão</p><p class="font-bold text-xl">Acesso administrativo</p></div>
-        <div class="card p-4"><p class="text-muted text-xs uppercase">Gestão</p><p class="font-bold text-xl">Contas de alunos</p></div>
-      </div>
-      <div class="card p-5 mb-5" id="adminFlyerManager">
-        <h3 class="font-display text-xl mb-2">Imagem principal do site</h3>
-        <p class="text-muted text-sm mb-3">Substitua a arte exibida na página inicial. A nova imagem será publicada imediatamente para todos os visitantes.</p>
-        <div class="mb-3">
-          <img id="adminFlyerPreview" alt="Pré-visualização da imagem principal" class="rounded-xl max-h-64 w-auto max-w-full object-contain" style="border:1px solid var(--border)">
-        </div>
-        <label class="auth-label" for="heroFlyerUpload">Escolher nova imagem</label>
-        <input class="auth-field" id="heroFlyerUpload" type="file" accept="image/jpeg,image/png,image/webp">
-        <button class="btn-primary mt-3" id="uploadHeroFlyerButton" type="button">Enviar e substituir imagem</button>
-        <p class="auth-message" id="heroFlyerMessage" role="status"></p>
-        <p class="text-xs text-muted mt-2">Formatos aceitos: JPG, PNG ou WEBP. Tamanho máximo: 5 MB.</p>
-      </div>
-      <div class="card p-5 mb-5" id="adminApplicationsQueue">
-        <div class="flex flex-wrap justify-between items-center gap-3 mb-3"><div><h3 class="font-display text-xl">Inscrições recebidas</h3><p class="text-muted text-sm">Analise os dados e crie o acesso somente quando decidir aprovar o interessado.</p></div><button type="button" class="auth-secondary" id="refreshApplications">Atualizar inscrições</button></div>
-        <div id="adminApplicationsList" class="space-y-3"><p class="text-muted text-sm">Carregando inscrições...</p></div>
-        <p class="auth-message" id="adminApplicationsMessage" role="status"></p>
-      </div>
-      <div class="card p-5 mb-5">
-        <h3 class="font-display text-xl mb-2">Criar acesso de aluno</h3>
-        <form id="createStudentForm" class="grid md:grid-cols-2 gap-x-4">
-          <div><label class="auth-label" for="studentName">Nome completo</label><input class="auth-field" id="studentName" required maxlength="120"></div>
-          <div><label class="auth-label" for="studentEmail">E-mail do aluno</label><input class="auth-field" id="studentEmail" type="email" required></div>
-          <div><label class="auth-label" for="studentPassword">Senha inicial</label><input class="auth-field" id="studentPassword" type="password" minlength="8" required autocomplete="new-password"></div>
-          <div><label class="auth-label" for="studentCourse">Curso</label><select class="auth-field" id="studentCourse"><option>GCM Capão Bonito</option><option>QP de Soldados — Polícia Militar</option><option>Ambos os cursos</option></select></div>
-          <div class="md:col-span-2"><button class="btn-primary mt-4" id="createStudentButton" type="submit">Criar usuário</button><p class="auth-message" id="createStudentMessage" role="status"></p></div>
-        </form>
-      </div>
-      <div class="card p-5 mb-5" id="adminContractQueue">
-        <div class="flex flex-wrap justify-between items-center gap-3 mb-3"><div><h3 class="font-display text-xl">Contratos aguardando validação</h3><p class="text-muted text-sm">Baixe o PDF, valide-o em validar.iti.gov.br e só então confirme a aprovação.</p></div><button type="button" class="auth-secondary" id="refreshContractQueue">Atualizar</button></div>
-        <div id="adminContractList" class="space-y-3"><p class="text-muted text-sm">Carregando solicitações...</p></div>
-        <p class="auth-message" id="adminContractMessage" role="status"></p>
-      </div>
-      <div class="card p-5 mb-5" id="adminContentManager">
-        <div class="flex flex-wrap justify-between items-center gap-3 mb-3">
-          <div><h3 class="font-display text-xl">Biblioteca de conteúdos</h3><p class="text-muted text-sm">Publique videoaulas, apostilas e anotações para os alunos.</p></div>
-          <a class="auth-secondary" href="https://drive.google.com/drive/my-drive" target="_blank" rel="noopener">Abrir Google Drive ↗</a>
-        </div>
-        <div class="drive-help text-sm mb-4">
-          <strong class="text-green">Como funciona a integração:</strong> os arquivos ficam hospedados no Google Drive. Copie o link de compartilhamento do arquivo e cole no campo abaixo. No Drive, configure o acesso como “Qualquer pessoa com o link — Leitor”. O site guarda os metadados e controla quais alunos podem visualizar cada material.
-        </div>
-        <form id="addContentForm" class="grid md:grid-cols-2 gap-x-4">
-          <div><label class="auth-label" for="contentTitle">Título</label><input class="auth-field" id="contentTitle" maxlength="160" required placeholder="Ex.: Aula 01 — Direito Constitucional"></div>
-          <div><label class="auth-label" for="contentType">Tipo de conteúdo</label><select class="auth-field" id="contentType"><option value="video">Videoaula</option><option value="booklet">Apostila</option><option value="note">Anotação</option></select></div>
-          <div><label class="auth-label" for="contentCourse">Disponibilizar para</label><select class="auth-field" id="contentCourse"><option value="Ambos os cursos">Ambos os cursos</option><option value="GCM Capão Bonito">GCM Capão Bonito</option><option value="QP de Soldados — Polícia Militar">QP de Soldados — Polícia Militar</option></select></div>
-          <div><label class="auth-label" for="contentDriveUrl">Link do Google Drive / vídeo</label><input class="auth-field" id="contentDriveUrl" type="url" placeholder="https://drive.google.com/..."></div>
-          <div class="md:col-span-2"><label class="auth-label" for="contentDescription">Descrição / anotação</label><textarea class="auth-field" id="contentDescription" rows="4" maxlength="12000" placeholder="Escreva uma descrição ou, para anotações, o conteúdo que o aluno deverá ler."></textarea></div>
-          <div class="md:col-span-2 flex flex-wrap items-center gap-3 mt-3">
-            <label class="text-sm text-muted flex items-center gap-2"><input id="contentPublish" type="checkbox" checked> Publicar imediatamente para os alunos</label>
-            <button class="btn-primary" id="addContentButton" type="submit">Adicionar conteúdo</button>
-          </div>
-          <p class="auth-message md:col-span-2" id="addContentMessage" role="status"></p>
-        </form>
-        <div class="border-t border-soft mt-5 pt-4">
-          <div class="flex justify-between items-center gap-3 mb-3"><h4 class="font-bold">Conteúdos cadastrados</h4><button type="button" class="auth-secondary" id="refreshContents">Atualizar</button></div>
-          <div id="adminContentList" class="space-y-2"><p class="text-muted text-sm">Carregando conteúdos...</p></div>
-        </div>
-      </div>
-      <div class="card p-5">
-        <div class="flex justify-between items-center gap-3 mb-3"><h3 class="font-display text-xl">Usuários cadastrados</h3><button type="button" class="auth-secondary" id="refreshUsers">Atualizar lista</button></div>
-        <div class="overflow-x-auto"><table class="auth-table"><thead><tr><th>Aluno</th><th>E-mail</th><th>Perfil</th><th>Cadastro</th></tr></thead><tbody id="usersTable"><tr><td colspan="4" class="text-muted">Carregando usuários...</td></tr></tbody></table></div>
-        <p class="auth-message" id="usersMessage" role="status"></p>
-      </div>
-    </div>
-  </section>
-</div>
 <script>
 (function(){
-  // CONFIGURAÇÃO OBRIGATÓRIA: informe a URL e a chave pública (anon/publishable) do projeto Supabase.
-  // Nunca coloque a chave service_role neste HTML.
   const SUPABASE_URL = "https://kgliyuffqwvdeauxnube.supabase.co";
   const SUPABASE_ANON_KEY = "sb_publishable_wsDxq6qpa4NVqcfLNpiydw_MydLUOzB";
-  const CREATE_USER_FUNCTION = SUPABASE_URL + "/functions/v1/admin-users";
-  // RECAPTCHA DESATIVADO POR PADRÃO. Para ativar futuramente:
-  // 1) altere ENABLE_RECAPTCHA para true; 2) informe a Site Key pública abaixo;
-  // 3) configure RECAPTCHA_SECRET_KEY nos Secrets do Supabase e publique verify-recaptcha.
-  // Nunca coloque a Secret Key neste HTML.
   const ENABLE_RECAPTCHA = false;
   const RECAPTCHA_SITE_KEY = "COLE_AQUI_SUA_RECAPTCHA_SITE_KEY";
   const RECAPTCHA_VERIFY_FUNCTION = SUPABASE_URL + "/functions/v1/verify-recaptcha";
-  const CONTRACT_VERSION = "BRAVO-2026-01";
-  const CONTRACT_BUCKET = "student-contracts";
-  const SITE_ASSETS_BUCKET = "bravo-site-assets";
-  const HERO_FLYER_PATH = "site/hero-flyer";
-  const SEND_CONTRACT_EMAIL_FUNCTION = SUPABASE_URL + "/functions/v1/send-signed-contract";
-const configured = Boolean(
-  window.supabase &&
-  SUPABASE_URL.startsWith("https://") &&
-  SUPABASE_ANON_KEY.length > 0
-);
-  const client = configured
-  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
-  : null;
-
-  const overlay=document.getElementById("authOverlay");
-  const loginPanel=document.getElementById("loginPanel");
-  const dashboardPanel=document.getElementById("dashboardPanel");
-  const contractPanel=document.getElementById("contractPanel");
-  const loginMessage=document.getElementById("loginMessage");
-  let recaptchaWidgetId=null;
-  let recaptchaToken="";
-  let applicationRecaptchaWidgetId=null;
-  let applicationRecaptchaToken="";
-  let pendingStudentUser=null;
-  const adminDashboard=document.getElementById("adminDashboard");
-  const studentDashboard=document.getElementById("studentDashboard");
-  const usersTable=document.getElementById("usersTable");
-  let currentProfile=null;
-
+  const configured = Boolean(window.supabase && SUPABASE_URL.startsWith("https://") && SUPABASE_ANON_KEY.length > 0);
+  const client = configured ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+  const applicationRecaptchaWidgetId = null;
+  let applicationRecaptchaToken = "";
+  const WHATSAPP_NUMBER = "5515992324635";
   function showMessage(id,msg,isError=false){
     const el=document.getElementById(id); if(!el)return;
     el.textContent=msg; el.style.color=isError?"#fca5a5":"#fbbf24";
   }
-  function openArea() {
-    overlay.classList.add("open");
-    document.body.style.overflow = "hidden";
+  async function sha256Hex(value){
+    const bytes=typeof value==="string"?new TextEncoder().encode(value):await value.arrayBuffer();
+    const digest=await crypto.subtle.digest("SHA-256",bytes);
+    return Array.from(new Uint8Array(digest)).map(b=>b.toString(16).padStart(2,"0")).join("");
+  }
+  function setupSignatureCanvas(){
+    const canvas=document.getElementById("applicationSignatureCanvas");if(!canvas)return;
+    const ctx=canvas.getContext("2d");ctx.strokeStyle="#101827";ctx.lineWidth=4;ctx.lineCap="round";ctx.lineJoin="round";
+    let drawing=false,hasInk=false;
+    function point(e){const r=canvas.getBoundingClientRect();return {x:(e.clientX-r.left)*canvas.width/r.width,y:(e.clientY-r.top)*canvas.height/r.height};}
+    canvas.addEventListener("pointerdown",e=>{drawing=true;hasInk=true;canvas.setPointerCapture(e.pointerId);const p=point(e);ctx.beginPath();ctx.moveTo(p.x,p.y);});
+    canvas.addEventListener("pointermove",e=>{if(!drawing)return;const p=point(e);ctx.lineTo(p.x,p.y);ctx.stroke();});
+    const stop=()=>{drawing=false;};canvas.addEventListener("pointerup",stop);canvas.addEventListener("pointercancel",stop);canvas.addEventListener("pointerleave",stop);
+    document.getElementById("clearApplicationSignature")?.addEventListener("click",()=>{ctx.clearRect(0,0,canvas.width,canvas.height);hasInk=false;});
+    return {canvas,hasInk:()=>hasInk};
+  }
+  const applicationSignaturePad=setupSignatureCanvas();
 
-    // Posiciona a área no início da página
-    overlay.scrollTop = 0;
-
-    requestAnimationFrame(() => {
-        overlay.scrollTop = 0;
-    });
-	}
-  function closeArea(){overlay.classList.remove("open");document.body.style.overflow="";}
-  function showLogin(){
-    loginPanel.hidden=false;dashboardPanel.hidden=true;contractPanel.hidden=true;
-    loginMessage.textContent="";
-    ensureRecaptcha();
-  }
-  function ensureRecaptcha(){
-    if(!ENABLE_RECAPTCHA)return;
-    const loginContainer=document.getElementById("loginRecaptcha");
-    const applicationContainer=document.getElementById("applicationRecaptcha");
-    const loginWrap=document.getElementById("loginRecaptchaWrap");
-    const applicationWrap=document.getElementById("applicationRecaptchaWrap");
-    if(loginWrap)loginWrap.hidden=false;
-    if(applicationWrap)applicationWrap.hidden=false;
-    if(!RECAPTCHA_SITE_KEY || RECAPTCHA_SITE_KEY.startsWith("COLE_AQUI")){
-      showMessage("loginMessage","Para ativar o reCAPTCHA, configure primeiro a Site Key pública no HTML.",true);
-      return;
-    }
-    if(!window.grecaptcha || !window.grecaptcha.render)return;
-    try{
-      if(loginContainer && recaptchaWidgetId===null){
-        recaptchaWidgetId=window.grecaptcha.render(loginContainer,{sitekey:RECAPTCHA_SITE_KEY,callback:(token)=>{recaptchaToken=token;},"expired-callback":()=>{recaptchaToken="";},"error-callback":()=>{recaptchaToken="";showMessage("loginMessage","Não foi possível validar o reCAPTCHA. Tente novamente.",true);}});
-      }
-      if(applicationContainer && applicationRecaptchaWidgetId===null){
-        applicationRecaptchaWidgetId=window.grecaptcha.render(applicationContainer,{sitekey:RECAPTCHA_SITE_KEY,callback:(token)=>{applicationRecaptchaToken=token;},"expired-callback":()=>{applicationRecaptchaToken="";},"error-callback":()=>{applicationRecaptchaToken="";showMessage("applicationMessage","Não foi possível validar o reCAPTCHA. Tente novamente.",true);}});
-      }
-    }catch(err){console.error("Erro ao carregar reCAPTCHA:",err);}
-  }
-  if(ENABLE_RECAPTCHA){
-    window.onRecaptchaApiLoad=function(){window.dispatchEvent(new Event("recaptcha-ready"));};
-    const captchaScript=document.createElement("script");
-    captchaScript.src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaApiLoad&render=explicit";
-    captchaScript.async=true;captchaScript.defer=true;document.head.appendChild(captchaScript);
-  }
-  window.addEventListener("recaptcha-ready",ensureRecaptcha);
   async function verifyRecaptcha(token){
     if(!ENABLE_RECAPTCHA)return;
     if(!token)throw new Error("Marque a verificação reCAPTCHA antes de continuar.");
-    const response=await fetch(RECAPTCHA_VERIFY_FUNCTION,{
-      method:"POST",headers:{"Content-Type":"application/json","apikey":SUPABASE_ANON_KEY},
-      body:JSON.stringify({token})
-    });
+    const response=await fetch(RECAPTCHA_VERIFY_FUNCTION,{method:"POST",headers:{"Content-Type":"application/json","apikey":SUPABASE_ANON_KEY},body:JSON.stringify({token})});
     const result=await response.json().catch(()=>({}));
     if(!response.ok || result.success!==true)throw new Error(result.error||"Falha na validação do reCAPTCHA. Tente novamente.");
   }
-  async function showDashboard(user){
-    const {data,error}=await client.from("profiles").select("id,full_name,role,course,created_at").eq("id",user.id).single();
-    if(error || !data){await client.auth.signOut();showLogin();showMessage("loginMessage","Não foi possível validar seu perfil. Contate a administração.",true);return;}
-    currentProfile=data;
-    if(data.role==="student"){
-      const {data:signature,error:signatureError}=await client.from("student_contract_signatures")
-        .select("id,status,rejection_reason").eq("user_id",user.id).eq("contract_version",CONTRACT_VERSION)
-        .order("submitted_at",{ascending:false}).limit(1).maybeSingle();
-      if(signatureError){
-        loginPanel.hidden=true;dashboardPanel.hidden=true;contractPanel.hidden=false;
-        showMessage("contractMessage","Não foi possível consultar a situação do contrato. A administração deve configurar a tabela e o armazenamento no Supabase.",true);
-        return;
-      }
-      if(!signature || signature.status!=="approved"){
-        pendingStudentUser=user;
-        loginPanel.hidden=true;dashboardPanel.hidden=true;contractPanel.hidden=false;
-        document.getElementById("contractStudentName").textContent=data.full_name||"Aluno";
-        document.getElementById("contractStudentEmail").textContent=user.email||"";
-        document.getElementById("contractIssueDate").textContent=new Date().toLocaleDateString("pt-BR");
-        const fileInput=document.getElementById("signedContractFile"); if(fileInput)fileInput.value="";
-        if(signature && signature.status==="pending") showMessage("contractMessage","Recebemos seu contrato. Ele está aguardando validação oficial pela administração. O acesso será liberado após a aprovação. A cópia será enviada ao seu e-mail e a bravocursos.publicos@gmail.com.");
-        else if(signature && signature.status==="rejected") showMessage("contractMessage","O contrato enviado não foi aprovado. Motivo: "+(signature.rejection_reason||"assinatura não validada")+". Envie um novo PDF assinado.",true);
-        else document.getElementById("contractMessage").textContent="";
-        return;
-      }
-    }
-    pendingStudentUser=null;contractPanel.hidden=true;
-    loginPanel.hidden=true;dashboardPanel.hidden=false;
-    document.getElementById("welcomeText").textContent="Olá, "+(data.full_name||user.email);
-    const isAdmin=data.role==="admin";
-    adminDashboard.hidden=!isAdmin;studentDashboard.hidden=isAdmin;
-    document.getElementById("dashboardTitle").textContent=isAdmin?"Painel administrativo":"Área do aluno";
-    if(isAdmin){loadUsers();loadAdminContents();loadContractQueue();loadApplications();loadHeroFlyer();}
-    else {activeStudentTab="video";document.querySelectorAll("[data-content-tab]").forEach(b=>b.classList.toggle("active",b.dataset.contentTab==="video"));loadStudentContents();}
-  }
-  async function loadUsers(){
-    usersTable.innerHTML='<tr><td colspan="4" class="text-muted">Carregando...</td></tr>';
-    const {data,error}=await client.from("profiles").select("full_name,email,role,course,created_at").order("created_at",{ascending:false});
-    if(error){usersTable.innerHTML="";showMessage("usersMessage","Erro ao carregar usuários: "+error.message,true);return;}
-    usersTable.innerHTML="";
-    (data||[]).forEach(u=>{
-      const tr=document.createElement("tr");
-      [u.full_name||"—",u.email||"—",u.role==="admin"?"Administrador":"Aluno",u.created_at?new Date(u.created_at).toLocaleDateString("pt-BR"):"—"].forEach(v=>{
-        const td=document.createElement("td");td.textContent=v;tr.appendChild(td);
-      });
-      usersTable.appendChild(tr);
-    });
-    if(!data || !data.length)usersTable.innerHTML='<tr><td colspan="4" class="text-muted">Nenhum usuário encontrado.</td></tr>';
-    showMessage("usersMessage",(data||[]).length+" usuário(s) listado(s).");
-  }
-
   // ===== FORMULÁRIO PÚBLICO DE INSCRIÇÃO =====
   const applicationForm=document.getElementById("publicApplicationForm");
   if(applicationForm){
@@ -907,14 +706,33 @@ const configured = Boolean(
       e.preventDefault();
       const messageEl=document.getElementById("applicationMessage");
       const button=document.getElementById("applicationSubmit");
-      if(!configured){showMessage("applicationMessage","A inscrição ainda não está conectada ao Supabase. Tente novamente mais tarde.",true);return;}
+      if(!window.supabase){showMessage("applicationMessage","A biblioteca de conexão não foi carregada. Atualize a página e tente novamente.",true);return;}
+      if(!configured){showMessage("applicationMessage","A configuração do Supabase está incompleta. Verifique a URL e a chave pública.",true);return;}
       if(document.getElementById("applicationWebsite").value){return;}
       const fullName=document.getElementById("applicationName").value.trim();
       const phone=document.getElementById("applicationPhone").value.trim();
       const email=document.getElementById("applicationEmail").value.trim().toLowerCase();
       const course=document.getElementById("applicationCourse").value;
-      const city=document.getElementById("applicationCity").value.trim();
+      const city=(document.getElementById("applicationCity")?.value||"").trim();
       const message=document.getElementById("applicationNotes").value.trim();
+      const birthDate=document.getElementById("applicationBirthDate").value;
+      const cpf=document.getElementById("applicationCpf").value.trim();
+      const rg=document.getElementById("applicationRg").value.trim();
+      const street=document.getElementById("applicationStreet").value.trim();
+      const streetNumber=document.getElementById("applicationNumber").value.trim();
+      const complement=document.getElementById("applicationComplement").value.trim();
+      const zipCode=document.getElementById("applicationZip").value.trim();
+      const maritalStatus=document.getElementById("applicationMaritalStatus").value;
+      const neighborhood=document.getElementById("applicationNeighborhood").value.trim();
+      const education=document.getElementById("applicationEducation").value;
+      const bestContactTime=document.getElementById("applicationBestTime").value;
+      const referralSource=document.getElementById("applicationReferral").value;
+      const priorExam=document.getElementById("applicationPriorExam").value;
+      const priorExamDetails=document.getElementById("applicationPriorExamDetails").value.trim();
+      const studyAvailability=document.getElementById("applicationStudyAvailability").value.trim();
+      const signatureName=document.getElementById("applicationSignatureName").value.trim();
+      const signatureCanvas=document.getElementById("applicationSignatureCanvas");
+      const signatureData=applicationSignaturePad?.hasInk()?signatureCanvas.toDataURL("image/png"):"";
       // Validação campo a campo: informa exatamente o que precisa ser corrigido.
       const consent=document.getElementById("applicationConsent");
       const emailPattern=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -924,6 +742,14 @@ const configured = Boolean(
       else if(phone.replace(/\D/g,"").length<10){invalidField=document.getElementById("applicationPhone");validationMessage="Informe um telefone/WhatsApp com DDD e pelo menos 10 números.";}
       else if(!emailPattern.test(email)){invalidField=document.getElementById("applicationEmail");validationMessage="Informe um endereço de e-mail válido.";}
       else if(!course){invalidField=document.getElementById("applicationCourse");validationMessage="Selecione o curso de interesse.";}
+      else if(!birthDate){invalidField=document.getElementById("applicationBirthDate");validationMessage="Informe sua data de nascimento.";}
+      else if(cpf.replace(/\D/g,"").length!==11){invalidField=document.getElementById("applicationCpf");validationMessage="Informe um CPF com 11 números.";}
+      else if(rg.length<4){invalidField=document.getElementById("applicationRg");validationMessage="Informe o número do RG.";}
+      else if(!street){invalidField=document.getElementById("applicationStreet");validationMessage="Informe a rua ou avenida.";}
+      else if(!streetNumber){invalidField=document.getElementById("applicationNumber");validationMessage="Informe o número do endereço.";}
+      else if(zipCode.replace(/\D/g,"").length!==8){invalidField=document.getElementById("applicationZip");validationMessage="Informe um CEP com 8 números.";}
+      else if(signatureName.toLowerCase()!==fullName.toLowerCase()){invalidField=document.getElementById("applicationSignatureName");validationMessage="O nome para assinatura deve ser igual ao nome completo informado.";}
+      else if(!signatureData){invalidField=document.getElementById("applicationSignatureCanvas");validationMessage="Faça sua assinatura no quadro indicado.";}
       else if(!consent.checked){invalidField=consent;validationMessage="Marque a autorização para uso dos dados e contato pela BRAVO.";}
       if(invalidField){
         showMessage("applicationMessage",validationMessage,true);
@@ -932,369 +758,50 @@ const configured = Boolean(
         return;
       }
       button.disabled=true;button.textContent="Enviando inscrição...";
+      showMessage("applicationMessage","Estamos registrando sua inscrição. Aguarde...");
       try{
         if(ENABLE_RECAPTCHA) await verifyRecaptcha(applicationRecaptchaToken);
-        const {error}=await client.from("course_applications").insert({
-  full_name:fullName,
-  phone,
-  email,
-  course,
-  city:city||null,
-  message:message||null,
-  status:"pending"
-});
+        const signedAt=new Date().toISOString();
+        const consentText="Autorizo a BRAVO Preparatório Policial a utilizar os dados informados para responder à solicitação e entrar em contato sobre os cursos. Estou ciente de que esta ficha é uma pré-inscrição e não garante vaga ou matrícula.";
+        const signaturePayload={full_name:fullName,phone,email,course,city,birth_date:birthDate,cpf:cpf.replace(/\D/g,""),rg,street,street_number:streetNumber,complement,zip_code:zipCode,marital_status:maritalStatus,neighborhood,education,best_contact_time:bestContactTime,referral_source:referralSource,prior_public_exam:priorExam==="true"?true:priorExam==="false"?false:null,prior_exam_details:priorExamDetails,study_availability:studyAvailability,message,signature_name:signatureName,signature_data:signatureData,consent_text:consentText,signed_at:signedAt};
+        const signatureHash=await sha256Hex(JSON.stringify(signaturePayload));
+        const {error}=await client.from("course_applications").insert({full_name:fullName,phone,email,course,city:city||null,message:message||null,birth_date:birthDate,cpf:cpf.replace(/\D/g,""),rg:rg||null,street:street||null,street_number:streetNumber||null,complement:complement||null,zip_code:zipCode.replace(/\D/g,"" )||null,marital_status:maritalStatus||null,neighborhood:neighborhood||null,education:education||null,best_contact_time:bestContactTime||null,referral_source:referralSource||null,prior_public_exam:priorExam==="true"?true:priorExam==="false"?false:null,prior_exam_details:priorExamDetails||null,study_availability:studyAvailability||null,signature_name:signatureName,signature_data:signatureData,signature_hash:signatureHash,signature_algorithm:"SHA-256",signed_at:signedAt,consent_text:consentText,consented_at:signedAt,signer_user_agent:navigator.userAgent,status:"pending"});
         if(error)throw error;
         const whatsappText="Olá! Acabei de realizar minha inscrição na BRAVO Preparatório Policial e gostaria de fazer parte do curso.\n\nNome: "+fullName+"\nCurso de interesse: "+course+"\nE-mail: "+email+"\nWhatsApp: "+phone+"\n\nAguardo as orientações para continuar. Obrigado(a)!";
         const whatsappUrl="https://wa.me/"+WHATSAPP_NUMBER.replace(/\D/g,"")+"?text="+encodeURIComponent(whatsappText);
         showMessage("applicationMessage","Inscrição registrada! Você será encaminhado ao WhatsApp da BRAVO para concluir o contato.");
         applicationForm.reset();
+        if(applicationSignaturePad){const c=applicationSignaturePad.canvas;c.getContext("2d").clearRect(0,0,c.width,c.height);}
         applicationRecaptchaToken="";
         if(ENABLE_RECAPTCHA&&window.grecaptcha&&applicationRecaptchaWidgetId!==null)window.grecaptcha.reset(applicationRecaptchaWidgetId);
         window.location.assign(whatsappUrl);
-      }catch(err){showMessage("applicationMessage","Não foi possível registrar sua inscrição: "+(err.message||"erro inesperado"),true);}
+      }catch(err){
+        console.error("Erro ao enviar inscrição BRAVO:",err);
+        showMessage("applicationMessage","Não foi possível registrar sua inscrição: "+(err?.message||String(err)||"erro inesperado"),true);
+      }
       finally{button.disabled=false;button.textContent="Enviar inscrição e continuar no WhatsApp";}
     });
   }
 
-  document.getElementById("openLogin").addEventListener("click",()=>{
-    openArea();showLogin();ensureRecaptcha();
-    if(!configured)showMessage("loginMessage","A área está pronta, mas precisa ser conectada ao Supabase pelo responsável técnico.",true);
-  });
-  document.getElementById("closeAuth").addEventListener("click",closeArea);
-  overlay.addEventListener("click",e=>{if(e.target===overlay)closeArea();});
-  document.addEventListener("keydown",e=>{if(e.key==="Escape")closeArea();});
-  document.getElementById("loginForm").addEventListener("submit",async e=>{
-    e.preventDefault();
-    if(!configured){showMessage("loginMessage","Configure primeiro SUPABASE_URL e SUPABASE_ANON_KEY no código.",true);return;}
-    const button=document.getElementById("loginSubmit");
-    button.disabled=true;button.textContent="Verificando...";
-    try{
-      await verifyRecaptcha(recaptchaToken);
-      const {data,error}=await client.auth.signInWithPassword({
-        email:document.getElementById("loginEmail").value.trim(),
-        password:document.getElementById("loginPassword").value
-      });
-      if(error)throw new Error("E-mail ou senha inválidos.");
-      recaptchaToken="";
-      if(window.grecaptcha && recaptchaWidgetId!==null)window.grecaptcha.reset(recaptchaWidgetId);
-      await showDashboard(data.user);
-    }catch(err){
-      showMessage("loginMessage",err.message||"Não foi possível entrar. Tente novamente.",true);
-      recaptchaToken="";
-      if(window.grecaptcha && recaptchaWidgetId!==null)window.grecaptcha.reset(recaptchaWidgetId);
-    }finally{button.disabled=false;button.textContent="Entrar";}
-  });
-  function escapeContractText(value){
-    return String(value||"").replace(/[&<>"']/g,character=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[character]));
-  }
-  function contractPrintableHtml(){
-    const terms=document.getElementById("contractTerms").innerHTML;
-    const name=escapeContractText((currentProfile&&currentProfile.full_name)||"Aluno");
-    const email=escapeContractText((pendingStudentUser&&pendingStudentUser.email)||"");
-    return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Contrato BRAVO - ${name}</title><style>body{font-family:Arial,sans-serif;color:#111;line-height:1.5;margin:36px}h3{font-size:18px}h4{margin:18px 0 6px}p{font-size:12px}strong{font-weight:700}.muted{color:#333}.signature{margin-top:60px;border-top:1px solid #333;padding-top:8px;width:320px;font-size:12px}@media print{button{display:none}}</style></head><body><h2>BRAVO PREPARATÓRIO POLICIAL</h2>${terms}<p><strong>Identificação do aluno:</strong> ${name}<br><strong>E-mail:</strong> ${email}<br><strong>Versão:</strong> ${CONTRACT_VERSION}</p><div class="signature">Assinatura eletrônica do aluno — realizada no portal gov.br</div><p>Após assinar, baixe o PDF original no portal gov.br e envie-o pela área autenticada da plataforma.</p><script>window.onload=()=>window.print()<\/script></body></html>`;
-  }
-  document.getElementById("downloadUnsignedContract").addEventListener("click",()=>{
-    const popup=window.open("","_blank");
-    if(!popup){showMessage("contractMessage","Permita pop-ups para gerar o contrato em PDF.",true);return;}
-    popup.document.open();popup.document.write(contractPrintableHtml());popup.document.close();
-  });
-  document.getElementById("uploadSignedContract").addEventListener("click",async()=>{
-    if(!pendingStudentUser){showMessage("contractMessage","Sessão do aluno não identificada. Entre novamente.",true);return;}
-    const file=document.getElementById("signedContractFile").files[0];
-    if(!file){showMessage("contractMessage","Selecione o PDF assinado no gov.br.",true);return;}
-    if(file.type!=="application/pdf" || !file.name.toLowerCase().endsWith(".pdf")){showMessage("contractMessage","Envie somente um arquivo PDF.",true);return;}
-    if(file.size>20*1024*1024){showMessage("contractMessage","O arquivo deve ter no máximo 20 MB.",true);return;}
-    const btn=document.getElementById("uploadSignedContract");btn.disabled=true;btn.textContent="Enviando...";
-    try{
-      const path=pendingStudentUser.id+"/"+crypto.randomUUID()+".pdf";
-      const {error:uploadError}=await client.storage.from(CONTRACT_BUCKET).upload(path,file,{contentType:"application/pdf",upsert:false});
-      if(uploadError)throw uploadError;
-      const {error:insertError}=await client.from("student_contract_signatures").insert({user_id:pendingStudentUser.id,contract_version:CONTRACT_VERSION,storage_path:path,status:"pending",student_email:pendingStudentUser.email,student_name:currentProfile.full_name||pendingStudentUser.email});
-      if(insertError){await client.storage.from(CONTRACT_BUCKET).remove([path]);throw insertError;}
-      document.getElementById("signedContractFile").value="";
-      showMessage("contractMessage","PDF recebido com sucesso. Seu contrato está aguardando validação da administração. Você receberá uma cópia por e-mail após a aprovação.");
-    }catch(err){showMessage("contractMessage","Não foi possível enviar o contrato: "+(err.message||"erro inesperado"),true);}
-    finally{btn.disabled=false;btn.textContent="Enviar contrato para validação";}
-  });
-  async function loadContractQueue(){
-    const target=document.getElementById("adminContractList");if(!target)return;
-    target.innerHTML='<p class="text-muted text-sm">Carregando...</p>';
-    const {data,error}=await client.from("student_contract_signatures").select("id,user_id,contract_version,storage_path,status,submitted_at,student_email,student_name,rejection_reason").eq("status","pending").order("submitted_at",{ascending:true});
-    if(error){target.textContent="Erro ao carregar contratos: "+error.message;return;}
-    target.innerHTML="";
-    if(!data||!data.length){target.innerHTML='<p class="text-muted text-sm">Nenhum contrato aguardando validação.</p>';return;}
-    for(const item of data){
-      const row=document.createElement("div");row.className="learning-admin-row";
-      const info=document.createElement("div");info.style.flex="1";
-      const title=document.createElement("strong");title.textContent=item.student_name||item.student_email||"Aluno";
-      const meta=document.createElement("p");meta.className="text-xs text-muted";meta.textContent=(item.student_email||"")+" • Enviado em "+new Date(item.submitted_at).toLocaleString("pt-BR");
-      info.append(title,meta);
-      const actions=document.createElement("div");actions.className="flex flex-wrap gap-2";
-      const download=document.createElement("button");download.type="button";download.className="admin-small-btn";download.textContent="Abrir PDF";
-      download.addEventListener("click",async()=>{const {data:link,error:linkError}=await client.storage.from(CONTRACT_BUCKET).createSignedUrl(item.storage_path,120);if(linkError){showMessage("adminContractMessage",linkError.message,true);return;}window.open(link.signedUrl,"_blank","noopener");});
-      const validate=document.createElement("button");validate.type="button";validate.className="admin-small-btn";validate.textContent="Validar no ITI";validate.addEventListener("click",()=>window.open("https://validar.iti.gov.br/","_blank","noopener"));
-      const approve=document.createElement("button");approve.type="button";approve.className="admin-small-btn";approve.textContent="Confirmar validação e liberar";
-      approve.addEventListener("click",async()=>{
-        const confirmation=prompt("Informe o protocolo ou observação do resultado do VALIDAR (ex.: assinatura válida, titular e integridade conferidos):");
-        if(!confirmation||!confirmation.trim()){showMessage("adminContractMessage","Informe o resultado da conferência oficial para continuar.",true);return;}
-        if(!confirm("Confirma que você abriu o PDF no VALIDAR do ITI e conferiu que a assinatura está válida, pertence ao aluno e que o documento está íntegro?"))return;
-        approve.disabled=true;approve.textContent="Processando...";
-        try{
-          const {error:updateError}=await client.from("student_contract_signatures").update({status:"approved",reviewed_at:new Date().toISOString(),reviewed_by:currentProfile.id,validation_reference:confirmation.trim()}).eq("id",item.id).eq("status","pending");
-          if(updateError)throw updateError;
-          const {data:sessionData}=await client.auth.getSession();
-          const mailResponse=await fetch(SEND_CONTRACT_EMAIL_FUNCTION,{method:"POST",headers:{"Content-Type":"application/json","apikey":SUPABASE_ANON_KEY,"Authorization":"Bearer "+sessionData.session.access_token},body:JSON.stringify({request_id:item.id})});
-          const mailResult=await mailResponse.json().catch(()=>({}));
-          if(!mailResponse.ok||mailResult.success!==true){await client.from("student_contract_signatures").update({status:"pending",reviewed_at:null,reviewed_by:null,validation_reference:null}).eq("id",item.id);throw new Error(mailResult.error||"Falha ao enviar as cópias por e-mail; contrato mantido pendente.");}
-          showMessage("adminContractMessage","Contrato validado, acesso liberado e cópias enviadas por e-mail.");loadContractQueue();
-        }catch(err){showMessage("adminContractMessage","Não foi possível concluir a aprovação: "+err.message,true);approve.disabled=false;approve.textContent="Confirmar validação e liberar";}
-      });
-      const reject=document.createElement("button");reject.type="button";reject.className="admin-small-btn danger";reject.textContent="Rejeitar";reject.addEventListener("click",async()=>{const reason=prompt("Informe o motivo da rejeição:");if(!reason)return;const {error:rejectError}=await client.from("student_contract_signatures").update({status:"rejected",rejection_reason:reason,reviewed_at:new Date().toISOString(),reviewed_by:currentProfile.id}).eq("id",item.id).eq("status","pending");if(rejectError)showMessage("adminContractMessage",rejectError.message,true);else{showMessage("adminContractMessage","Contrato rejeitado. O aluno poderá enviar outro PDF.");loadContractQueue();}});
-      actions.append(download,validate,approve,reject);row.append(info,actions);target.append(row);
-    }
-  }
-  async function loadApplications(){
-    const target=document.getElementById("adminApplicationsList");if(!target)return;
-    target.innerHTML='<p class="text-muted text-sm">Carregando inscrições...</p>';
-    const {data,error}=await client.from("course_applications").select("id,full_name,phone,email,course,city,message,status,created_at,rejection_reason").order("created_at",{ascending:false}).limit(100);
-    if(error){target.textContent="Erro ao carregar inscrições: "+error.message;return;}
-    target.innerHTML="";
-    if(!data||!data.length){target.innerHTML='<p class="text-muted text-sm">Nenhuma inscrição recebida até o momento.</p>';return;}
-    for(const item of data){
-      const row=document.createElement("div");row.className="learning-admin-row";row.style.alignItems="flex-start";
-      const info=document.createElement("div");info.style.flex="1";
-      const title=document.createElement("strong");title.textContent=item.full_name;
-      const meta=document.createElement("p");meta.className="text-xs text-muted";meta.textContent=item.email+" • "+item.phone+" • "+item.course+" • "+(item.city||"Cidade não informada")+" • "+new Date(item.created_at).toLocaleString("pt-BR");
-      const status=document.createElement("p");status.className="text-xs mt-1";status.textContent="Situação: "+({pending:"Aguardando análise",approved:"Aprovada — acesso criado",rejected:"Rejeitada"}[item.status]||item.status);
-      info.append(title,meta,status);
-      if(item.message){const note=document.createElement("p");note.className="text-sm text-muted mt-1";note.textContent="Mensagem: "+item.message;info.append(note);}
-      if(item.rejection_reason){const reason=document.createElement("p");reason.className="text-xs text-muted mt-1";reason.textContent="Motivo: "+item.rejection_reason;info.append(reason);}
-      const actions=document.createElement("div");actions.className="flex flex-wrap gap-2";
-      if(item.status==="pending"){
-        const create=document.createElement("button");create.type="button";create.className="admin-small-btn";create.textContent="Aprovar e criar acesso";
-        create.addEventListener("click",async()=>{
-          const initialPassword=prompt("Defina uma senha inicial com pelo menos 8 caracteres para este aluno. Depois, encaminhe-a diretamente ao interessado:");
-          if(!initialPassword)return;
-          if(initialPassword.length<8){showMessage("adminApplicationsMessage","A senha precisa ter pelo menos 8 caracteres.",true);return;}
-          if(!confirm("Confirma a aprovação de "+item.full_name+" e a criação de uma conta de aluno?"))return;
-          create.disabled=true;create.textContent="Criando acesso...";
-          try{
-            const {data:{session}}=await client.auth.getSession();
-            const response=await fetch(CREATE_USER_FUNCTION,{method:"POST",headers:{"Content-Type":"application/json","Authorization":"Bearer "+session.access_token,"apikey":SUPABASE_ANON_KEY},body:JSON.stringify({full_name:item.full_name,email:item.email,password:initialPassword,course:item.course})});
-            const result=await response.json().catch(()=>({}));
-            if(!response.ok)throw new Error(result.error||"Não foi possível criar o usuário.");
-            const createdUserId=result.user?.id||result.id||null;
-            const {error:updateError}=await client.from("course_applications").update({status:"approved",student_user_id:createdUserId,reviewed_at:new Date().toISOString(),reviewed_by:currentProfile.id}).eq("id",item.id).eq("status","pending");
-            if(updateError)throw new Error("A conta foi criada, mas não foi possível atualizar a inscrição: "+updateError.message+". Atualize o status manualmente no Supabase.");
-            showMessage("adminApplicationsMessage","Inscrição aprovada e usuário criado. Envie ao aluno o e-mail e a senha inicial por um canal seguro.");
-            await Promise.all([loadApplications(),loadUsers()]);
-          }catch(err){showMessage("adminApplicationsMessage",err.message||"Falha ao criar acesso.",true);create.disabled=false;create.textContent="Aprovar e criar acesso";}
-        });
-        const reject=document.createElement("button");reject.type="button";reject.className="admin-small-btn danger";reject.textContent="Rejeitar";
-        reject.addEventListener("click",async()=>{const reason=prompt("Informe o motivo da rejeição (opcional):")||"Inscrição não aprovada pela administração.";if(!confirm("Rejeitar a inscrição de "+item.full_name+"?"))return;const {error:updateError}=await client.from("course_applications").update({status:"rejected",rejection_reason:reason,reviewed_at:new Date().toISOString(),reviewed_by:currentProfile.id}).eq("id",item.id).eq("status","pending");if(updateError)showMessage("adminApplicationsMessage",updateError.message,true);else{showMessage("adminApplicationsMessage","Inscrição rejeitada.");loadApplications();}});
-        actions.append(create,reject);
-      }
-      const contact=document.createElement("a");contact.className="admin-small-btn";contact.textContent="WhatsApp";contact.href="https://wa.me/"+String(item.phone||"").replace(/\D/g,"");contact.target="_blank";contact.rel="noopener";actions.append(contact);
-      row.append(info,actions);target.append(row);
-    }
-  }
-  document.getElementById("refreshApplications").addEventListener("click",loadApplications);
 
-  document.getElementById("refreshContractQueue").addEventListener("click",loadContractQueue);
-  document.getElementById("contractLogoutButton").addEventListener("click",async()=>{
-    await client.auth.signOut();currentProfile=null;pendingStudentUser=null;showLogin();
-  });
-  document.getElementById("logoutButton").addEventListener("click",async()=>{await client.auth.signOut();currentProfile=null;showLogin();});
-  document.getElementById("refreshUsers").addEventListener("click",loadUsers);
-  document.getElementById("createStudentForm").addEventListener("submit",async e=>{
-    e.preventDefault();
-    if(!currentProfile || currentProfile.role!=="admin"){showMessage("createStudentMessage","Ação não autorizada.",true);return;}
-    const btn=document.getElementById("createStudentButton");btn.disabled=true;btn.textContent="Criando...";
-    try{
-      const {data:{session}}=await client.auth.getSession();
-      const response=await fetch(CREATE_USER_FUNCTION,{
-        method:"POST",
-        headers:{ "Content-Type":"application/json", "Authorization":"Bearer "+session.access_token, "apikey":SUPABASE_ANON_KEY },
-        body:JSON.stringify({
-          full_name:document.getElementById("studentName").value.trim(),
-          email:document.getElementById("studentEmail").value.trim(),
-          password:document.getElementById("studentPassword").value,
-          course:document.getElementById("studentCourse").value
-        })
-      });
-      const result=await response.json();
-      if(!response.ok)throw new Error(result.error||"Não foi possível criar o usuário.");
-      document.getElementById("createStudentForm").reset();
-      showMessage("createStudentMessage","Usuário criado com sucesso. Oriente o aluno a entrar com o e-mail e a senha inicial.");
-      await loadUsers();
-    }catch(err){showMessage("createStudentMessage",err.message,true);}
-    finally{btn.disabled=false;btn.textContent="Criar usuário";}
-  });
-
-
-  // ===== IMAGEM PRINCIPAL DO SITE (UPLOAD ADMINISTRATIVO) =====
-  const heroImage=document.getElementById("heroFlyerImage");
-  const heroPreview=document.getElementById("adminFlyerPreview");
-  function setHeroFlyerUrl(url){
-    if(heroImage){
-      if(!heroImage.dataset.originalSrc)heroImage.dataset.originalSrc=heroImage.src;
-      heroImage.onerror=()=>{heroImage.onerror=null;heroImage.src=heroImage.dataset.originalSrc;};
-      heroImage.src=url;
-    }
-    if(heroPreview)heroPreview.src=url;
-  }
-  async function loadHeroFlyer(){
-    if(!client)return;
-    const {data,error}=await client.storage.from(SITE_ASSETS_BUCKET).list("site",{search:"hero-flyer"});
-    if(error){console.warn("Não foi possível consultar a imagem personalizada:",error.message);return;}
-    if((data||[]).some(file=>file.name==="hero-flyer")){
-      const {data:publicData}=client.storage.from(SITE_ASSETS_BUCKET).getPublicUrl(HERO_FLYER_PATH);
-      setHeroFlyerUrl(publicData.publicUrl+"?v="+Date.now());
-    }else if(heroPreview && heroImage){heroPreview.src=heroImage.src;}
-  }
-  const uploadHeroFlyerButton=document.getElementById("uploadHeroFlyerButton");
-  if(uploadHeroFlyerButton){
-    uploadHeroFlyerButton.addEventListener("click",async()=>{
-      if(!currentProfile||currentProfile.role!=="admin"){showMessage("heroFlyerMessage","Ação não autorizada.",true);return;}
-      const file=document.getElementById("heroFlyerUpload").files[0];
-      if(!file){showMessage("heroFlyerMessage","Selecione uma imagem antes de enviar.",true);return;}
-      const allowed=["image/jpeg","image/png","image/webp"];
-      if(!allowed.includes(file.type)){showMessage("heroFlyerMessage","Formato inválido. Utilize JPG, PNG ou WEBP.",true);return;}
-      if(file.size>5*1024*1024){showMessage("heroFlyerMessage","A imagem deve ter no máximo 5 MB.",true);return;}
-      uploadHeroFlyerButton.disabled=true;uploadHeroFlyerButton.textContent="Enviando...";
-      try{
-        const {error}=await client.storage.from(SITE_ASSETS_BUCKET).upload(HERO_FLYER_PATH,file,{contentType:file.type,upsert:true,cacheControl:"0"});
-        if(error)throw error;
-        const {data:publicData}=client.storage.from(SITE_ASSETS_BUCKET).getPublicUrl(HERO_FLYER_PATH);
-        setHeroFlyerUrl(publicData.publicUrl+"?v="+Date.now());
-        document.getElementById("heroFlyerUpload").value="";
-        showMessage("heroFlyerMessage","Imagem substituída com sucesso! A página inicial já está atualizada.");
-      }catch(err){showMessage("heroFlyerMessage","Falha no envio: "+(err.message||"erro desconhecido"),true);}
-      finally{uploadHeroFlyerButton.disabled=false;uploadHeroFlyerButton.textContent="Enviar e substituir imagem";}
-    });
-  }
-
-  if(configured)loadHeroFlyer();
-
-  // ===== BIBLIOTECA DE CONTEÚDOS BRAVO =====
-  let activeStudentTab = "video";
-  const contentLabels = {video:"Videoaula", booklet:"Apostila", note:"Anotação"};
-  function safeDriveUrl(raw){
-    const value=(raw||"").trim();
-    if(!value) return "";
-    try{
-      const u=new URL(value);
-      if(u.protocol!=="https:") return "";
-      if(!["drive.google.com","docs.google.com","www.youtube.com","youtu.be","youtube.com"].includes(u.hostname)) return "";
-      return u.href;
-    }catch(_){return "";}
-  }
-  function getDriveOpenUrl(raw){
-    const value=safeDriveUrl(raw);
-    if(!value) return "";
-    const match=value.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
-    return match ? "https://drive.google.com/file/d/"+match[1]+"/view" : value;
-  }
-  function renderStudentContents(items){
-    const list=document.getElementById("studentContentList");
-    list.innerHTML="";
-    const filtered=(items||[]).filter(x=>x.content_type===activeStudentTab);
-    if(!filtered.length){
-      list.innerHTML='<div class="card p-5 text-muted">Ainda não há conteúdos publicados nesta categoria.</div>';
-      return;
-    }
-    filtered.forEach(item=>{
-      const card=document.createElement("article");card.className="learning-card";
-      const tag=document.createElement("span");tag.className="auth-tag";tag.textContent=contentLabels[item.content_type]||"Material";
-      const title=document.createElement("h4");title.className="mt-3";title.textContent=item.title;
-      const desc=document.createElement("p");desc.className="learning-description";desc.textContent=item.description||"Material disponibilizado pela equipe BRAVO.";
-      card.append(tag,title,desc);
-      if(item.drive_url){
-        const link=document.createElement("a");link.className="learning-open";link.href=getDriveOpenUrl(item.drive_url)||item.drive_url;
-        link.target="_blank";link.rel="noopener";link.textContent=item.content_type==="video"?"Assistir / abrir conteúdo":"Abrir material";
-        card.appendChild(link);
-      }
-      list.appendChild(card);
-    });
-  }
-  async function loadStudentContents(){
-    const status=document.getElementById("studentContentStatus");
-    status.textContent="Carregando materiais...";
-    const {data,error}=await client.from("course_contents").select("id,title,description,content_type,drive_url,course,created_at").eq("is_published",true).order("created_at",{ascending:false});
-    if(error){status.textContent="Não foi possível carregar os materiais: "+error.message;return;}
-    const course=currentProfile?.course||"";
-    const visible=(data||[]).filter(x=>!x.course||x.course==="Ambos os cursos"||x.course===course);
-    status.textContent=visible.length+" conteúdo(s) disponível(is).";
-    renderStudentContents(visible);
-    document.querySelectorAll("[data-content-tab]").forEach(btn=>btn.onclick=()=>{
-      activeStudentTab=btn.dataset.contentTab;
-      document.querySelectorAll("[data-content-tab]").forEach(b=>b.classList.toggle("active",b===btn));
-      renderStudentContents(visible);
-    });
-    const active=document.querySelector('[data-content-tab="'+activeStudentTab+'"]');
-    if(active)active.classList.add("active");
-  }
-  async function loadAdminContents(){
-    const target=document.getElementById("adminContentList");
-    target.innerHTML='<p class="text-muted text-sm">Carregando...</p>';
-    const {data,error}=await client.from("course_contents").select("id,title,content_type,course,is_published,created_at").order("created_at",{ascending:false});
-    if(error){target.textContent="Erro ao carregar conteúdos: "+error.message;return;}
-    target.innerHTML="";
-    if(!data?.length){target.textContent="Nenhum conteúdo cadastrado.";return;}
-    data.forEach(item=>{
-      const row=document.createElement("div");row.className="learning-admin-row";
-      const info=document.createElement("div");info.className="min-w-0";
-      const title=document.createElement("div");title.className="font-bold";title.textContent=item.title;
-      const meta=document.createElement("div");meta.className="text-xs text-muted";meta.textContent=(contentLabels[item.content_type]||item.content_type)+" • "+item.course+" • "+(item.is_published?"Publicado":"Rascunho");
-      info.append(title,meta);
-      const actions=document.createElement("div");actions.className="flex flex-wrap gap-2 shrink-0";
-      const toggle=document.createElement("button");toggle.className="admin-small-btn";toggle.type="button";toggle.textContent=item.is_published?"Despublicar":"Publicar";
-      toggle.onclick=async()=>{
-        const {error}=await client.from("course_contents").update({is_published:!item.is_published}).eq("id",item.id);
-        if(error)alert("Não foi possível alterar a publicação: "+error.message);else loadAdminContents();
-      };
-      const del=document.createElement("button");del.className="admin-small-btn danger";del.type="button";del.textContent="Excluir";
-      del.onclick=async()=>{
-        if(!confirm("Excluir o conteúdo '"+item.title+"'? O arquivo original no Google Drive não será apagado."))return;
-        const {error}=await client.from("course_contents").delete().eq("id",item.id);
-        if(error)alert("Não foi possível excluir: "+error.message);else loadAdminContents();
-      };
-      actions.append(toggle,del);row.append(info,actions);target.append(row);
-    });
-  }
-  document.querySelectorAll("[data-content-tab]").forEach(btn=>btn.addEventListener("click",()=>{
-    activeStudentTab=btn.dataset.contentTab;
-    document.querySelectorAll("[data-content-tab]").forEach(b=>b.classList.toggle("active",b===btn));
-  }));
-  document.getElementById("addContentForm").addEventListener("submit",async e=>{
-    e.preventDefault();
-    if(!currentProfile||currentProfile.role!=="admin"){showMessage("addContentMessage","Ação não autorizada.",true);return;}
-    const type=document.getElementById("contentType").value;
-    const rawUrl=document.getElementById("contentDriveUrl").value;
-    const url=safeDriveUrl(rawUrl);
-    const description=document.getElementById("contentDescription").value.trim();
-    if(type!=="note"&&!url){showMessage("addContentMessage","Informe um link HTTPS válido do Google Drive ou YouTube.",true);return;}
-    if(rawUrl.trim()&&!url){showMessage("addContentMessage","Use um link HTTPS do Google Drive, Google Docs, YouTube ou youtu.be.",true);return;}
-    if(type==="note"&&!description){showMessage("addContentMessage","Para anotações, escreva o conteúdo no campo de descrição/anotação.",true);return;}
-    const btn=document.getElementById("addContentButton");btn.disabled=true;btn.textContent="Salvando...";
-    const payload={title:document.getElementById("contentTitle").value.trim(),description,content_type:type,drive_url:url||null,course:document.getElementById("contentCourse").value,is_published:document.getElementById("contentPublish").checked,created_by:currentProfile.id};
-    const {error}=await client.from("course_contents").insert(payload);
-    btn.disabled=false;btn.textContent="Adicionar conteúdo";
-    if(error){showMessage("addContentMessage","Erro ao salvar: "+error.message,true);return;}
-    document.getElementById("addContentForm").reset();document.getElementById("contentPublish").checked=true;
-    showMessage("addContentMessage","Conteúdo cadastrado com sucesso.");
-    loadAdminContents();
-  });
-  document.getElementById("refreshContents").addEventListener("click",loadAdminContents);
-
-  if(configured){
-    client.auth.getSession().then(({data})=>{if(data.session){openArea();showDashboard(data.session.user);}});
-    client.auth.onAuthStateChange((event,session)=>{
-      if(event==="SIGNED_OUT"){currentProfile=null;pendingStudentUser=null;showLogin();}
-    });
-  }
 })();
 </script>
+
+
+(function(){
+  // Os botões Garantir minha vaga agora levam ao formulário interno #inscricao.
+  function abrirWhatsapp(e){
+    e.preventDefault();
+    const numero=(WHATSAPP_NUMBER||"").replace(/\D/g,"");
+    if(!numero){alert("O WhatsApp da BRAVO ainda não foi configurado.");return;}
+    const msg=encodeURIComponent("Olá! Tenho dúvidas sobre os cursos preparatórios da BRAVO.");
+    window.open("https://wa.me/"+numero+"?text="+msg,"_blank","noopener");
+  }
+  const waFloat=document.getElementById('waFloat');
+  const waTab=document.getElementById('waTabSide');
+  if(waFloat)waFloat.addEventListener('click',abrirWhatsapp);
+  if(waTab)waTab.addEventListener('click',abrirWhatsapp);
+})();
 
 </body>
 </html>
